@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="noB-IA-54g">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--syllabus-->
+        <scene sceneID="1jQ-7c-Azm">
+            <objects>
+                <viewController id="noB-IA-54g" customClass="ListViewController" customModule="SuLi" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9vt-tm-lfq"/>
+                        <viewControllerLayoutGuide type="bottom" id="J69-cN-7Xn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UvE-bV-61n">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" placeholder="Lecture Search" translatesAutoresizingMaskIntoConstraints="NO" id="BtM-1o-bAK">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eV6-Qf-Bm9">
+                                <rect key="frame" x="0.0" y="72" width="375" height="546"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="eV6-Qf-Bm9" firstAttribute="leading" secondItem="BtM-1o-bAK" secondAttribute="leading" id="2Ci-4z-GaW"/>
+                            <constraint firstItem="eV6-Qf-Bm9" firstAttribute="trailing" secondItem="BtM-1o-bAK" secondAttribute="trailing" id="34Y-cy-X1p"/>
+                            <constraint firstItem="BtM-1o-bAK" firstAttribute="top" secondItem="9vt-tm-lfq" secondAttribute="bottom" constant="8" id="3WX-4w-RaW"/>
+                            <constraint firstItem="BtM-1o-bAK" firstAttribute="leading" secondItem="UvE-bV-61n" secondAttribute="leading" id="gTo-FD-6WW"/>
+                            <constraint firstItem="eV6-Qf-Bm9" firstAttribute="top" secondItem="BtM-1o-bAK" secondAttribute="bottom" id="pyi-rP-leC"/>
+                            <constraint firstItem="BtM-1o-bAK" firstAttribute="centerX" secondItem="UvE-bV-61n" secondAttribute="centerX" id="tjS-T0-RfR"/>
+                            <constraint firstItem="eV6-Qf-Bm9" firstAttribute="bottom" secondItem="J69-cN-7Xn" secondAttribute="top" id="vWQ-77-rjH"/>
+                            <constraint firstAttribute="trailing" secondItem="BtM-1o-bAK" secondAttribute="trailing" id="yO9-aM-cCV"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="syllabus" id="3IY-bq-waO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="eV6-Qf-Bm9" id="MI0-Ka-ipO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y19-MY-3va" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-16.800000000000001" y="26.53673163418291"/>
+        </scene>
+    </scenes>
+</document>
