@@ -1,1 +1,36 @@
+# Xcodeのビルドファイル
+build/
+DerivedData
+
+# Xcodeのプライベート設定（ウィンドウサイズ、ブックマーク、ブレイクポイントなど）
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+
+#上記4項目のデフォルト設定ファイル
+!default.pbxuser
+!default.mode1v3
+!default.mode2v3
+!default.perspectivev3
+
+#ビルドのカスタムscheme（ロケーション等）
+xcuserdata
+
+# 手動で廃止（deprecate）したクラスのファイルがここへ移動する（同じ名前のクラスを定義しようとしたときなど）
+*.moved-aside
+
+# Xcode起動の度に編集される
+# UserInterfaceState.xcuserstateなど
+*.xcuserstate
+
+# VCSのメタデータが含まれ、コミットしてしまうとmergeが困難になるなどの問題が発生する
+*.xccheckout
+
+# Pods
+# CococaPodsを使用した際にライブラリがインストールされる場所
+Pods
+
+# Macが勝手に作る
 .DS_Store
+
