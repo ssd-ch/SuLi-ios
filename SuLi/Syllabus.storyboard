@@ -28,6 +28,35 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eV6-Qf-Bm9">
                                 <rect key="frame" x="0.0" y="72" width="375" height="546"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="DfY-8n-mCu" detailTextLabel="Gda-dq-p9q" style="IBUITableViewCellStyleSubtitle" id="KYe-Kk-BZw">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KYe-Kk-BZw" id="KVi-Nh-Mzx">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DfY-8n-mCu">
+                                                    <rect key="frame" x="15" y="4" width="34" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gda-dq-p9q">
+                                                    <rect key="frame" x="15" y="25" width="44" height="15"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="lp9-kn-5h9" kind="show" id="ctd-4g-pJv"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -51,6 +80,51 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y19-MY-3va" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-16.800000000000001" y="26.53673163418291"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="xiL-2c-S5q">
+            <objects>
+                <viewController id="lp9-kn-5h9" customClass="DetailViewController" customModule="SuLi" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yEJ-jv-af9"/>
+                        <viewControllerLayoutGuide type="bottom" id="q5s-w1-5Pn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LNl-lY-pC2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0hG-8o-sYa">
+                                <rect key="frame" x="0.0" y="28" width="375" height="21"/>
+                                <items>
+                                    <navigationItem title="Title" id="Gp2-oC-C8f"/>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xCv-n1-SRe">
+                                <rect key="frame" x="0.0" y="49" width="375" height="569"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0hG-8o-sYa" firstAttribute="top" secondItem="yEJ-jv-af9" secondAttribute="bottom" constant="8" id="Cra-Ot-adc"/>
+                            <constraint firstItem="xCv-n1-SRe" firstAttribute="bottom" secondItem="q5s-w1-5Pn" secondAttribute="top" id="Wcb-Fm-nPg"/>
+                            <constraint firstItem="0hG-8o-sYa" firstAttribute="leading" secondItem="LNl-lY-pC2" secondAttribute="leading" id="aES-I2-VW6"/>
+                            <constraint firstAttribute="trailing" secondItem="0hG-8o-sYa" secondAttribute="trailing" id="mm5-nr-1oF"/>
+                            <constraint firstItem="0hG-8o-sYa" firstAttribute="leading" secondItem="xCv-n1-SRe" secondAttribute="leading" id="rZ1-Ur-ytx"/>
+                            <constraint firstItem="xCv-n1-SRe" firstAttribute="top" secondItem="0hG-8o-sYa" secondAttribute="bottom" id="uoS-Ff-XHF"/>
+                            <constraint firstItem="0hG-8o-sYa" firstAttribute="centerX" secondItem="LNl-lY-pC2" secondAttribute="centerX" id="vPR-U7-xbt"/>
+                            <constraint firstItem="0hG-8o-sYa" firstAttribute="trailing" secondItem="xCv-n1-SRe" secondAttribute="trailing" id="wWj-yr-r56"/>
+                            <constraint firstItem="xCv-n1-SRe" firstAttribute="centerY" secondItem="LNl-lY-pC2" secondAttribute="centerY" id="xhK-NV-lhm"/>
+                            <constraint firstItem="0hG-8o-sYa" firstAttribute="top" secondItem="yEJ-jv-af9" secondAttribute="bottom" constant="8" id="xk5-fU-Qul"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="xCv-n1-SRe" id="1Gd-Uv-94P"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l9J-G4-hNq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="932" y="26.53673163418291"/>
         </scene>
     </scenes>
 </document>

@@ -14,6 +14,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     @IBOutlet weak var tableView: UITableView!
     
+    var selectedLink: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -39,11 +41,33 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     // セルの内容を変更
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
+        //let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         cell.textLabel?.text = tableData[indexPath.row].lecture
         cell.detailTextLabel?.text = tableData[indexPath.row].teacher
         return cell
+    }
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        
+//        print(tableData[indexPath.row].link)
+//        
+//        // SecondViewControllerに渡す文字列をセット
+//        self.selectedLink = tableData[indexPath.row].link
+//        
+//        // SecondViewControllerへ遷移するSegueを呼び出す
+//        performSegue(withIdentifier: "showDetail",sender: nil)
+//        
+//    }
+    
+    // Segueで遷移時の処理
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let indexPath = self.tableView.indexPathForSelectedRow {
+            let controller = segue.destination as! DetailViewController
+            controller.link = tableData[indexPath.row].link
+        }
     }
     
     func accessData(){
@@ -62,7 +86,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         let lecture = (td_node[2].text?.replacingOccurrences(of: "\n|(　／　.*)", with: "", options: NSString.CompareOptions.regularExpression, range: nil))!
                         let teacher = td_node[3].text
                         let link = "http://gakumuweb1.shimane-u.ac.jp" + (td_node[2].css("a").first?["href"]!)!
-                        print(link)
                         self.tableData.append(SyllabusList(data: (lecture,teacher!,link)))
                     }
                     DispatchQueue.main.async {

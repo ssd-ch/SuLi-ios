@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5C77D4C91EB752B300CCC745 /* SyllabusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C77D4C81EB752B300CCC745 /* SyllabusCell.swift */; };
 		5C77D4CB1EB87A3300CCC745 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C77D4CA1EB87A3300CCC745 /* DetailViewController.swift */; };
 		5CFAB8691EB60208001885C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFAB8681EB60208001885C4 /* AppDelegate.swift */; };
 		5CFAB86B1EB60208001885C4 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFAB86A1EB60208001885C4 /* ListViewController.swift */; };
@@ -23,7 +22,6 @@
 
 /* Begin PBXFileReference section */
 		264DBFE15683CD108CA7159E /* Pods-SuLi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuLi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuLi/Pods-SuLi.debug.xcconfig"; sourceTree = "<group>"; };
-		5C77D4C81EB752B300CCC745 /* SyllabusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusCell.swift; sourceTree = "<group>"; };
 		5C77D4CA1EB87A3300CCC745 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		5CFAB8651EB60208001885C4 /* SuLi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuLi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CFAB8681EB60208001885C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -76,7 +74,6 @@
 				5CFAB8681EB60208001885C4 /* AppDelegate.swift */,
 				5CFAB86A1EB60208001885C4 /* ListViewController.swift */,
 				5C77D4CA1EB87A3300CCC745 /* DetailViewController.swift */,
-				5C77D4C81EB752B300CCC745 /* SyllabusCell.swift */,
 				5CFAB86C1EB60208001885C4 /* Main.storyboard */,
 				5CFAB87E1EB609A1001885C4 /* Material.storyboard */,
 				5CFAB8801EB609CD001885C4 /* TimeTable.storyboard */,
@@ -233,7 +230,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C77D4C91EB752B300CCC745 /* SyllabusCell.swift in Sources */,
 				5CFAB86B1EB60208001885C4 /* ListViewController.swift in Sources */,
 				5C77D4CB1EB87A3300CCC745 /* DetailViewController.swift in Sources */,
 				5CFAB8691EB60208001885C4 /* AppDelegate.swift in Sources */,
