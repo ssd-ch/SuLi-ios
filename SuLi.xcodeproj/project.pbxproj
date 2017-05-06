@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C22759B1EBC7F6D000A6AA9 /* URLEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22759A1EBC7F6D000A6AA9 /* URLEncoding.swift */; };
 		5C77D4CB1EB87A3300CCC745 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C77D4CA1EB87A3300CCC745 /* DetailViewController.swift */; };
+		5CE6175A1EBDCD7C00561E74 /* sjisHTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE617591EBDCD7C00561E74 /* sjisHTTP.swift */; };
 		5CFAB8691EB60208001885C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFAB8681EB60208001885C4 /* AppDelegate.swift */; };
 		5CFAB86B1EB60208001885C4 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFAB86A1EB60208001885C4 /* ListViewController.swift */; };
 		5CFAB86E1EB60208001885C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CFAB86C1EB60208001885C4 /* Main.storyboard */; };
@@ -22,7 +24,9 @@
 
 /* Begin PBXFileReference section */
 		264DBFE15683CD108CA7159E /* Pods-SuLi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuLi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuLi/Pods-SuLi.debug.xcconfig"; sourceTree = "<group>"; };
+		5C22759A1EBC7F6D000A6AA9 /* URLEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLEncoding.swift; sourceTree = "<group>"; };
 		5C77D4CA1EB87A3300CCC745 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		5CE617591EBDCD7C00561E74 /* sjisHTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sjisHTTP.swift; sourceTree = "<group>"; };
 		5CFAB8651EB60208001885C4 /* SuLi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuLi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CFAB8681EB60208001885C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5CFAB86A1EB60208001885C4 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +77,8 @@
 			children = (
 				5CFAB8681EB60208001885C4 /* AppDelegate.swift */,
 				5CFAB86A1EB60208001885C4 /* ListViewController.swift */,
+				5CE617591EBDCD7C00561E74 /* sjisHTTP.swift */,
+				5C22759A1EBC7F6D000A6AA9 /* URLEncoding.swift */,
 				5C77D4CA1EB87A3300CCC745 /* DetailViewController.swift */,
 				5CFAB86C1EB60208001885C4 /* Main.storyboard */,
 				5CFAB87E1EB609A1001885C4 /* Material.storyboard */,
@@ -232,6 +238,8 @@
 			files = (
 				5CFAB86B1EB60208001885C4 /* ListViewController.swift in Sources */,
 				5C77D4CB1EB87A3300CCC745 /* DetailViewController.swift in Sources */,
+				5C22759B1EBC7F6D000A6AA9 /* URLEncoding.swift in Sources */,
+				5CE6175A1EBDCD7C00561E74 /* sjisHTTP.swift in Sources */,
 				5CFAB8691EB60208001885C4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

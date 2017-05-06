@@ -31,12 +31,12 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         return 1
     }
     
-    // セルのテキストを追加
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
         
-        // 受け取った文字列をセルに表示
-        cell.textLabel?.text = self.link
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        
+        cell.textLabel?.text = "URL"
+        cell.detailTextLabel?.text = self.link
         return cell
     }
 }
