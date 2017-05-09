@@ -10,21 +10,25 @@ import UIKit
 import SwiftHTTP
 import Kanna
 
-class ListViewController: UIViewController,UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate {
+class ListViewController: UIViewController,UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, SyllabusListDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
     var selectedLink: String?
+    var syllabus: SearchSyllabus?
+    
+    // セルに表示するテキスト
+    var tableData : [SyllabusList] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        searchBar.delegate = self
+        self.searchBar.delegate = self
 
-        tableView.delegate = self
-        tableView.dataSource = self
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,34 +36,35 @@ class ListViewController: UIViewController,UISearchBarDelegate, UITableViewDataS
         // Dispose of any resources that can be recreated.
     }
     
+    //リロードデータ用デリゲートメソッド
+    func reloadTableData(data: [SyllabusList], hitNum: Int) {
+        self.tableData = data
+        self.tableView.reloadData()
+    }
+    
     // 検索ボタンが押された時に呼ばれる
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.view.endEditing(true)
-        searchBar.showsCancelButton = true
-//        self.searchResults = PPAP.filter{
-//            // 大文字と小文字を区別せずに検索
-//            $0.lowercased().contains(searchBar.text!.lowercased())
-//        }
-        searchSyllabus(searchWord: searchBar.text!)
+        self.searchBar.showsCancelButton = true
+        self.syllabus = SearchSyllabus(self.searchBar.text!)
+        self.syllabus?.delegate = self
+        self.syllabus!.start()
         //self.tableView.reloadData()
     }
     
     // キャンセルボタンが押された時に呼ばれる
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.showsCancelButton = false
+        self.searchBar.showsCancelButton = false
         self.view.endEditing(true)
-        searchBar.text = ""
+        self.searchBar.text = ""
         //self.tableView.reloadData()
     }
     
     // テキストフィールド入力開始前に呼ばれる
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        searchBar.showsCancelButton = true
+        self.searchBar.showsCancelButton = true
         return true
     }
-
-    // セルに表示するテキスト
-    var tableData : [SyllabusList] = []
 
     // セルの行数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -76,18 +81,6 @@ class ListViewController: UIViewController,UISearchBarDelegate, UITableViewDataS
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        
-//        print(tableData[indexPath.row].link)
-//        
-//        // SecondViewControllerに渡す文字列をセット
-//        self.selectedLink = tableData[indexPath.row].link
-//        
-//        // SecondViewControllerへ遷移するSegueを呼び出す
-//        performSegue(withIdentifier: "showDetail",sender: nil)
-//        
-//    }
-    
     // Segueで遷移時の処理
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -97,12 +90,43 @@ class ListViewController: UIViewController,UISearchBarDelegate, UITableViewDataS
         }
     }
     
-    func searchSyllabus(searchWord: String){
-        print(searchWord.sjisPercentEncoded)
-        self.tableData = []
+    //スクロールするたびに呼び出される
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if tableView.contentOffset.y + tableView.frame.size.height > tableView.contentSize.height && tableView.isDragging {
+            //一番下に来た時の処理
+            //syllabus.start(searchWord: searchBar.text!)
+        }
+    }
+    
+}
+
+protocol SyllabusListDelegate {
+    
+    func reloadTableData(data: [SyllabusList], hitNum: Int) -> Void
+}
+
+class SearchSyllabus {
+    
+    let URL = "http://gakumuweb1.shimane-u.ac.jp/shinwa/SYOutsideReferSearchList"
+    var searchword: String
+    var loadCount: Int
+    var hitNum: Int
+    
+    var delegate: SyllabusListDelegate?
+    
+    init(_ searchWord: String) {
+        self.searchword = searchWord
+        loadCount = 0
+        hitNum = 0
+    }
+    
+    func start() {
+        
+        var resultData : [SyllabusList] = []
+        
         do {
-            //let opt = try HTTP.GET("http://gakumuweb1.shimane-u.ac.jp/shinwa/SYOutsideReferSearchList?j_name="+searchWord.sjisPercentEncoded)
-            let opt = try sjisHTTP.GET("http://gakumuweb1.shimane-u.ac.jp/shinwa/SYOutsideReferSearchList", parameters: ["disp_cnt": "100", "j_name": searchWord])
+            let opt = try sjisHTTP.GET(self.URL, parameters: ["nendo": "2017","disp_cnt": "100", "j_name": self.searchword])
             opt.start { response in
                 if let err = response.error {
                     print("error: \(err.localizedDescription)")
@@ -111,16 +135,19 @@ class ListViewController: UIViewController,UISearchBarDelegate, UITableViewDataS
                 if let doc = HTML(html: response.data, encoding: .shiftJIS)?.css("body tr") {
                     //print("opt finished: \(String(data: response.data, encoding: .shiftJIS))")
                     if doc.count > 0 {
-                        print(response.description)
+                        self.hitNum += doc.count-1
+                        self.loadCount += doc.count-1
                         for i in 1..<doc.count {
                             let td_node = doc[i].css("td")
                             let lecture = (td_node[2].text?.replacingOccurrences(of: "\n|(　／　.*)", with: "", options: NSString.CompareOptions.regularExpression, range: nil))!
                             let teacher = td_node[3].text
                             let link = "http://gakumuweb1.shimane-u.ac.jp" + (td_node[2].css("a").first?["href"]!)!
-                            self.tableData.append(SyllabusList(data: (lecture,teacher!,link)))
+                            resultData.append(SyllabusList(data: (lecture,teacher!,link)))
+                            //self.tableData.append(SyllabusList(data: (lecture,teacher!,link)))
                         }
+                        //メインスレッドで呼び出す
                         DispatchQueue.main.async {
-                            self.tableView.reloadData()
+                            self.delegate?.reloadTableData(data: resultData, hitNum: self.hitNum)
                         }
                     }else {
                         print(response.description)
@@ -130,8 +157,8 @@ class ListViewController: UIViewController,UISearchBarDelegate, UITableViewDataS
         } catch let error {
             print("got an error creating the request: \(error)")
         }
+        //return (resultData, self.hitNum)
     }
-    
 }
 
 class SyllabusList {
