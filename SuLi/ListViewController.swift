@@ -37,8 +37,14 @@ class ListViewController: UIViewController,UISearchBarDelegate, UITableViewDataS
     }
     
     //リロードデータ用デリゲートメソッド
-    func reloadTableData(data: [SyllabusList], hitNum: Int) {
-        self.tableData = data
+    func reloadTableData(data: [SyllabusList], mode: Bool) {
+        if(mode) {
+            print("add data")
+            self.tableData += data
+        }
+        else {
+            self.tableData = data
+        }
         self.tableView.reloadData()
     }
     
@@ -92,10 +98,13 @@ class ListViewController: UIViewController,UISearchBarDelegate, UITableViewDataS
     
     //スクロールするたびに呼び出される
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
         if tableView.contentOffset.y + tableView.frame.size.height > tableView.contentSize.height && tableView.isDragging {
             //一番下に来た時の処理
-            //syllabus.start(searchWord: searchBar.text!)
+            print("end scroll")
+            if(syllabus?.status())! {
+                print("load start:\(syllabus?.status())")
+                syllabus?.load()
+            }
         }
     }
     
@@ -103,15 +112,17 @@ class ListViewController: UIViewController,UISearchBarDelegate, UITableViewDataS
 
 protocol SyllabusListDelegate {
     
-    func reloadTableData(data: [SyllabusList], hitNum: Int) -> Void
+    func reloadTableData(data: [SyllabusList], mode: Bool) -> Void
 }
 
 class SearchSyllabus {
     
     let URL = "http://gakumuweb1.shimane-u.ac.jp/shinwa/SYOutsideReferSearchList"
+    let dispCnt: String = "100"
     var searchword: String
     var loadCount: Int
     var hitNum: Int
+    var loadingStatus: Bool = true //true:ロード可, false: ロード中,これ以上追加読み込みするデータがない
     
     var delegate: SyllabusListDelegate?
     
@@ -121,21 +132,26 @@ class SearchSyllabus {
         hitNum = 0
     }
     
+    func status() -> Bool {
+        return self.loadingStatus
+    }
+    
     func start() {
         
         var resultData : [SyllabusList] = []
         
         do {
-            let opt = try sjisHTTP.GET(self.URL, parameters: ["nendo": "2017","disp_cnt": "100", "j_name": self.searchword])
+            self.loadingStatus = false
+            let opt = try sjisHTTP.GET(self.URL, parameters: ["nendo": "2017","disp_cnt": dispCnt, "j_name": self.searchword, "s_cnt" : String(loadCount) ])
             opt.start { response in
                 if let err = response.error {
                     print("error: \(err.localizedDescription)")
                     return //also notify app of failure as needed
                 }
                 if let doc = HTML(html: response.data, encoding: .shiftJIS)?.css("body tr") {
-                    //print("opt finished: \(String(data: response.data, encoding: .shiftJIS))")
                     if doc.count > 0 {
-                        self.hitNum += doc.count-1
+                        let cntText = (HTML(html: response.data, encoding: .shiftJIS)?.css("p")[0].text?.replacingOccurrences(of: "(.*｜　全)|(件　｜.*)", with: "", options: NSString.CompareOptions.regularExpression, range: nil))!
+                        self.hitNum = Int(cntText)!
                         self.loadCount += doc.count-1
                         for i in 1..<doc.count {
                             let td_node = doc[i].css("td")
@@ -143,22 +159,84 @@ class SearchSyllabus {
                             let teacher = td_node[3].text
                             let link = "http://gakumuweb1.shimane-u.ac.jp" + (td_node[2].css("a").first?["href"]!)!
                             resultData.append(SyllabusList(data: (lecture,teacher!,link)))
-                            //self.tableData.append(SyllabusList(data: (lecture,teacher!,link)))
                         }
                         //メインスレッドで呼び出す
                         DispatchQueue.main.async {
-                            self.delegate?.reloadTableData(data: resultData, hitNum: self.hitNum)
+                            self.delegate?.reloadTableData(data: resultData, mode: false)
                         }
                     }else {
-                        print(response.description)
+                        DispatchQueue.main.async {
+                            self.delegate?.reloadTableData(data: resultData, mode: false)
+                        }
                     }
+                }
+                if(self.hitNum > self.loadCount) {
+                    //追加読み込み可の状態へ
+                    self.loadingStatus = true
                 }
             }
         } catch let error {
             print("got an error creating the request: \(error)")
         }
-        //return (resultData, self.hitNum)
     }
+    
+    func load(){
+        
+        if(self.loadingStatus) {
+            self.loadingStatus = false //ロード中
+            
+            var resultData : [SyllabusList] = []
+            
+            do {
+                let opt = try sjisHTTP.GET(self.URL, parameters: [
+                    "nendo": "2017",
+                    "j_s_cd": "",
+                    "kamokud_cd": "",
+                    "j_name": self.searchword,
+                    "j_name_eng": "",
+                    "keyword": "",
+                    "tantonm": "",
+                    "yobi": "",
+                    "jigen": "",
+                    "disp_cnt": String(loadCount),
+                    "s_cnt": self.dispCnt ])
+                opt.start { response in
+                    if let err = response.error {
+                        print("error: \(err.localizedDescription)")
+                        return //also notify app of failure as needed
+                    }
+                    if let doc = HTML(html: response.data, encoding: .shiftJIS)?.css("body tr") {
+                        //print("opt finished: \(String(data: response.data, encoding: .shiftJIS))")
+                        if doc.count > 0 {
+                            let cntText = (HTML(html: response.data, encoding: .shiftJIS)?.css("p")[0].text?.replacingOccurrences(of: "(.*｜　全)|(件　｜.*)", with: "", options: NSString.CompareOptions.regularExpression, range: nil))!
+                            self.hitNum = Int(cntText)!
+                            self.loadCount += doc.count-1
+                            for i in 1..<doc.count {
+                                let td_node = doc[i].css("td")
+                                let lecture = (td_node[2].text?.replacingOccurrences(of: "\n|(　／　.*)", with: "", options: NSString.CompareOptions.regularExpression, range: nil))!
+                                let teacher = td_node[3].text
+                                let link = "http://gakumuweb1.shimane-u.ac.jp" + (td_node[2].css("a").first?["href"]!)!
+                                resultData.append(SyllabusList(data: ("\(i)"+lecture,teacher!,link)))
+                            }
+                            //メインスレッドで呼び出す
+                            DispatchQueue.main.async {
+                                self.delegate?.reloadTableData(data: resultData, mode: true)
+                            }
+                        }else {
+                            //print(response.description)
+                            print("no data")
+                        }
+                    }
+                    if(self.hitNum > self.loadCount) {
+                        self.loadingStatus = true
+                    }
+                }
+            } catch let error {
+                print("got an error creating the request: \(error)")
+            }
+        }
+    }
+    
 }
 
 class SyllabusList {
