@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SyllabusListViewController.swift
 //  SuLi
 //
 //  Created by ssd_ch on 2017/04/30.
@@ -10,7 +10,7 @@ import UIKit
 import SwiftHTTP
 import Kanna
 
-class ListViewController: UIViewController,UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, SyllabusListDelegate {
+class SyllabusListViewController: UIViewController,UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, SyllabusListDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -91,7 +91,7 @@ class ListViewController: UIViewController,UISearchBarDelegate, UITableViewDataS
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if let indexPath = self.tableView.indexPathForSelectedRow {
-            let controller = segue.destination as! DetailViewController
+            let controller = segue.destination as! SyllabusDetailViewController
             controller.link = tableData[indexPath.row].link
         }
     }
@@ -102,7 +102,6 @@ class ListViewController: UIViewController,UISearchBarDelegate, UITableViewDataS
             //一番下に来た時の処理
             print("end scroll")
             if(syllabus?.status())! {
-                print("load start:\(syllabus?.status())")
                 syllabus?.load()
             }
         }
@@ -216,7 +215,7 @@ class SearchSyllabus {
                                 let lecture = (td_node[2].text?.replacingOccurrences(of: "\n|(　／　.*)", with: "", options: NSString.CompareOptions.regularExpression, range: nil))!
                                 let teacher = td_node[3].text
                                 let link = "http://gakumuweb1.shimane-u.ac.jp" + (td_node[2].css("a").first?["href"]!)!
-                                resultData.append(SyllabusList(data: ("\(i)"+lecture,teacher!,link)))
+                                resultData.append(SyllabusList(data: (lecture,teacher!,link)))
                             }
                             //メインスレッドで呼び出す
                             DispatchQueue.main.async {

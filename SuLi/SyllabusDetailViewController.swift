@@ -1,5 +1,5 @@
 //
-//  DetailViewController.swift
+//  SyllabusDetailViewController.swift
 //  SuLi
 //
 //  Created by ssd_ch on 2017/05/02.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     
     @IBOutlet weak var tableView: UITableView!
