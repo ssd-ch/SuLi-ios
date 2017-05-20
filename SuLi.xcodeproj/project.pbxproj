@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5C22759B1EBC7F6D000A6AA9 /* URLEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22759A1EBC7F6D000A6AA9 /* URLEncoding.swift */; };
 		5C77D4CB1EB87A3300CCC745 /* SyllabusDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C77D4CA1EB87A3300CCC745 /* SyllabusDetailViewController.swift */; };
+		5CABE16A1ED02497009C271E /* SyllabusCustomViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CABE1691ED02497009C271E /* SyllabusCustomViewCell.swift */; };
+		5CABE16C1ED06A7E009C271E /* StringUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CABE16B1ED06A7E009C271E /* StringUtil.swift */; };
 		5CBAACB11EC573C6003FE2B9 /* ClassroomList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CBAACB01EC573C6003FE2B9 /* ClassroomList.storyboard */; };
 		5CE6175A1EBDCD7C00561E74 /* sjisHTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE617591EBDCD7C00561E74 /* sjisHTTP.swift */; };
 		5CFAB8691EB60208001885C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFAB8681EB60208001885C4 /* AppDelegate.swift */; };
@@ -27,6 +29,8 @@
 		264DBFE15683CD108CA7159E /* Pods-SuLi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuLi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuLi/Pods-SuLi.debug.xcconfig"; sourceTree = "<group>"; };
 		5C22759A1EBC7F6D000A6AA9 /* URLEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLEncoding.swift; sourceTree = "<group>"; };
 		5C77D4CA1EB87A3300CCC745 /* SyllabusDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusDetailViewController.swift; sourceTree = "<group>"; };
+		5CABE1691ED02497009C271E /* SyllabusCustomViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusCustomViewCell.swift; sourceTree = "<group>"; };
+		5CABE16B1ED06A7E009C271E /* StringUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtil.swift; sourceTree = "<group>"; };
 		5CBAACB01EC573C6003FE2B9 /* ClassroomList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ClassroomList.storyboard; sourceTree = "<group>"; };
 		5CE617591EBDCD7C00561E74 /* sjisHTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sjisHTTP.swift; sourceTree = "<group>"; };
 		5CFAB8651EB60208001885C4 /* SuLi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuLi.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,11 +85,13 @@
 				5CFAB86A1EB60208001885C4 /* SyllabusListViewController.swift */,
 				5CE617591EBDCD7C00561E74 /* sjisHTTP.swift */,
 				5C22759A1EBC7F6D000A6AA9 /* URLEncoding.swift */,
+				5CABE16B1ED06A7E009C271E /* StringUtil.swift */,
 				5C77D4CA1EB87A3300CCC745 /* SyllabusDetailViewController.swift */,
 				5CFAB86C1EB60208001885C4 /* Main.storyboard */,
 				5CFAB87E1EB609A1001885C4 /* Material.storyboard */,
 				5CFAB8801EB609CD001885C4 /* TimeTable.storyboard */,
 				5CFAB87A1EB607F6001885C4 /* Syllabus.storyboard */,
+				5CABE1691ED02497009C271E /* SyllabusCustomViewCell.swift */,
 				5CFAB87C1EB608FB001885C4 /* Notice.storyboard */,
 				5CFAB86F1EB60208001885C4 /* Assets.xcassets */,
 				5CFAB8711EB60208001885C4 /* LaunchScreen.storyboard */,
@@ -147,6 +153,7 @@
 				TargetAttributes = {
 					5CFAB8641EB60208001885C4 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 9VH8XFQJ8C;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -240,7 +247,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CABE16A1ED02497009C271E /* SyllabusCustomViewCell.swift in Sources */,
 				5CFAB86B1EB60208001885C4 /* SyllabusListViewController.swift in Sources */,
+				5CABE16C1ED06A7E009C271E /* StringUtil.swift in Sources */,
 				5C77D4CB1EB87A3300CCC745 /* SyllabusDetailViewController.swift in Sources */,
 				5C22759B1EBC7F6D000A6AA9 /* URLEncoding.swift in Sources */,
 				5CE6175A1EBDCD7C00561E74 /* sjisHTTP.swift in Sources */,
@@ -368,6 +377,7 @@
 			baseConfigurationReference = 264DBFE15683CD108CA7159E /* Pods-SuLi.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9VH8XFQJ8C;
 				INFOPLIST_FILE = SuLi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cf.ssdb.SuLi;
@@ -381,6 +391,7 @@
 			baseConfigurationReference = D04638F9448F7ABD8FCA6394 /* Pods-SuLi.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9VH8XFQJ8C;
 				INFOPLIST_FILE = SuLi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cf.ssdb.SuLi;

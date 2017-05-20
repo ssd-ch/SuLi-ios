@@ -1,15 +1,23 @@
 PODS:
   - Kanna (2.2.1)
+  - Realm (2.6.2):
+    - Realm/Headers (= 2.6.2)
+  - Realm/Headers (2.6.2)
+  - RealmSwift (2.6.2):
+    - Realm (= 2.6.2)
   - SwiftHTTP (2.0.2)
 
 DEPENDENCIES:
   - Kanna
+  - RealmSwift
   - SwiftHTTP (~> 2.0.0)
 
 SPEC CHECKSUMS:
   Kanna: 182789ab065e8f9a6ccc2a74ce6283d3401c0c4a
+  Realm: 29222766425b9f831228f81b63f0e38a97a4d700
+  RealmSwift: d161a80f96cb91ae88391a7d5a9cf08024a7bc8e
   SwiftHTTP: faa1a5f7670568ffc9361898229dbe84a6088468
 
-PODFILE CHECKSUM: afca9716f764a43b29f94bc7f6867ad36ff679c7
+PODFILE CHECKSUM: 80058f84544a0493e7621a0dc2af2c7f111f738b
 
 COCOAPODS: 1.2.1

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="330-2X-uQS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="330-2X-uQS">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,22 +23,53 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m9o-SV-GXP">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m9o-SV-GXP">
                                 <rect key="frame" x="166" y="323" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="Kzm-EL-NCN"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="classroom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T4t-Q1-5xv">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="classroom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T4t-Q1-5xv">
                                 <rect key="frame" x="147" y="323" width="81" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="81" id="3Px-Ho-5ji"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ASz-tH-rpE">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Classroom List" id="o6K-3v-uPe">
+                                        <barButtonItem key="rightBarButtonItem" style="plain" id="jzK-Nn-3j7">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9w8-kF-dC7">
+                                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Reload"/>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="T4t-Q1-5xv" firstAttribute="baseline" secondItem="m9o-SV-GXP" secondAttribute="baseline" id="EV5-fS-ylr"/>
+                            <constraint firstAttribute="trailing" secondItem="ASz-tH-rpE" secondAttribute="trailing" id="HwK-OT-arK"/>
+                            <constraint firstItem="ASz-tH-rpE" firstAttribute="top" secondItem="DbL-Ej-bYC" secondAttribute="bottom" constant="8" id="Ugc-ca-xn7"/>
+                            <constraint firstItem="ASz-tH-rpE" firstAttribute="top" secondItem="DbL-Ej-bYC" secondAttribute="bottom" constant="8" id="Z9d-rf-LX9"/>
+                            <constraint firstItem="ASz-tH-rpE" firstAttribute="centerX" secondItem="m9o-SV-GXP" secondAttribute="centerX" id="cSF-NX-lk6"/>
+                            <constraint firstItem="ASz-tH-rpE" firstAttribute="leading" secondItem="B1D-Jx-CEd" secondAttribute="leading" id="fcm-N3-Jq6"/>
+                            <constraint firstItem="ASz-tH-rpE" firstAttribute="leading" secondItem="B1D-Jx-CEd" secondAttribute="leading" id="nXR-3B-mIr"/>
+                            <constraint firstItem="T4t-Q1-5xv" firstAttribute="centerX" secondItem="m9o-SV-GXP" secondAttribute="centerX" id="ox4-DG-Coa"/>
+                            <constraint firstItem="T4t-Q1-5xv" firstAttribute="baseline" secondItem="m9o-SV-GXP" secondAttribute="firstBaseline" id="siX-kY-LdB"/>
+                            <constraint firstAttribute="trailing" secondItem="ASz-tH-rpE" secondAttribute="trailing" id="ues-vy-9hH"/>
+                            <constraint firstItem="T4t-Q1-5xv" firstAttribute="centerY" secondItem="B1D-Jx-CEd" secondAttribute="centerY" id="yJH-p0-AH0"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="classroom" id="joo-lN-Jzc"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>

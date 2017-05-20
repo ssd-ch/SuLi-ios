@@ -117,6 +117,7 @@ protocol SyllabusListDelegate {
 class SearchSyllabus {
     
     let URL = "http://gakumuweb1.shimane-u.ac.jp/shinwa/SYOutsideReferSearchList"
+    let URLdomain = "http://gakumuweb1.shimane-u.ac.jp"
     let dispCnt: String = "100"
     var searchword: String
     var loadCount: Int
@@ -149,14 +150,14 @@ class SearchSyllabus {
                 }
                 if let doc = HTML(html: response.data, encoding: .shiftJIS)?.css("body tr") {
                     if doc.count > 0 {
-                        let cntText = (HTML(html: response.data, encoding: .shiftJIS)?.css("p")[0].text?.replacingOccurrences(of: "(.*｜　全)|(件　｜.*)", with: "", options: NSString.CompareOptions.regularExpression, range: nil))!
+                        let cntText = (HTML(html: response.data, encoding: .shiftJIS)?.css("p")[0].text?.replaceAll(pattern: "(.*｜　全)|(件　｜.*)", with: ""))!
                         self.hitNum = Int(cntText)!
                         self.loadCount += doc.count-1
                         for i in 1..<doc.count {
                             let td_node = doc[i].css("td")
-                            let lecture = (td_node[2].text?.replacingOccurrences(of: "\n|(　／　.*)", with: "", options: NSString.CompareOptions.regularExpression, range: nil))!
+                            let lecture = (td_node[2].text?.replaceAll(pattern: "\n|(　／　.*)", with: ""))!
                             let teacher = td_node[3].text
-                            let link = "http://gakumuweb1.shimane-u.ac.jp" + (td_node[2].css("a").first?["href"]!)!
+                            let link = self.URLdomain + (td_node[2].css("a").first?["href"]!)!
                             resultData.append(SyllabusList(data: (lecture,teacher!,link)))
                         }
                         //メインスレッドで呼び出す
@@ -207,14 +208,14 @@ class SearchSyllabus {
                     if let doc = HTML(html: response.data, encoding: .shiftJIS)?.css("body tr") {
                         //print("opt finished: \(String(data: response.data, encoding: .shiftJIS))")
                         if doc.count > 0 {
-                            let cntText = (HTML(html: response.data, encoding: .shiftJIS)?.css("p")[0].text?.replacingOccurrences(of: "(.*｜　全)|(件　｜.*)", with: "", options: NSString.CompareOptions.regularExpression, range: nil))!
+                            let cntText = (HTML(html: response.data, encoding: .shiftJIS)?.css("p")[0].text?.replaceAll(pattern: "(.*｜　全)|(件　｜.*)", with: ""))!
                             self.hitNum = Int(cntText)!
                             self.loadCount += doc.count-1
                             for i in 1..<doc.count {
                                 let td_node = doc[i].css("td")
-                                let lecture = (td_node[2].text?.replacingOccurrences(of: "\n|(　／　.*)", with: "", options: NSString.CompareOptions.regularExpression, range: nil))!
+                                let lecture = (td_node[2].text?.replaceAll(pattern: "\n|(　／　.*)", with: ""))!
                                 let teacher = td_node[3].text
-                                let link = "http://gakumuweb1.shimane-u.ac.jp" + (td_node[2].css("a").first?["href"]!)!
+                                let link = self.URLdomain + (td_node[2].css("a").first?["href"]!)!
                                 resultData.append(SyllabusList(data: (lecture,teacher!,link)))
                             }
                             //メインスレッドで呼び出す

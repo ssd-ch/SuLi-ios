@@ -9,7 +9,7 @@
 import Foundation
 import SwiftHTTP
 
-open class sjisHTTP {
+public class sjisHTTP {
     
     open class func GET(_ url: String, parameters: [String:String]? = nil) throws -> HTTP  {
         if parameters != nil {
