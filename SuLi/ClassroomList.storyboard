@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="330-2X-uQS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="330-2X-uQS">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,7 +14,7 @@
         <!--classroom-->
         <scene sceneID="Th5-fI-XGf">
             <objects>
-                <viewController id="330-2X-uQS" sceneMemberID="viewController">
+                <viewController id="330-2X-uQS" customClass="ClassroomListViewContoroller" customModule="SuLi" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DbL-Ej-bYC"/>
                         <viewControllerLayoutGuide type="bottom" id="scq-WI-vGH"/>
@@ -45,11 +45,14 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Classroom List" id="o6K-3v-uPe">
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="jzK-Nn-3j7">
+                                        <barButtonItem key="rightBarButtonItem" style="done" id="jzK-Nn-3j7">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9w8-kF-dC7">
                                                 <rect key="frame" x="276" y="7" width="83" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Reload"/>
+                                                <connections>
+                                                    <action selector="TouchReloadButton:" destination="330-2X-uQS" eventType="touchUpInside" id="Yh3-4P-Agh"/>
+                                                </connections>
                                             </button>
                                         </barButtonItem>
                                     </navigationItem>

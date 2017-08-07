@@ -19,6 +19,8 @@ class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UIT
     
     var tableData: SyllabusData = SyllabusData()
     
+    var sectionIndex = ["basic info", "details", "teacheres"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,29 +46,52 @@ class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UIT
         self.tableView.reloadData()
     }
     
+    //各セクションのデータの個数を返す
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableData.basic.count+tableData.detail.count+tableData.teachers.count
+        switch section {
+        case 0:
+            return self.tableData.basic.count
+        case 1:
+            return self.tableData.detail.count
+        case 2:
+            return self.tableData.teachers.count
+        default:
+            return 0
+        }
+    }
+    
+    //セクション名を返す
+    func tableView(_ tableView:UITableView, titleForHeaderInSection section:Int) -> String? {
+        return self.sectionIndex[section]
+    }
+    
+    //セクションの個数を返す
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.sectionIndex.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row < tableData.basic.count {
+        switch indexPath.section {
+        case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell1", for: indexPath)
-            cell.textLabel?.text = tableData.basic[indexPath.row].0
-            cell.detailTextLabel?.text = tableData.basic[indexPath.row].1
+            cell.textLabel?.text = self.tableData.basic[indexPath.row].0
+            cell.detailTextLabel?.text = self.tableData.basic[indexPath.row].1
             return cell
-        }
-        else if indexPath.row-tableData.basic.count < tableData.detail.count {
+        case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell2", for: indexPath) as! SyllabusCustomViewCell
-            cell.titleLabel.text = tableData.detail[indexPath.row-tableData.basic.count].0
-            cell.detaiLabel.text = tableData.detail[indexPath.row-tableData.basic.count].1
+            cell.titleLabel.text = self.tableData.detail[indexPath.row].0
+            cell.detaiLabel.text = self.tableData.detail[indexPath.row].1
             return cell
-        }
-        else {
+        case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell3", for: indexPath)
-            let reduceCount = tableData.basic.count+tableData.detail.count
-            cell.textLabel?.text = tableData.teachers[indexPath.row-reduceCount].0
-            cell.detailTextLabel?.text = tableData.teachers[indexPath.row-reduceCount].1
+            cell.textLabel?.text = self.tableData.teachers[indexPath.row].0
+            cell.detailTextLabel?.text = self.tableData.teachers[indexPath.row].1
+            return cell
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell1", for: indexPath)
+            cell.textLabel?.text = "N/A"
+            cell.detailTextLabel?.text = "N/A"
             return cell
         }
     }
@@ -124,7 +149,7 @@ class GetSyllabus {
                         let tdTeacher = doc[2].css("td")
                         
                         for i in stride(from: 0, to: tdTeacher.count, by: 2) {
-                            resultData.detail.append((tdTeacher[i].text!, tdTeacher[i+1].text!))
+                            resultData.teachers.append((tdTeacher[i].text!, tdTeacher[i+1].text!))
                         }
                         
                         //メインスレッドで呼び出す
