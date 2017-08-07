@@ -28,7 +28,7 @@ struct GetBuildingList {
                 if let doc = HTML(html: response.data, encoding: .utf8)?.css(".body li a") {
                     //Realmに接続
                     let realm = try! Realm()
-                    print(realm.configuration.fileURL)
+                    //print(realm.configuration.fileURL)
                     //Buildingのすべてのオブジェクトを取得
                     let buildings = realm.objects(Building.self)
                     //取得したすべてのオブジェクトを削除

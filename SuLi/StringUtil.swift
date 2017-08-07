@@ -10,6 +10,7 @@ import Foundation
 
 extension String {
     
+    //正規表現で文字列の削除を行う
     func replaceAll(pattern: String, with: String) -> String {
         return self.replacingOccurrences(of: pattern, with: with, options: NSString.CompareOptions.regularExpression, range: nil)
     }
@@ -28,6 +29,7 @@ extension String {
         return convertFullWidthToHalfWidth(reverse: true)
     }
     
+    //全角数字を半角数字に変換する
     private func convertFullWidthToHalfWidthOnlyNumber(fullWidth: Bool) -> String {
         var str = self
         let pattern = fullWidth ? "[0-9]+" : "[０-９]+"
@@ -47,5 +49,37 @@ extension String {
     
     var FullWidthNumber: String {
         return convertFullWidthToHalfWidthOnlyNumber(fullWidth: true)
+    }
+    
+    //絵文字など(2文字分)も含めた文字数を返す
+    var count: Int {
+        let string_NS = self as NSString
+        return string_NS.length
+    }
+    
+    //正規表現の検索する
+    func matches(pattern: String, options: NSRegularExpression.Options = []) -> Bool {
+        guard let regex = try? NSRegularExpression(pattern: pattern, options: options) else {
+            return false
+        }
+        let matches = regex.matches(in: self, options: [], range: NSMakeRange(0, self.count))
+        return matches.count > 0
+    }
+    
+    //正規表現の検索結果を利用できます
+    func matcherSubString(pattern: String, options: NSRegularExpression.Options = []) -> String {
+        guard let regex = try? NSRegularExpression(pattern: pattern, options: options) else {
+            return ""
+        }
+        let targetStringRange = NSRange(location: 0, length: self.count)
+        let results = regex.matches(in: self, options: [], range: targetStringRange)
+        var matches = ""
+        for i in 0 ..< results.count {
+            for j in 0 ..< results[i].numberOfRanges {
+                let range = results[i].rangeAt(j)
+                matches.append((self as NSString).substring(with: range) + ",")
+            }
+        }
+        return matches.replaceAll(pattern: ",$", with: "")
     }
 }

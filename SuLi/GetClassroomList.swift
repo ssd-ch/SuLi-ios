@@ -36,81 +36,134 @@ struct GetClassroomList {
         //すべてのページの配当表を取得
         buildings.forEach { building in
             
-            let building_id = building.id //これ以下は別スレッドでRealmのオブジェクトにアクセスできないので退避
-            
-            do {
-                let opt = try HTTP.GET(building.url)
-                opt.start { response in
-                    if let err = response.error {
-                        print("error: \(err.localizedDescription)")
-                        return //also notify app of failure as needed
-                    }
-                    if let doc = HTML(html: response.data, encoding: .utf8)?.css(".body tr") {
-                        print(building_id)
-                        
-                        //各教室の取得
-                        var places : [String] = []
-                        var place_cnt = 0
-                        for td in doc[0].css("td").dropFirst(1) {
-                            for _ in 0..<(td["colspan"] == nil ? 1 : Int(td["colspan"]!)!) {
-                                if td["rowspan"] == nil {
-                                    places += [td.text! + " " + doc[1].css("td")[place_cnt].text!]
-                                    place_cnt += 1
-                                }
-                                else {
-                                    places += [td.text!]
-                                }
-                            }
-                        }
-                        for i in 0..<places.count {
-                            places[i] = places[i].replaceAll(pattern: "\r\n|\n", with: "")
-                            places[i] = places[i].replaceAll(pattern: "_|　", with: " ").HalfWidthNumber
-                        }
-                        
-                        for d in 0..<5 { //月から金のループ
-                            let point = d * 5 + 2 //trタグの位置
-                            for i in 0..<5 { //1から5コマのループ
-                                
-                                let tdData = doc[point + i].css("td")
-                                for pn in 0..<places.count { //場所のループ
-                                    var text = tdData[i == 0 ? pn + 2 : pn + 1].text! //一番最初は曜日名が入るので一つずらす
-                                    var L_Info = ["", "", "", ""]
-                                    var color = "#000000"
-                                    
-                                    if text == "\u{00A0}" || text == "" || text == "\r\n" || text == "\n" { //&nbsp;,"",改行のみ
-                                        text = ""
-                                    }
-                                    else {
-                                        text = text.replaceAll(pattern: "\r\n|\n", with: "")
-                                        if let style = tdData[i == 0 ? pn + 2 : pn + 1].css("span").first?["style"] {
-                                            if let index = style.range(of: "#") {
-                                                let index_int = style.distance(from: style.startIndex, to: index.lowerBound)
-                                                color = style.substring(with: style.index(style.startIndex, offsetBy: index_int)..<style.index(style.startIndex, offsetBy: index_int + 7))
-                                            }
-                                        }
-                                        else {
-                                            L_Info = ExtractionLecture(str: text)
-                                        }
-                                    }
-                                    let id = "\(NSString(format: "%02d", building_id))\(NSString(format: "%02d", pn))\(d)\(i)"
-                                    
-                                    print("\(id), \(building_id),\(places[pn]), \(d), \(i + 1), \(text), \(color), \(L_Info[0]), \(L_Info[1]), \(L_Info[2]), \(L_Info[3])")
-                                }
-                            }
-                        }
-                    }
-                }
-            } catch let error {
-                print("got an error creating the request: \(error)")
-            }
-            
+            scrapingClassroomDivide(building_id: building.id, url: building.url)
+
         }
     }
 }
 
+
+private func scrapingClassroomDivide(building_id: Int,url: String) {
+    
+    do {
+        let opt = try HTTP.GET(url)
+        opt.start { response in
+            if let err = response.error {
+                print("error: \(err.localizedDescription)")
+                return //also notify app of failure as needed
+            }
+            if let doc = HTML(html: response.data, encoding: .utf8)?.css(".body tr") {
+                
+                //Realmに接続
+                let realm = try! Realm()
+                
+                //各教室の取得
+                var places : [String] = []
+                var place_cnt = 0
+                for td in doc[0].css("td").dropFirst(1) {
+                    for _ in 0..<(td["colspan"] == nil ? 1 : Int(td["colspan"]!)!) {
+                        if td["rowspan"] == nil {
+                            places += [td.text! + " " + doc[1].css("td")[place_cnt].text!]
+                            place_cnt += 1
+                        }
+                        else {
+                            places += [td.text!]
+                        }
+                    }
+                }
+                for i in 0..<places.count {
+                    places[i] = places[i].replaceAll(pattern: "\r\n|\n", with: "")
+                    places[i] = places[i].replaceAll(pattern: "_|　", with: " ").HalfWidthNumber
+                }
+                
+                for d in 0..<5 { //月から金のループ
+                    let point = d * 5 + 2 //trタグの位置
+                    for i in 0..<5 { //1から5コマのループ
+                        
+                        let tdData = doc[point + i].css("td")
+                        for pn in 0..<places.count { //場所のループ
+                            var text = tdData[i == 0 ? pn + 2 : pn + 1].text! //一番最初は曜日名が入るので一つずらす
+                            var L_Info = ["", "", "", ""]
+                            var color = "#000000"
+                            
+                            if text == "\u{00A0}" || text == "" || text == "\r\n" || text == "\n" { //&nbsp;,"",改行のみ
+                                text = ""
+                            }
+                            else {
+                                text = text.replaceAll(pattern: "\r\n|\n", with: "")
+                                if let style = tdData[i == 0 ? pn + 2 : pn + 1].css("span").first?["style"] {
+                                    if let index = style.range(of: "#") {
+                                        let index_int = style.distance(from: style.startIndex, to: index.lowerBound)
+                                        color = style.substring(with: style.index(style.startIndex, offsetBy: index_int)..<style.index(style.startIndex, offsetBy: index_int + 7))
+                                    }
+                                }
+                                else {
+                                    L_Info = ExtractionLecture(str: text)
+                                }
+                            }
+                            let id = "\(NSString(format: "%02d", building_id))\(NSString(format: "%02d", pn))\(d)\(i)"
+                            
+                            //書き込むデータを作成
+                            let resultData = ClassroomDivide()
+                            resultData.id = Int(id)!
+                            resultData.building_id = building_id
+                            resultData.place = places[pn]
+                            resultData.weekday = d
+                            resultData.time = i + 1
+                            resultData.cell_text = text
+                            resultData.cell_color = color
+                            resultData.classname = L_Info[0]
+                            resultData.person = L_Info[1]
+                            resultData.department = L_Info[2]
+                            resultData.class_code = L_Info[3]
+                            
+                            //データをRealmに書き込む
+                            try! realm.write() {
+                                realm.add(resultData)
+                            }
+                            
+                            //print("\(id), \(building_id),\(places[pn]), \(d), \(i + 1), \(text), \(color), \(L_Info[0]), \(L_Info[1]), \(L_Info[2]), \(L_Info[3])")
+                        }
+                    }
+                }
+            }
+        }
+    } catch let error {
+        print("got an error creating the request: \(error)")
+    }
+}
+
+
 private func ExtractionLecture(str: String) -> [String]{
     
     var result = ["", "", "", ""]
+    
+    let d_code = "ＬＳＥＨＭＳＡＦＣ○*"
+    
+    var text = str.replaceAll(pattern: "、", with: " ")
+    
+    //授業名
+    if text.matches(pattern: ".*『.*』.*") {
+        result[0] = text.matcherSubString(pattern: "『.*』").replaceAll(pattern: "[『』]", with: "")
+        text = text.replaceAll(pattern: "『.*』", with: "")
+    }
+    //時間割コード
+    if text.matches(pattern: ".*[A-Z0-9]{6}.*") {
+        result[3] = text.matcherSubString(pattern: "[A-Z0-9]{6,}")
+        text = text.replaceAll(pattern: "[A-Z0-9/]{6,}", with: "")
+    }
+    //担当者情報
+    if text.matches(pattern: ".*[" + d_code + "].*") {
+        let t = text.matcherSubString(pattern: "[" + d_code + "]{1,2}[^" + d_code + "]*")
+        result[2] = t.matcherSubString(pattern: "[" + d_code + "]{1,2}")
+        result[1] = t.replaceAll(pattern: "[" + d_code + "]", with: "")
+    }
+    
+    for i in 0..<result.count {
+        result[i] = result[i].replaceAll(pattern: "[　 ]", with: "")
+    }
+    
+    //print("授業名:\(result[0]) 時間割コード:\(result[3]) 担当者名:\(result[1]) 担当者所属:\(result[2]) --> \(str.replaceAll(pattern: "\r\n|\n", with: ""))")
     
     return result
 }
