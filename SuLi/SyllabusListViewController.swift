@@ -31,6 +31,7 @@ class SyllabusListViewController: UIViewController,UISearchBarDelegate, UITableV
         self.tableView.dataSource = self
         
         GetSyllabusForm.start()
+        GetCancelInfo.start()
     }
 
     override func didReceiveMemoryWarning() {
