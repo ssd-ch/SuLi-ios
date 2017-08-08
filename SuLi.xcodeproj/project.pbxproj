@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C203F2E1F3A277A00C89196 /* GetSyllabusForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C203F2D1F3A277A00C89196 /* GetSyllabusForm.swift */; };
 		5C22759B1EBC7F6D000A6AA9 /* URLEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22759A1EBC7F6D000A6AA9 /* URLEncoding.swift */; };
 		5C6A19B91ED3B2FE00BF1A52 /* database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6A19B81ED3B2FE00BF1A52 /* database.swift */; };
 		5C6A19BB1ED3BE1600BF1A52 /* GetClassroomList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6A19BA1ED3BE1600BF1A52 /* GetClassroomList.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		264DBFE15683CD108CA7159E /* Pods-SuLi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuLi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuLi/Pods-SuLi.debug.xcconfig"; sourceTree = "<group>"; };
+		5C203F2D1F3A277A00C89196 /* GetSyllabusForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetSyllabusForm.swift; sourceTree = "<group>"; };
 		5C22759A1EBC7F6D000A6AA9 /* URLEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLEncoding.swift; sourceTree = "<group>"; };
 		5C6A19B81ED3B2FE00BF1A52 /* database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = database.swift; sourceTree = "<group>"; };
 		5C6A19BA1ED3BE1600BF1A52 /* GetClassroomList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetClassroomList.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				5C6A19BE1ED3F48000BF1A52 /* ClassroomListVIewController.swift */,
 				5C6A19B81ED3B2FE00BF1A52 /* database.swift */,
 				5C6A19BA1ED3BE1600BF1A52 /* GetClassroomList.swift */,
+				5C203F2D1F3A277A00C89196 /* GetSyllabusForm.swift */,
 				5C74874C1F35EF3B0021D9A7 /* GetBuildingList.swift */,
 				5CE617591EBDCD7C00561E74 /* sjisHTTP.swift */,
 				5CABE16B1ED06A7E009C271E /* StringUtil.swift */,
@@ -270,6 +273,7 @@
 				5C6A19B91ED3B2FE00BF1A52 /* database.swift in Sources */,
 				5C6A19BF1ED3F48000BF1A52 /* ClassroomListVIewController.swift in Sources */,
 				5CFAB8691EB60208001885C4 /* AppDelegate.swift in Sources */,
+				5C203F2E1F3A277A00C89196 /* GetSyllabusForm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

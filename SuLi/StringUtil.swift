@@ -66,7 +66,7 @@ extension String {
         return matches.count > 0
     }
     
-    //正規表現の検索結果を利用できます
+    //正規表現で一致した文字列を返す(複数の場合は,で区切る)
     func matcherSubString(pattern: String, options: NSRegularExpression.Options = []) -> String {
         guard let regex = try? NSRegularExpression(pattern: pattern, options: options) else {
             return ""

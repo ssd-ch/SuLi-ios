@@ -29,6 +29,8 @@ class SyllabusListViewController: UIViewController,UISearchBarDelegate, UITableV
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        GetSyllabusForm.start()
     }
 
     override func didReceiveMemoryWarning() {
