@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="330-2X-uQS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1UL-fn-xub">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--classroom-->
+        <!--ClassroomList-->
         <scene sceneID="Th5-fI-XGf">
             <objects>
-                <viewController id="330-2X-uQS" customClass="ClassroomListViewContoroller" customModule="SuLi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="330-2X-uQS" userLabel="ClassroomList" customClass="ClassroomListViewContoroller" customModule="SuLi" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DbL-Ej-bYC"/>
                         <viewControllerLayoutGuide type="bottom" id="scq-WI-vGH"/>
@@ -23,61 +21,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m9o-SV-GXP">
-                                <rect key="frame" x="166" y="323" width="42" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="42" id="Kzm-EL-NCN"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ClassLoomDevide" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFw-Lr-ch8">
+                                <rect key="frame" x="118.5" y="323" width="137.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="classroom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T4t-Q1-5xv">
-                                <rect key="frame" x="147" y="323" width="81" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="81" id="3Px-Ho-5ji"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ASz-tH-rpE">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <items>
-                                    <navigationItem title="Classroom List" id="o6K-3v-uPe">
-                                        <barButtonItem key="rightBarButtonItem" style="done" id="jzK-Nn-3j7">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9w8-kF-dC7">
-                                                <rect key="frame" x="276" y="7" width="83" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Reload"/>
-                                                <connections>
-                                                    <action selector="TouchReloadButton:" destination="330-2X-uQS" eventType="touchUpInside" id="Yh3-4P-Agh"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="T4t-Q1-5xv" firstAttribute="baseline" secondItem="m9o-SV-GXP" secondAttribute="baseline" id="EV5-fS-ylr"/>
-                            <constraint firstAttribute="trailing" secondItem="ASz-tH-rpE" secondAttribute="trailing" id="HwK-OT-arK"/>
-                            <constraint firstItem="ASz-tH-rpE" firstAttribute="top" secondItem="DbL-Ej-bYC" secondAttribute="bottom" constant="8" id="Ugc-ca-xn7"/>
-                            <constraint firstItem="ASz-tH-rpE" firstAttribute="top" secondItem="DbL-Ej-bYC" secondAttribute="bottom" constant="8" id="Z9d-rf-LX9"/>
-                            <constraint firstItem="ASz-tH-rpE" firstAttribute="centerX" secondItem="m9o-SV-GXP" secondAttribute="centerX" id="cSF-NX-lk6"/>
-                            <constraint firstItem="ASz-tH-rpE" firstAttribute="leading" secondItem="B1D-Jx-CEd" secondAttribute="leading" id="fcm-N3-Jq6"/>
-                            <constraint firstItem="ASz-tH-rpE" firstAttribute="leading" secondItem="B1D-Jx-CEd" secondAttribute="leading" id="nXR-3B-mIr"/>
-                            <constraint firstItem="T4t-Q1-5xv" firstAttribute="centerX" secondItem="m9o-SV-GXP" secondAttribute="centerX" id="ox4-DG-Coa"/>
-                            <constraint firstItem="T4t-Q1-5xv" firstAttribute="baseline" secondItem="m9o-SV-GXP" secondAttribute="firstBaseline" id="siX-kY-LdB"/>
-                            <constraint firstAttribute="trailing" secondItem="ASz-tH-rpE" secondAttribute="trailing" id="ues-vy-9hH"/>
-                            <constraint firstItem="T4t-Q1-5xv" firstAttribute="centerY" secondItem="B1D-Jx-CEd" secondAttribute="centerY" id="yJH-p0-AH0"/>
+                            <constraint firstItem="TFw-Lr-ch8" firstAttribute="centerX" secondItem="B1D-Jx-CEd" secondAttribute="centerX" id="K8E-Kj-o2T"/>
+                            <constraint firstItem="TFw-Lr-ch8" firstAttribute="centerY" secondItem="B1D-Jx-CEd" secondAttribute="centerY" id="qRd-lV-FxO"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="classroom" id="joo-lN-Jzc"/>
+                    <navigationItem key="navigationItem" title="ClassLoomDivide" id="K9a-1v-9o8">
+                        <barButtonItem key="rightBarButtonItem" title="Reload" id="C13-yk-bMD">
+                            <connections>
+                                <action selector="pushReloadButton:" destination="330-2X-uQS" id="WEP-Fl-v1z"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fJb-z0-mXl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="811.5" y="-145.5"/>
+        </scene>
+        <!--classroom-->
+        <scene sceneID="Bsh-it-yAH">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1UL-fn-xub" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="classroom" id="NKT-mC-aKC"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="z8K-Vd-nDz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="330-2X-uQS" kind="relationship" relationship="rootViewController" id="xbY-ed-37h"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8DA-2D-pyO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-127.2" y="-145.27736131934034"/>
         </scene>

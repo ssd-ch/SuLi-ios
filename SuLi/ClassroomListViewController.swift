@@ -10,10 +10,10 @@ import UIKit
 
 class ClassroomListViewContoroller: UIViewController {
     
-    @IBOutlet weak var reloadButton: UIBarButtonItem!
-
-    @IBAction func TouchReloadButton(_ sender: Any) {
-        GetClassroomList.start()
+ 
+    @IBAction func pushReloadButton(_ sender: Any) {
+        let downloader = GetClassroomList()
+        downloader.start()
     }
     
     override func viewDidLoad() {

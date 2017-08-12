@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5C203F2E1F3A277A00C89196 /* GetSyllabusForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C203F2D1F3A277A00C89196 /* GetSyllabusForm.swift */; };
 		5C203F301F3A436200C89196 /* GetCancelInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C203F2F1F3A436200C89196 /* GetCancelInfo.swift */; };
+		5C203F321F3EFF7700C89196 /* MoodleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C203F311F3EFF7700C89196 /* MoodleViewController.swift */; };
+		5C203F341F3F169600C89196 /* NoticeViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C203F331F3F169600C89196 /* NoticeViewContoller.swift */; };
 		5C22759B1EBC7F6D000A6AA9 /* URLEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22759A1EBC7F6D000A6AA9 /* URLEncoding.swift */; };
 		5C6A19B91ED3B2FE00BF1A52 /* database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6A19B81ED3B2FE00BF1A52 /* database.swift */; };
 		5C6A19BB1ED3BE1600BF1A52 /* GetClassroomList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6A19BA1ED3BE1600BF1A52 /* GetClassroomList.swift */; };
@@ -35,6 +37,8 @@
 		264DBFE15683CD108CA7159E /* Pods-SuLi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuLi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuLi/Pods-SuLi.debug.xcconfig"; sourceTree = "<group>"; };
 		5C203F2D1F3A277A00C89196 /* GetSyllabusForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetSyllabusForm.swift; sourceTree = "<group>"; };
 		5C203F2F1F3A436200C89196 /* GetCancelInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCancelInfo.swift; sourceTree = "<group>"; };
+		5C203F311F3EFF7700C89196 /* MoodleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodleViewController.swift; sourceTree = "<group>"; };
+		5C203F331F3F169600C89196 /* NoticeViewContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeViewContoller.swift; sourceTree = "<group>"; };
 		5C22759A1EBC7F6D000A6AA9 /* URLEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLEncoding.swift; sourceTree = "<group>"; };
 		5C6A19B81ED3B2FE00BF1A52 /* database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = database.swift; sourceTree = "<group>"; };
 		5C6A19BA1ED3BE1600BF1A52 /* GetClassroomList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetClassroomList.swift; sourceTree = "<group>"; };
@@ -102,10 +106,12 @@
 				5CFAB8681EB60208001885C4 /* AppDelegate.swift */,
 				5C6A19BE1ED3F48000BF1A52 /* ClassroomListVIewController.swift */,
 				5C6A19B81ED3B2FE00BF1A52 /* database.swift */,
+				5C74874C1F35EF3B0021D9A7 /* GetBuildingList.swift */,
+				5C203F2F1F3A436200C89196 /* GetCancelInfo.swift */,
 				5C6A19BA1ED3BE1600BF1A52 /* GetClassroomList.swift */,
 				5C203F2D1F3A277A00C89196 /* GetSyllabusForm.swift */,
-				5C203F2F1F3A436200C89196 /* GetCancelInfo.swift */,
-				5C74874C1F35EF3B0021D9A7 /* GetBuildingList.swift */,
+				5C203F311F3EFF7700C89196 /* MoodleViewController.swift */,
+				5C203F331F3F169600C89196 /* NoticeViewContoller.swift */,
 				5CE617591EBDCD7C00561E74 /* sjisHTTP.swift */,
 				5CABE16B1ED06A7E009C271E /* StringUtil.swift */,
 				5CABE1691ED02497009C271E /* SyllabusCustomViewCell.swift */,
@@ -275,7 +281,9 @@
 				5C74874D1F35EF3B0021D9A7 /* GetBuildingList.swift in Sources */,
 				5CE6175A1EBDCD7C00561E74 /* sjisHTTP.swift in Sources */,
 				5C6A19B91ED3B2FE00BF1A52 /* database.swift in Sources */,
+				5C203F321F3EFF7700C89196 /* MoodleViewController.swift in Sources */,
 				5C6A19BF1ED3F48000BF1A52 /* ClassroomListVIewController.swift in Sources */,
+				5C203F341F3F169600C89196 /* NoticeViewContoller.swift in Sources */,
 				5CFAB8691EB60208001885C4 /* AppDelegate.swift in Sources */,
 				5C203F2E1F3A277A00C89196 /* GetSyllabusForm.swift in Sources */,
 			);

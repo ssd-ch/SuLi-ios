@@ -9,6 +9,7 @@
 import UIKit
 import SwiftHTTP
 import Kanna
+import RealmSwift
 
 class SyllabusListViewController: UIViewController,UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, SyllabusListDelegate {
 
@@ -31,7 +32,6 @@ class SyllabusListViewController: UIViewController,UISearchBarDelegate, UITableV
         self.tableView.dataSource = self
         
         GetSyllabusForm.start()
-        GetCancelInfo.start()
     }
 
     override func didReceiveMemoryWarning() {
@@ -145,7 +145,13 @@ class SearchSyllabus {
         
         do {
             self.loadingStatus = false
-            let opt = try sjisHTTP.GET(self.URL, parameters: ["nendo": "2017","disp_cnt": dispCnt, "j_name": self.searchword, "s_cnt" : String(loadCount) ])
+            
+            //Realmに接続
+            let realm = try! Realm()
+            //オブジェクトを取得
+            let object = realm.objects(SyllabusForm.self).filter("form = 'nendo'").first!
+            
+            let opt = try sjisHTTP.GET(self.URL, parameters: ["nendo": object.value, "disp_cnt": dispCnt, "j_name": self.searchword, "s_cnt": String(loadCount)])
             opt.start { response in
                 if let err = response.error {
                     print("error: \(err.localizedDescription)")

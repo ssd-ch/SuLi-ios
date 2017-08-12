@@ -66,3 +66,20 @@ class CancelInfo: Object {
         return "id"
     }
 }
+
+struct RealmManagement {
+    
+    //ファイルの肥大化を防ぐために最適化を行う
+    static func fileOptimisation() {
+        do {
+            let realm = try! Realm(configuration: Realm.Configuration.defaultConfiguration)
+            print(realm.configuration.fileURL!)
+            try! realm.writeCopy(toFile: (realm.configuration.fileURL?.deletingLastPathComponent().appendingPathComponent("temp.realm"))!)
+            try FileManager.default.removeItem(at: realm.configuration.fileURL!)
+            try FileManager.default.moveItem(at: (realm.configuration.fileURL?.deletingLastPathComponent().appendingPathComponent("temp.realm"))!, to: realm.configuration.fileURL!)
+        } catch let error as NSError {
+            print("Error - \(error.localizedDescription)")
+        }
+    }
+    
+}
