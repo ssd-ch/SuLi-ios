@@ -16,7 +16,7 @@ struct GetCancelInfo {
     
     static let cancelInfoUrl = "http://www.kougi.shimane-u.ac.jp/selectweb/conduct_list.asp"
     
-    static func start(){
+    static func start( groupDispatch: inout DispatchGroup){
         
         autoreleasepool(){
             
@@ -79,6 +79,9 @@ struct GetCancelInfo {
                                 }
                                 
                             }
+                            else {
+                                nextFlg = false
+                            }
                             
                             if let doc = HTML(html: response.data, encoding: .utf8)?.css(".prevnextpage") {
                                 if doc.count < (pageNum == 1 ? 1 : 2) {
@@ -94,14 +97,17 @@ struct GetCancelInfo {
                         }
                     } catch let error {
                         print("got an error creating the request: \(error)")
+                        nextFlg = false
                     }
-                    
                 }
                 
             } while nextFlg
             
             //中間データを破棄させる
             realm.invalidate()
+            
+            //すべての処理が完了したので通知
+            groupDispatch.leave()
         }
     }
 }

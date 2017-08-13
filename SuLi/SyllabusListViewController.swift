@@ -11,7 +11,7 @@ import SwiftHTTP
 import Kanna
 import RealmSwift
 
-class SyllabusListViewController: UIViewController,UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, SyllabusListDelegate {
+class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, SyllabusListDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!

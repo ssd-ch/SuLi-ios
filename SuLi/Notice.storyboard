@@ -18,28 +18,28 @@
                         <viewControllerLayoutGuide type="bottom" id="Pcq-QU-EL0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="adp-Hn-4pm">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="exD-IK-z3S">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="KR8-bu-gyg" detailTextLabel="Ppc-Y8-nbn" style="IBUITableViewCellStyleSubtitle" id="0A7-vU-ZeN">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="sKt-5l-ets" detailTextLabel="KHo-xO-gbe" style="IBUITableViewCellStyleSubtitle" id="S0x-Ub-PMf">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0A7-vU-ZeN" id="6S7-dr-bx1">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S0x-Ub-PMf" id="rvQ-w3-LMj">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KR8-bu-gyg">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sKt-5l-ets">
                                                     <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ppc-Y8-nbn">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KHo-xO-gbe">
                                                     <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -54,12 +54,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="exD-IK-z3S" firstAttribute="leading" secondItem="adp-Hn-4pm" secondAttribute="leading" id="Cng-2M-pak"/>
-                            <constraint firstAttribute="trailing" secondItem="exD-IK-z3S" secondAttribute="trailing" id="Hg4-pc-cgO"/>
-                            <constraint firstItem="Pcq-QU-EL0" firstAttribute="top" secondItem="exD-IK-z3S" secondAttribute="bottom" id="Vwp-gl-dxb"/>
-                            <constraint firstItem="exD-IK-z3S" firstAttribute="top" secondItem="Yuy-0f-6Rw" secondAttribute="bottom" id="tzb-2B-GPB"/>
+                            <constraint firstItem="exD-IK-z3S" firstAttribute="top" secondItem="Yuy-0f-6Rw" secondAttribute="bottom" id="DDF-Cc-kFH"/>
+                            <constraint firstItem="exD-IK-z3S" firstAttribute="leading" secondItem="adp-Hn-4pm" secondAttribute="leading" id="HjR-h7-IfC"/>
+                            <constraint firstItem="Pcq-QU-EL0" firstAttribute="top" secondItem="exD-IK-z3S" secondAttribute="bottom" id="mwK-d0-3u0"/>
+                            <constraint firstAttribute="trailing" secondItem="exD-IK-z3S" secondAttribute="trailing" id="qm4-ey-TUE"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Notice" id="k3P-Mt-Lue">
                         <barButtonItem key="rightBarButtonItem" title="Reload" id="4DQ-iE-B2E">
                             <connections>
@@ -68,10 +69,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="exD-IK-z3S" id="1O5-FR-3Mh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hcE-u7-Wp9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1072.8" y="130.88455772113943"/>
+            <point key="canvasLocation" x="1072.5" y="130.5"/>
         </scene>
         <!--notice-->
         <scene sceneID="sON-qk-4VS">
