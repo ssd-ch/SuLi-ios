@@ -11,11 +11,11 @@ import SwiftHTTP
 import Kanna
 import RealmSwift
 
-class GetClassroomList {
+struct GetClassroomList {
     
-    var groupDispatch: DispatchGroup?
+    private static var groupDispatch: DispatchGroup?
     
-    func start(){
+    static func start(){
         
         //建物別のリンクを取得
         GetBuildingList.start()
@@ -55,7 +55,7 @@ class GetClassroomList {
         }
     }
     
-    private func scrapingClassroomDivide(building_id: Int,url: String) {
+    private static func scrapingClassroomDivide(building_id: Int,url: String) {
         autoreleasepool(){
             do {
                 let opt = try HTTP.GET(url)
@@ -200,7 +200,7 @@ class GetClassroomList {
         }
     }
     
-    private func ExtractionLecture(str: String) -> [String]{
+    private static func ExtractionLecture(str: String) -> [String]{
         
         var result = ["", "", "", ""]
         

@@ -18,83 +18,90 @@ struct GetCancelInfo {
     
     static func start(){
         
-        var pageNum = 1
-        var count = 1
-        var nextFlg = true
-        var loadingStatus = true
-        
-        //Realmに接続
-        let realmDelete = try! Realm()
-        //CancelInfoのすべてのオブジェクトを取得
-        let cancelInfo = realmDelete.objects(CancelInfo.self)
-        //取得したすべてのオブジェクトを削除
-        cancelInfo.forEach { data in
-            try! realmDelete.write() {
-                realmDelete.delete(data)
-            }
-        }
-        
-        repeat {
+        autoreleasepool(){
             
-            if loadingStatus {
+            var pageNum = 1
+            var count = 1
+            var nextFlg = true
+            var loadingStatus = true
+            
+            //Realmに接続
+            let realm = try! Realm()
+            //CancelInfoのすべてのオブジェクトを取得
+            let cancelInfo = realm.objects(CancelInfo.self)
+            //取得したすべてのオブジェクトを削除
+            cancelInfo.forEach { data in
+                try! realm.write() {
+                    realm.delete(data)
+                }
+            }
+            
+            repeat {
                 
-                loadingStatus = false //HTTPアクセス中はロックをかける
-        
-                do {
-                    let opt = try HTTP.GET(self.cancelInfoUrl, parameters: ["abspage":"\(pageNum)"])
-                    opt.start { response in
-                        if let err = response.error {
-                            print("error: \(err.localizedDescription)")
-                            return //also notify app of failure as needed
-                        }
-                        if let doc = HTML(html: response.data, encoding: .utf8)?.css(".table_data tr") {
-                            
-                            //Realmに接続
-                            let realmWrite = try! Realm()
-                            
-                            for i in 1..<doc.count {
-                                
-                                let tdNodes = doc[i].css("td")
-                                
-                                //書き込むデータを作成
-                                let writeData = CancelInfo()
-                                writeData.id = count
-                                count += 1
-                                
-                                writeData.date = tdNodes[0].text!
-                                writeData.classification = tdNodes[1].text!
-                                writeData.time = tdNodes[2].text!
-                                writeData.department = tdNodes[3].text!
-                                writeData.classname = tdNodes[4].text!
-                                writeData.person = tdNodes[5].text!
-                                writeData.place = tdNodes[6].text!
-                                writeData.note = tdNodes[7].text!
-                                
-                                //データをRealmに書き込む
-                                try! realmWrite.write() {
-                                    realmWrite.add(writeData)
-                                }
+                if loadingStatus {
+                    
+                    loadingStatus = false //HTTPアクセス中はロックをかける
+                    
+                    do {
+                        let opt = try HTTP.GET(self.cancelInfoUrl, parameters: ["abspage":"\(pageNum)"])
+                        opt.start { response in
+                            if let err = response.error {
+                                print("error: \(err.localizedDescription)")
+                                return //also notify app of failure as needed
                             }
-                        }
-                        
-                        if let doc = HTML(html: response.data, encoding: .utf8)?.css(".prevnextpage") {
-                            if doc.count < (pageNum == 1 ? 1 : 2) {
+                            if let doc = HTML(html: response.data, encoding: .utf8)?.css(".table_data tr") {
+                                
+                                //Realmに接続
+                                let realmWrite = try! Realm()
+                                
+                                for i in 1..<doc.count {
+                                    
+                                    let tdNodes = doc[i].css("td")
+                                    
+                                    //書き込むデータを作成
+                                    let writeData = CancelInfo()
+                                    writeData.id = count
+                                    count += 1
+                                    
+                                    writeData.date = tdNodes[0].text!
+                                    writeData.classification = tdNodes[1].text!
+                                    writeData.time = tdNodes[2].text!
+                                    writeData.department = tdNodes[3].text!
+                                    writeData.classname = tdNodes[4].text!
+                                    writeData.person = tdNodes[5].text!
+                                    writeData.place = tdNodes[6].text!
+                                    writeData.note = tdNodes[7].text!
+                                    
+                                    //データをRealmに書き込む
+                                    try! realmWrite.write() {
+                                        realmWrite.add(writeData)
+                                    }
+                                }
+                                
+                            }
+                            
+                            if let doc = HTML(html: response.data, encoding: .utf8)?.css(".prevnextpage") {
+                                if doc.count < (pageNum == 1 ? 1 : 2) {
+                                    nextFlg = false
+                                }
+                                pageNum += 1
+                            }
+                            else {
                                 nextFlg = false
                             }
-                            pageNum += 1
+                            
+                            loadingStatus = true //次のアクセスの許可をする
                         }
-                        else {
-                            nextFlg = false
-                        }
-                        
-                        loadingStatus = true //次のアクセスの許可をする
+                    } catch let error {
+                        print("got an error creating the request: \(error)")
                     }
-                } catch let error {
-                    print("got an error creating the request: \(error)")
+                    
                 }
                 
-            }
+            } while nextFlg
             
-        } while nextFlg
+            //中間データを破棄させる
+            realm.invalidate()
+        }
     }
 }
