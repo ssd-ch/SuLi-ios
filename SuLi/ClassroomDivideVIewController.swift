@@ -7,14 +7,38 @@
 //
 
 import UIKit
+import RealmSwift
 import XLPagerTabStrip
 
 class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController {
     
+    //タブのボタンのテキスト
     let week = ["MON", "TUE", "WED", "THU", "FRI"]
- 
+    
+    //Realmインスタンス
+    let realm = try! Realm()
+    
+    //リロードボタンが押された時の処理
     @IBAction func pushReloadButton(_ sender: Any) {
-        GetClassroomList.start()
+        
+        //スレッドを管理するグループを作成
+        var groupDispatch = DispatchGroup()
+        
+        //スレッドの登録
+        groupDispatch.enter()
+        
+        //処理が完了したら通知させるディスパッチを参照で渡して更新処理を始める
+        GetClassroomDivide.start(groupDispatch: &groupDispatch)
+        
+        //処理が完了したらの各ビューのデータを更新
+        groupDispatch.notify(queue: DispatchQueue.main) {
+            for view in super.viewControllers as! [ClassroomDivideChildViewController] {
+                if view.tableView != nil {
+                    //各ビューのデータを更新
+                    view.updateData()
+                }
+            }
+        }
     }
     
     override func viewDidLoad() {
@@ -35,11 +59,12 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController {
     }
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-        //管理されるViewControllerを返す処理
+        //管理するViewControllerを返す処理
         var childViewControllers:[UIViewController] = []
-        for text in week {
+        for (i,text) in week.enumerated() {
             let childView = UIStoryboard(name: "ClassroomDivide", bundle: nil).instantiateViewController(withIdentifier: "Child") as! ClassroomDivideChildViewController
             childView.itemTitle = text
+            childView.weekday = i
             childViewControllers.append(childView)
         }
         return childViewControllers

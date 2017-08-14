@@ -1,5 +1,5 @@
 //
-//  GetClassroomList.swift
+//  GetClassroomDivide.swift
 //  SuLi
 //
 //  Created by ssd_ch on 2017/05/23.
@@ -11,11 +11,11 @@ import SwiftHTTP
 import Kanna
 import RealmSwift
 
-struct GetClassroomList {
+struct GetClassroomDivide {
     
-    private static var groupDispatch: DispatchGroup?
+    private static var groupDispatchHTTP: DispatchGroup?
     
-    static func start(){
+    static func start( groupDispatch: inout DispatchGroup) {
         
         //建物別のリンクを取得
         GetBuildingList.start()
@@ -37,11 +37,11 @@ struct GetClassroomList {
         let buildings = realm.objects(Building.self)
         
         //スレッドを管理するグループを作成
-        self.groupDispatch = DispatchGroup()
+        self.groupDispatchHTTP = DispatchGroup()
         
         //スレッドの登録
         for _ in buildings {
-            self.groupDispatch?.enter()
+            self.groupDispatchHTTP?.enter()
         }
         
         //すべてのページの配当表を取得
@@ -50,8 +50,11 @@ struct GetClassroomList {
         }
         
         //すべてのスレッドの処理が完了
-        self.groupDispatch?.notify(queue: DispatchQueue.main) {
+        self.groupDispatchHTTP?.notify(queue: DispatchQueue.main) { [groupDispatch] in
             print("finish")
+            let dispatch = groupDispatch
+            //引数で受け取ったディスパッチに通知
+            dispatch.leave()
         }
     }
     
@@ -192,7 +195,7 @@ struct GetClassroomList {
                     }
                     
                     //処理の終了を通知
-                    self.groupDispatch?.leave()
+                    self.groupDispatchHTTP?.leave()
                 }
             } catch let error {
                 print("got an error creating the request: \(error)")
