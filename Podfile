@@ -10,5 +10,6 @@ target 'SuLi' do
   pod 'Kanna'
   pod 'SwiftHTTP', '~> 2.0.0'
   pod 'RealmSwift'
+  pod 'XLPagerTabStrip'
 
 end

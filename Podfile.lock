@@ -1,23 +1,26 @@
 PODS:
   - Kanna (2.2.1)
-  - Realm (2.6.2):
-    - Realm/Headers (= 2.6.2)
-  - Realm/Headers (2.6.2)
-  - RealmSwift (2.6.2):
-    - Realm (= 2.6.2)
+  - Realm (2.9.1):
+    - Realm/Headers (= 2.9.1)
+  - Realm/Headers (2.9.1)
+  - RealmSwift (2.9.1):
+    - Realm (= 2.9.1)
   - SwiftHTTP (2.0.2)
+  - XLPagerTabStrip (7.0.0)
 
 DEPENDENCIES:
   - Kanna
   - RealmSwift
   - SwiftHTTP (~> 2.0.0)
+  - XLPagerTabStrip
 
 SPEC CHECKSUMS:
   Kanna: 182789ab065e8f9a6ccc2a74ce6283d3401c0c4a
-  Realm: 29222766425b9f831228f81b63f0e38a97a4d700
-  RealmSwift: d161a80f96cb91ae88391a7d5a9cf08024a7bc8e
+  Realm: f91fb43bd474c4f731a116ebf7392c75dd015920
+  RealmSwift: 207f12a4a36b696c5183c60a1c06d70234a23e56
   SwiftHTTP: faa1a5f7670568ffc9361898229dbe84a6088468
+  XLPagerTabStrip: 9be80a66c6b7d60306b2c0a6004965016d68f813
 
-PODFILE CHECKSUM: 80058f84544a0493e7621a0dc2af2c7f111f738b
+PODFILE CHECKSUM: 980db44252261ff9abe10f7fdb41c94192937e88
 
 COCOAPODS: 1.2.1

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C1E62051F4190A600CF7BEB /* ClassroomDivideChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1E62041F4190A600CF7BEB /* ClassroomDivideChildViewController.swift */; };
 		5C203F2E1F3A277A00C89196 /* GetSyllabusForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C203F2D1F3A277A00C89196 /* GetSyllabusForm.swift */; };
 		5C203F301F3A436200C89196 /* GetCancelInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C203F2F1F3A436200C89196 /* GetCancelInfo.swift */; };
 		5C203F321F3EFF7700C89196 /* MoodleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C203F311F3EFF7700C89196 /* MoodleViewController.swift */; };
@@ -14,12 +15,12 @@
 		5C22759B1EBC7F6D000A6AA9 /* URLEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22759A1EBC7F6D000A6AA9 /* URLEncoding.swift */; };
 		5C6A19B91ED3B2FE00BF1A52 /* database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6A19B81ED3B2FE00BF1A52 /* database.swift */; };
 		5C6A19BB1ED3BE1600BF1A52 /* GetClassroomList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6A19BA1ED3BE1600BF1A52 /* GetClassroomList.swift */; };
-		5C6A19BF1ED3F48000BF1A52 /* ClassroomListVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6A19BE1ED3F48000BF1A52 /* ClassroomListVIewController.swift */; };
+		5C6A19BF1ED3F48000BF1A52 /* ClassroomDivideVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6A19BE1ED3F48000BF1A52 /* ClassroomDivideVIewController.swift */; };
 		5C74874D1F35EF3B0021D9A7 /* GetBuildingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C74874C1F35EF3B0021D9A7 /* GetBuildingList.swift */; };
 		5C77D4CB1EB87A3300CCC745 /* SyllabusDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C77D4CA1EB87A3300CCC745 /* SyllabusDetailViewController.swift */; };
 		5CABE16A1ED02497009C271E /* SyllabusCustomViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CABE1691ED02497009C271E /* SyllabusCustomViewCell.swift */; };
 		5CABE16C1ED06A7E009C271E /* StringUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CABE16B1ED06A7E009C271E /* StringUtil.swift */; };
-		5CBAACB11EC573C6003FE2B9 /* ClassroomList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CBAACB01EC573C6003FE2B9 /* ClassroomList.storyboard */; };
+		5CBAACB11EC573C6003FE2B9 /* ClassroomDivide.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CBAACB01EC573C6003FE2B9 /* ClassroomDivide.storyboard */; };
 		5CE6175A1EBDCD7C00561E74 /* sjisHTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE617591EBDCD7C00561E74 /* sjisHTTP.swift */; };
 		5CFAB8691EB60208001885C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFAB8681EB60208001885C4 /* AppDelegate.swift */; };
 		5CFAB86B1EB60208001885C4 /* SyllabusListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFAB86A1EB60208001885C4 /* SyllabusListViewController.swift */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		264DBFE15683CD108CA7159E /* Pods-SuLi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuLi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuLi/Pods-SuLi.debug.xcconfig"; sourceTree = "<group>"; };
+		5C1E62041F4190A600CF7BEB /* ClassroomDivideChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassroomDivideChildViewController.swift; sourceTree = "<group>"; };
 		5C203F2D1F3A277A00C89196 /* GetSyllabusForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetSyllabusForm.swift; sourceTree = "<group>"; };
 		5C203F2F1F3A436200C89196 /* GetCancelInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCancelInfo.swift; sourceTree = "<group>"; };
 		5C203F311F3EFF7700C89196 /* MoodleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodleViewController.swift; sourceTree = "<group>"; };
@@ -42,12 +44,12 @@
 		5C22759A1EBC7F6D000A6AA9 /* URLEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLEncoding.swift; sourceTree = "<group>"; };
 		5C6A19B81ED3B2FE00BF1A52 /* database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = database.swift; sourceTree = "<group>"; };
 		5C6A19BA1ED3BE1600BF1A52 /* GetClassroomList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetClassroomList.swift; sourceTree = "<group>"; };
-		5C6A19BE1ED3F48000BF1A52 /* ClassroomListVIewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassroomListVIewController.swift; sourceTree = "<group>"; };
+		5C6A19BE1ED3F48000BF1A52 /* ClassroomDivideVIewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassroomDivideVIewController.swift; sourceTree = "<group>"; };
 		5C74874C1F35EF3B0021D9A7 /* GetBuildingList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetBuildingList.swift; sourceTree = "<group>"; };
 		5C77D4CA1EB87A3300CCC745 /* SyllabusDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusDetailViewController.swift; sourceTree = "<group>"; };
 		5CABE1691ED02497009C271E /* SyllabusCustomViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusCustomViewCell.swift; sourceTree = "<group>"; };
 		5CABE16B1ED06A7E009C271E /* StringUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtil.swift; sourceTree = "<group>"; };
-		5CBAACB01EC573C6003FE2B9 /* ClassroomList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ClassroomList.storyboard; sourceTree = "<group>"; };
+		5CBAACB01EC573C6003FE2B9 /* ClassroomDivide.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ClassroomDivide.storyboard; sourceTree = "<group>"; };
 		5CE617591EBDCD7C00561E74 /* sjisHTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sjisHTTP.swift; sourceTree = "<group>"; };
 		5CFAB8651EB60208001885C4 /* SuLi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuLi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CFAB8681EB60208001885C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -97,30 +99,31 @@
 		5CFAB8671EB60208001885C4 /* SuLi */ = {
 			isa = PBXGroup;
 			children = (
-				5CFAB8741EB60208001885C4 /* Info.plist */,
-				5CBAACB01EC573C6003FE2B9 /* ClassroomList.storyboard */,
-				5CFAB87E1EB609A1001885C4 /* Material.storyboard */,
-				5CFAB87C1EB608FB001885C4 /* Notice.storyboard */,
-				5CFAB87A1EB607F6001885C4 /* Syllabus.storyboard */,
-				5CFAB8801EB609CD001885C4 /* TimeTable.storyboard */,
 				5CFAB8681EB60208001885C4 /* AppDelegate.swift */,
-				5C6A19BE1ED3F48000BF1A52 /* ClassroomListVIewController.swift */,
+				5CFAB86F1EB60208001885C4 /* Assets.xcassets */,
+				5C1E62041F4190A600CF7BEB /* ClassroomDivideChildViewController.swift */,
+				5CBAACB01EC573C6003FE2B9 /* ClassroomDivide.storyboard */,
+				5C6A19BE1ED3F48000BF1A52 /* ClassroomDivideVIewController.swift */,
 				5C6A19B81ED3B2FE00BF1A52 /* database.swift */,
 				5C74874C1F35EF3B0021D9A7 /* GetBuildingList.swift */,
 				5C203F2F1F3A436200C89196 /* GetCancelInfo.swift */,
 				5C6A19BA1ED3BE1600BF1A52 /* GetClassroomList.swift */,
 				5C203F2D1F3A277A00C89196 /* GetSyllabusForm.swift */,
+				5CFAB8741EB60208001885C4 /* Info.plist */,
+				5CFAB8711EB60208001885C4 /* LaunchScreen.storyboard */,
+				5CFAB86C1EB60208001885C4 /* Main.storyboard */,
+				5CFAB87E1EB609A1001885C4 /* Material.storyboard */,
 				5C203F311F3EFF7700C89196 /* MoodleViewController.swift */,
+				5CFAB87C1EB608FB001885C4 /* Notice.storyboard */,
 				5C203F331F3F169600C89196 /* NoticeViewContoller.swift */,
 				5CE617591EBDCD7C00561E74 /* sjisHTTP.swift */,
 				5CABE16B1ED06A7E009C271E /* StringUtil.swift */,
+				5CFAB87A1EB607F6001885C4 /* Syllabus.storyboard */,
 				5CABE1691ED02497009C271E /* SyllabusCustomViewCell.swift */,
 				5C77D4CA1EB87A3300CCC745 /* SyllabusDetailViewController.swift */,
 				5CFAB86A1EB60208001885C4 /* SyllabusListViewController.swift */,
+				5CFAB8801EB609CD001885C4 /* TimeTable.storyboard */,
 				5C22759A1EBC7F6D000A6AA9 /* URLEncoding.swift */,
-				5CFAB86F1EB60208001885C4 /* Assets.xcassets */,
-				5CFAB8711EB60208001885C4 /* LaunchScreen.storyboard */,
-				5CFAB86C1EB60208001885C4 /* Main.storyboard */,
 			);
 			path = SuLi;
 			sourceTree = "<group>";
@@ -211,7 +214,7 @@
 				5CFAB87D1EB608FB001885C4 /* Notice.storyboard in Resources */,
 				5CFAB87F1EB609A1001885C4 /* Material.storyboard in Resources */,
 				5CFAB8701EB60208001885C4 /* Assets.xcassets in Resources */,
-				5CBAACB11EC573C6003FE2B9 /* ClassroomList.storyboard in Resources */,
+				5CBAACB11EC573C6003FE2B9 /* ClassroomDivide.storyboard in Resources */,
 				5CFAB86E1EB60208001885C4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,9 +285,10 @@
 				5CE6175A1EBDCD7C00561E74 /* sjisHTTP.swift in Sources */,
 				5C6A19B91ED3B2FE00BF1A52 /* database.swift in Sources */,
 				5C203F321F3EFF7700C89196 /* MoodleViewController.swift in Sources */,
-				5C6A19BF1ED3F48000BF1A52 /* ClassroomListVIewController.swift in Sources */,
+				5C6A19BF1ED3F48000BF1A52 /* ClassroomDivideVIewController.swift in Sources */,
 				5C203F341F3F169600C89196 /* NoticeViewContoller.swift in Sources */,
 				5CFAB8691EB60208001885C4 /* AppDelegate.swift in Sources */,
+				5C1E62051F4190A600CF7BEB /* ClassroomDivideChildViewController.swift in Sources */,
 				5C203F2E1F3A277A00C89196 /* GetSyllabusForm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

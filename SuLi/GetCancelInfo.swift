@@ -36,6 +36,9 @@ struct GetCancelInfo {
                 }
             }
             
+            //中間データを破棄させる
+            realm.invalidate()
+            
             repeat {
                 
                 if loadingStatus {
@@ -102,9 +105,6 @@ struct GetCancelInfo {
                 }
                 
             } while nextFlg
-            
-            //中間データを破棄させる
-            realm.invalidate()
             
             //すべての処理が完了したので通知
             groupDispatch.leave()
