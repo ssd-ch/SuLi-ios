@@ -31,6 +31,9 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
+        //最初はスクロール禁止
+        self.tableView.isScrollEnabled = false
+        
         GetSyllabusForm.start()
     }
 
@@ -58,6 +61,7 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
         self.syllabus = SearchSyllabus(self.searchBar.text!)
         self.syllabus?.delegate = self
         self.syllabus!.start()
+        self.tableView.isScrollEnabled = true
         //self.tableView.reloadData()
     }
     
@@ -75,12 +79,12 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
         return true
     }
 
-    // セルの行数
+    // セルの行数を返す
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableData.count
     }
     
-    // セルの内容を変更
+    // セルの内容を返す
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
@@ -104,8 +108,8 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
         if tableView.contentOffset.y + tableView.frame.size.height > tableView.contentSize.height && tableView.isDragging {
             //一番下に来た時の処理
             print("end scroll")
-            if(syllabus?.status())! {
-                syllabus?.load()
+            if syllabus!.loadingStatus {
+                syllabus!.load()
             }
         }
     }
@@ -135,10 +139,6 @@ class SearchSyllabus {
         hitNum = 0
     }
     
-    func status() -> Bool {
-        return self.loadingStatus
-    }
-    
     func start() {
         
         var resultData : [SyllabusList] = []
@@ -146,10 +146,8 @@ class SearchSyllabus {
         do {
             self.loadingStatus = false
             
-            //Realmに接続
-            let realm = try! Realm()
             //オブジェクトを取得
-            let object = realm.objects(SyllabusForm.self).filter("form = 'nendo'").first!
+            let object = try! Realm().objects(SyllabusForm.self).filter("form = 'nendo'").first!
             
             let opt = try sjisHTTP.GET(self.URL, parameters: ["nendo": object.value, "disp_cnt": dispCnt, "j_name": self.searchword, "s_cnt": String(loadCount)])
             opt.start { response in

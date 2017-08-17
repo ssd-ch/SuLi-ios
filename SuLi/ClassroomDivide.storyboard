@@ -22,12 +22,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FMr-si-bMe" customClass="ButtonBarView" customModule="XLPagerTabStrip">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="Zn0-Yp-ssA"/>
+                                    <constraint firstAttribute="height" constant="40" id="3NL-T2-oMS"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="viu-hU-s0D">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="viu-hU-s0D">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -36,18 +36,18 @@
                                 <cells/>
                             </collectionView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sm8-ZR-WTe">
-                                <rect key="frame" x="0.0" y="60" width="375" height="494"/>
+                                <rect key="frame" x="0.0" y="40" width="375" height="514"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Sm8-ZR-WTe" firstAttribute="top" secondItem="FMr-si-bMe" secondAttribute="bottom" id="FO8-WE-oV7"/>
-                            <constraint firstAttribute="trailing" secondItem="FMr-si-bMe" secondAttribute="trailing" id="HZl-5l-BfX"/>
-                            <constraint firstAttribute="trailing" secondItem="Sm8-ZR-WTe" secondAttribute="trailing" id="Jkt-2Z-P0s"/>
-                            <constraint firstItem="scq-WI-vGH" firstAttribute="top" secondItem="Sm8-ZR-WTe" secondAttribute="bottom" id="MMQ-ym-dPf"/>
-                            <constraint firstItem="Sm8-ZR-WTe" firstAttribute="leading" secondItem="B1D-Jx-CEd" secondAttribute="leading" id="Zhf-lu-P8r"/>
-                            <constraint firstItem="FMr-si-bMe" firstAttribute="top" secondItem="DbL-Ej-bYC" secondAttribute="bottom" id="oQ2-kz-2Lp"/>
-                            <constraint firstItem="FMr-si-bMe" firstAttribute="leading" secondItem="B1D-Jx-CEd" secondAttribute="leading" id="yPS-qg-hw2"/>
+                            <constraint firstItem="Sm8-ZR-WTe" firstAttribute="leading" secondItem="B1D-Jx-CEd" secondAttribute="leading" id="CBB-qB-VNx"/>
+                            <constraint firstAttribute="trailing" secondItem="FMr-si-bMe" secondAttribute="trailing" id="DU8-jy-vFF"/>
+                            <constraint firstItem="Sm8-ZR-WTe" firstAttribute="top" secondItem="FMr-si-bMe" secondAttribute="bottom" id="G1J-cd-OV2"/>
+                            <constraint firstItem="scq-WI-vGH" firstAttribute="top" secondItem="Sm8-ZR-WTe" secondAttribute="bottom" id="OYO-wI-08k"/>
+                            <constraint firstItem="FMr-si-bMe" firstAttribute="top" secondItem="DbL-Ej-bYC" secondAttribute="bottom" id="aOE-a3-w4N"/>
+                            <constraint firstItem="FMr-si-bMe" firstAttribute="leading" secondItem="B1D-Jx-CEd" secondAttribute="leading" id="bBy-8j-R4E"/>
+                            <constraint firstAttribute="trailing" secondItem="Sm8-ZR-WTe" secondAttribute="trailing" id="t5E-gX-6Gx"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
@@ -80,7 +80,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rFN-5Y-fVr">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="OZR-xa-YvF" detailTextLabel="rhf-3o-Qh5" style="IBUITableViewCellStyleSubtitle" id="goP-kg-NRR">
@@ -110,14 +110,14 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="rFN-5Y-fVr" firstAttribute="top" secondItem="YoX-qo-9ax" secondAttribute="bottom" id="O6I-bC-cQA"/>
-                            <constraint firstItem="Rnu-Pc-WmC" firstAttribute="top" secondItem="rFN-5Y-fVr" secondAttribute="bottom" id="Z0s-M7-owZ"/>
-                            <constraint firstAttribute="trailing" secondItem="rFN-5Y-fVr" secondAttribute="trailing" id="ddd-jC-yIz"/>
-                            <constraint firstItem="rFN-5Y-fVr" firstAttribute="leading" secondItem="pUS-oe-XhH" secondAttribute="leading" id="fYj-pY-VWI"/>
+                            <constraint firstItem="rFN-5Y-fVr" firstAttribute="top" secondItem="YoX-qo-9ax" secondAttribute="bottom" id="LSz-oQ-daf"/>
+                            <constraint firstAttribute="trailing" secondItem="rFN-5Y-fVr" secondAttribute="trailing" id="dhc-87-8XL"/>
+                            <constraint firstItem="rFN-5Y-fVr" firstAttribute="leading" secondItem="pUS-oe-XhH" secondAttribute="leading" id="qTh-mq-Yog"/>
+                            <constraint firstItem="Rnu-Pc-WmC" firstAttribute="top" secondItem="rFN-5Y-fVr" secondAttribute="bottom" id="yTd-fv-tYH"/>
                         </constraints>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="rFN-5Y-fVr" id="sMD-oa-Upm"/>
                     </connections>

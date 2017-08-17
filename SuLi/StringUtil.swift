@@ -66,7 +66,10 @@ extension String {
         return matches.count > 0
     }
     
-    //正規表現で一致した文字列を返す(複数の場合は,で区切る)
+    //区切る文字
+    static let separeteCharacter = ","
+    
+    //正規表現で一致した文字列を返す(複数の場合はsepareCharacterで区切る)
     func matcherSubString(pattern: String, options: NSRegularExpression.Options = []) -> String {
         guard let regex = try? NSRegularExpression(pattern: pattern, options: options) else {
             return ""
@@ -77,7 +80,7 @@ extension String {
         for i in 0 ..< results.count {
             for j in 0 ..< results[i].numberOfRanges {
                 let range = results[i].rangeAt(j)
-                matches.append((self as NSString).substring(with: range) + ",")
+                matches.append((self as NSString).substring(with: range) + String.separeteCharacter)
             }
         }
         return matches.replaceAll(pattern: ",$", with: "")

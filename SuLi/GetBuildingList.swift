@@ -34,27 +34,21 @@ struct GetBuildingList {
                         //Buildingのすべてのオブジェクトを取得
                         let buildings = realm.objects(Building.self)
                         
-                        //取得したすべてのオブジェクトを削除
-                        buildings.forEach { building in
-                            try! realm.write() {
-                                realm.delete(building)
-                            }
-                        }
-                        
-                        for i in 0..<doc.count {
-                            //書き込むデータを作成
-                            let writeData = Building()
-                            writeData.id = i
-                            writeData.building_name = doc[i].text!.replaceAll(pattern: "教室配当表_", with: "").replaceAll(pattern: "_", with: " ")
-                            writeData.url = doc[i]["href"]!
-                            //データをRealmに書き込む
-                            try! realm.write() {
+                        //トランザクションを開始
+                        try! realm.write() {
+                            //取得したすべてのオブジェクトを削除
+                            realm.delete(buildings)
+                            
+                            for i in 0..<doc.count {
+                                //書き込むデータを作成
+                                let writeData = Building()
+                                writeData.id = i
+                                writeData.building_name = doc[i].text!.replaceAll(pattern: "教室配当表_", with: "").replaceAll(pattern: "_", with: " ")
+                                writeData.url = doc[i]["href"]!
+                                //データをRealmに書き込む
                                 realm.add(writeData)
                             }
                         }
-                        
-                        //中間データを破棄させる
-                        realm.invalidate()
                     }
                 }
             } catch let error {

@@ -9,17 +9,23 @@
 import UIKit
 import SwiftHTTP
 import Kanna
+import RealmSwift
 
 class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SyllabusDetailDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
+    //シラバスのURL
     var link: String?
+    
+    //シラバスを取得するためのクラス
     var syllabus: GetSyllabus?
     
+    //取得したシラバス情報
     var tableData: SyllabusData = SyllabusData()
     
-    var sectionIndex = ["basic info", "details", "teacheres"]
+    //セクション
+    var sectionIndex = ["basic info", "details", "teacheres", "place"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +48,7 @@ class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UIT
     
     //リロードデータ用デリゲートメソッド
     func reloadTableData(data: SyllabusData, mode: Bool) {
+        
         self.tableData = data
         self.tableView.reloadData()
     }
@@ -55,6 +62,8 @@ class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UIT
             return self.tableData.detail.count
         case 2:
             return self.tableData.teachers.count
+        case 3:
+            return self.tableData.place.count
         default:
             return 0
         }
@@ -70,6 +79,7 @@ class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UIT
         return self.sectionIndex.count
     }
     
+    //セルを返す
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch indexPath.section {
@@ -88,6 +98,11 @@ class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UIT
             cell.textLabel?.text = self.tableData.teachers[indexPath.row].0
             cell.detailTextLabel?.text = self.tableData.teachers[indexPath.row].1
             return cell
+        case 3:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell3", for: indexPath)
+            cell.textLabel?.text = self.tableData.place[indexPath.row].0
+            cell.detailTextLabel?.text = self.tableData.place[indexPath.row].1
+            return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell1", for: indexPath)
             cell.textLabel?.text = "N/A"
@@ -95,7 +110,6 @@ class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UIT
             return cell
         }
     }
-    
 }
 
 protocol SyllabusDetailDelegate {
@@ -152,6 +166,21 @@ class GetSyllabus {
                             resultData.teachers.append((tdTeacher[i].text!, tdTeacher[i+1].text!))
                         }
                         
+                        //講義場所
+                        //(授業名または担当教員の苗字が一致)かつ(いずれかの曜日時限が一致)する場所を問い合わせる
+                        let placeQuery = try! Realm().objects(ClassroomDivide.self).filter("( classname like '*\(tdBasic[4].text!)*' or person like '*\(tdBasic[10].text!.replaceAll(pattern: "[ 　]+.*", with: ""))*' ) and " + self.CreateWhereTime(text: tdBasic[7].text!))
+                        
+                        for data in placeQuery {
+                            if data.person.matches(pattern: ".*\(tdBasic[10].text!.replaceAll(pattern: " |　", with: ".*")).*") {
+                                resultData.place.append((data.place, "\(data.weekday) \(data.time * 2 - 1).\(data.time * 2) period"))
+                            }
+                        }
+                        
+                        //一つも該当しなかった場合
+                        if resultData.place.count <= 0 {
+                            resultData.place.append(("place not found", "check syllabus divide"))
+                        }
+                        
                         //メインスレッドで呼び出す
                         DispatchQueue.main.async {
                             self.delegate?.reloadTableData(data: resultData, mode: false)
@@ -167,6 +196,51 @@ class GetSyllabus {
             print("got an error creating the request: \(error)")
         }
     }
+    
+    private func CreateWhereTime(text: String) -> String {
+        
+        var whereText: String = ""
+        
+        let weekday_array = text.matcherSubString(pattern: "[月火水木金土日]+").components(separatedBy: String.separeteCharacter)
+        var time_array = text.matcherSubString(pattern: "\\(.{1,2}限,([2468]+|10|12|14)").replaceAll(pattern: "\\(.{1,2}限,", with: "").components(separatedBy: String.separeteCharacter)
+        
+        for i in 0..<weekday_array.count {
+            
+            var day: Int
+            
+            switch weekday_array[i] {
+            case "月":
+                day = 0
+            case "火":
+                day = 1
+            case "水":
+                day = 2
+            case "木":
+                day = 3
+            case "金":
+                day = 4
+            case "土":
+                day = 5
+            case "日":
+                day = 6
+            default:
+                day = -1
+            }
+            
+            if !time_array[i].matches(pattern: "[2468]|10|12|14") {
+                time_array[i] = "0"
+            }
+            
+            whereText += "( weekday = \(day) and time = \(Int(time_array[i])! / 2) )"
+            
+            if i + 1 < weekday_array.count {
+                whereText += " or "
+            }
+        }
+        
+        return " ( \(whereText) ) "
+    }
+
 }
 
 class SyllabusData {
@@ -174,10 +248,12 @@ class SyllabusData {
     var basic: [(String,String)]
     var detail: [(String,String)]
     var teachers: [(String,String)]
+    var place: [(String,String)]
     
     init() {
         basic = []
         detail = []
         teachers = []
+        place = []
     }
 }

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 import XLPagerTabStrip
 
 class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController {
@@ -15,11 +14,13 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController {
     //タブのボタンのテキスト
     let week = ["MON", "TUE", "WED", "THU", "FRI"]
     
-    //Realmインスタンス
-    let realm = try! Realm()
-    
     //リロードボタンが押された時の処理
     @IBAction func pushReloadButton(_ sender: Any) {
+        
+        for view in super.viewControllers as! [ClassroomDivideChildViewController] {
+            //データの更新をロックする
+            view.rockAccess()
+        }
         
         //スレッドを管理するグループを作成
         var groupDispatch = DispatchGroup()
@@ -33,10 +34,8 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController {
         //処理が完了したらの各ビューのデータを更新
         groupDispatch.notify(queue: DispatchQueue.main) {
             for view in super.viewControllers as! [ClassroomDivideChildViewController] {
-                if view.tableView != nil {
-                    //各ビューのデータを更新
-                    view.updateData()
-                }
+                //各ビューのデータを更新
+                view.updateData()
             }
         }
     }
