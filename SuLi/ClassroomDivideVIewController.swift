@@ -8,11 +8,20 @@
 
 import UIKit
 import XLPagerTabStrip
+import RealmSwift
 
-class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController {
+class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+    
+    @IBOutlet weak var pickerView: UIPickerView!
     
     //タブのボタンのテキスト
     let week = ["MON", "TUE", "WED", "THU", "FRI"]
+    
+    //Buildingオブジェクト
+    let building = try! Realm().objects(Building.self)
+    
+    //表示する配当表のbulding_id
+    var buildingId = ClassroomDivideChildViewController.allData
     
     //リロードボタンが押された時の処理
     @IBAction func pushReloadButton(_ sender: Any) {
@@ -40,6 +49,17 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController {
         }
     }
     
+    //建物選択ボタンが押された時の処理
+    @IBAction func pushBuildingType(_ sender: Any) {
+        //ピッカーを表示・非表示を切り替える
+        if self.pickerView.isHidden {
+            self.pickerView.isHidden = false
+        }
+        else {
+            self.pickerView.isHidden = true
+        }
+    }
+    
     override func viewDidLoad() {
         //バーの色
         settings.style.buttonBarBackgroundColor = UIColor(red: 73/255, green: 72/255, blue: 62/255, alpha: 1)
@@ -50,6 +70,11 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController {
         //セレクトバーの色
         settings.style.selectedBarBackgroundColor = UIColor(red: 254/255, green: 0, blue: 124/255, alpha: 1)
         super.viewDidLoad()
+        
+        //ピッカーのデリゲートを設定して非表示にする
+        self.pickerView.delegate = self
+        self.pickerView.dataSource = self
+        self.pickerView.isHidden = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,9 +88,50 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController {
         for (i,text) in week.enumerated() {
             let childView = UIStoryboard(name: "ClassroomDivide", bundle: nil).instantiateViewController(withIdentifier: "Child") as! ClassroomDivideChildViewController
             childView.itemTitle = text
+            childView.buildingId = self.buildingId
             childView.weekday = i
             childViewControllers.append(childView)
         }
         return childViewControllers
+    }
+    
+    //picerviewの列数を返す
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    //pickerViewの行数を返す
+    func pickerView(_ namePickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.building.count + 1
+    }
+    
+    //pickerViewの要素を返す
+    func pickerView(_ namePickerview: UIPickerView, titleForRow row: Int, forComponent component: Int)-> String? {
+        if row == 0 {
+            return "All"
+        }
+        else {
+            return self.building[row - 1].building_name
+        }
+    }
+    
+    //pickerViewで選択した時の処理
+    func pickerView(_ namePickerview: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+        if row == 0 {
+            self.buildingId = ClassroomDivideChildViewController.allData
+            print("ClassroomDivideViewContoroller : All data selected")
+        }
+        else {
+            self.buildingId = self.building[row - 1].id
+            print("ClassroomDivideViewContoroller : building_id : \(self.building[row - 1].id) selected")
+        }
+        
+        //データの更新
+        for view in super.viewControllers as! [ClassroomDivideChildViewController] {
+            //building_idの設定
+            view.buildingId = self.buildingId
+            //各ビューのデータを更新
+            view.updateData()
+        }
     }
 }

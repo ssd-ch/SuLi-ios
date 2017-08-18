@@ -38,21 +38,36 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sm8-ZR-WTe">
                                 <rect key="frame" x="0.0" y="40" width="375" height="514"/>
                             </scrollView>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4bA-qB-IO6">
+                                <rect key="frame" x="0.0" y="334" width="375" height="220"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="220" id="QeX-DF-QNZ"/>
+                                </constraints>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="4bA-qB-IO6" secondAttribute="trailing" id="6uO-DE-3ox"/>
                             <constraint firstItem="Sm8-ZR-WTe" firstAttribute="leading" secondItem="B1D-Jx-CEd" secondAttribute="leading" id="CBB-qB-VNx"/>
                             <constraint firstAttribute="trailing" secondItem="FMr-si-bMe" secondAttribute="trailing" id="DU8-jy-vFF"/>
                             <constraint firstItem="Sm8-ZR-WTe" firstAttribute="top" secondItem="FMr-si-bMe" secondAttribute="bottom" id="G1J-cd-OV2"/>
                             <constraint firstItem="scq-WI-vGH" firstAttribute="top" secondItem="Sm8-ZR-WTe" secondAttribute="bottom" id="OYO-wI-08k"/>
+                            <constraint firstItem="4bA-qB-IO6" firstAttribute="leading" secondItem="B1D-Jx-CEd" secondAttribute="leading" id="Wcn-hj-fKE"/>
                             <constraint firstItem="FMr-si-bMe" firstAttribute="top" secondItem="DbL-Ej-bYC" secondAttribute="bottom" id="aOE-a3-w4N"/>
                             <constraint firstItem="FMr-si-bMe" firstAttribute="leading" secondItem="B1D-Jx-CEd" secondAttribute="leading" id="bBy-8j-R4E"/>
+                            <constraint firstItem="scq-WI-vGH" firstAttribute="top" secondItem="4bA-qB-IO6" secondAttribute="bottom" id="rFY-M6-vki"/>
                             <constraint firstAttribute="trailing" secondItem="Sm8-ZR-WTe" secondAttribute="trailing" id="t5E-gX-6Gx"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="ClassLoomDivide" id="K9a-1v-9o8">
-                        <barButtonItem key="rightBarButtonItem" title="Reload" id="C13-yk-bMD">
+                        <barButtonItem key="leftBarButtonItem" image="buildingType" id="RJW-ZH-gQ7">
+                            <connections>
+                                <action selector="pushBuildingType:" destination="330-2X-uQS" id="XeO-Di-Vng"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="C13-yk-bMD">
                             <connections>
                                 <action selector="pushReloadButton:" destination="330-2X-uQS" id="WEP-Fl-v1z"/>
                             </connections>
@@ -61,6 +76,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="containerView" destination="Sm8-ZR-WTe" id="xZY-qs-OeU"/>
+                        <outlet property="pickerView" destination="4bA-qB-IO6" id="yvc-UF-mwS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fJb-z0-mXl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -147,4 +163,7 @@
             <point key="canvasLocation" x="-127.2" y="-145.27736131934034"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="buildingType" width="29" height="29"/>
+    </resources>
 </document>

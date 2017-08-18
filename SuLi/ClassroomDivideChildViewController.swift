@@ -23,8 +23,10 @@ class ClassroomDivideChildViewController: UIViewController, IndicatorInfoProvide
     //タブのボタンのタイトル
     var itemTitle = "N/A"
     
-    //表示するデータ(曜日)
-    var weekday = -1
+    //表示するデータの条件
+    static let allData = -1
+    var weekday = ClassroomDivideChildViewController.allData //曜日
+    var buildingId = ClassroomDivideChildViewController.allData //建物
     
     //セクション
     var sectionIndex = ["1.2 period", "3.4 period", "5.6 period", "7.8 period", "9.10 period"]
@@ -34,6 +36,11 @@ class ClassroomDivideChildViewController: UIViewController, IndicatorInfoProvide
         
         //ClassroomDivideのすべてのオブジェクトを取得
         self.classroomDivide = self.realm.objects(ClassroomDivide.self).filter("weekday = \(self.weekday)").sorted(byKeyPath: "id")
+        
+        //建物の指定がある場合は絞り込みを行う
+        if buildingId != ClassroomDivideChildViewController.allData {
+            self.classroomDivide = self.classroomDivide.filter("building_id = \(self.buildingId)")
+        }
         
         //テーブルビューデリゲート
         self.tableView.delegate = self
@@ -49,6 +56,10 @@ class ClassroomDivideChildViewController: UIViewController, IndicatorInfoProvide
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.textLabel?.text = self.classroomDivide.filter("time = \(indexPath.section + 1)")[indexPath.row].cell_text
+        //空文字だとlabelが生成されず高さがバラバラになるのでとりあえずの処置
+        if cell.textLabel?.text == "" {
+            cell.textLabel?.text = " "
+        }
         cell.detailTextLabel?.text = self.classroomDivide.filter("time = \(indexPath.section + 1)")[indexPath.row].place
         return cell
     }
@@ -79,9 +90,17 @@ class ClassroomDivideChildViewController: UIViewController, IndicatorInfoProvide
     //データを更新
     func updateData() {
         
+        //ClassroomDivideのすべてのオブジェクトを取得
+        self.classroomDivide = self.realm.objects(ClassroomDivide.self).filter("weekday = \(self.weekday)").sorted(byKeyPath: "id")
+        
+        //建物の指定がある場合は絞り込みを行う
+        if buildingId != ClassroomDivideChildViewController.allData {
+            self.classroomDivide = self.classroomDivide.filter("building_id = \(self.buildingId)")
+        }
+        
         //テーブルを更新
         if self.tableView != nil {
-            print("ClassroomDivideChildView: No.\(self.weekday) update table data")
+            print("ClassroomDivideChildViewController: No.\(self.weekday) update table data")
             //スクロールの許可
             self.tableView.isScrollEnabled = true
             //データの更新
