@@ -60,6 +60,7 @@ class ClassroomDivideChildViewController: UIViewController, IndicatorInfoProvide
         if cell.textLabel?.text == "" {
             cell.textLabel?.text = " "
         }
+        cell.textLabel?.textColor = UIColor.hex(hexStr: self.classroomDivide.filter("time = \(indexPath.section + 1)")[indexPath.row].cell_color, alpha: 1)
         cell.detailTextLabel?.text = self.classroomDivide.filter("time = \(indexPath.section + 1)")[indexPath.row].place
         return cell
     }

@@ -13,6 +13,7 @@
 		5C203F321F3EFF7700C89196 /* MoodleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C203F311F3EFF7700C89196 /* MoodleViewController.swift */; };
 		5C203F341F3F169600C89196 /* NoticeViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C203F331F3F169600C89196 /* NoticeViewContoller.swift */; };
 		5C22759B1EBC7F6D000A6AA9 /* URLEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22759A1EBC7F6D000A6AA9 /* URLEncoding.swift */; };
+		5C60FB471F4A141400268907 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C60FB461F4A141400268907 /* UIColorExtension.swift */; };
 		5C6A19B91ED3B2FE00BF1A52 /* database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6A19B81ED3B2FE00BF1A52 /* database.swift */; };
 		5C6A19BB1ED3BE1600BF1A52 /* GetClassroomDivide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6A19BA1ED3BE1600BF1A52 /* GetClassroomDivide.swift */; };
 		5C6A19BF1ED3F48000BF1A52 /* ClassroomDivideVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6A19BE1ED3F48000BF1A52 /* ClassroomDivideVIewController.swift */; };
@@ -42,6 +43,7 @@
 		5C203F311F3EFF7700C89196 /* MoodleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodleViewController.swift; sourceTree = "<group>"; };
 		5C203F331F3F169600C89196 /* NoticeViewContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeViewContoller.swift; sourceTree = "<group>"; };
 		5C22759A1EBC7F6D000A6AA9 /* URLEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLEncoding.swift; sourceTree = "<group>"; };
+		5C60FB461F4A141400268907 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		5C6A19B81ED3B2FE00BF1A52 /* database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = database.swift; sourceTree = "<group>"; };
 		5C6A19BA1ED3BE1600BF1A52 /* GetClassroomDivide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetClassroomDivide.swift; sourceTree = "<group>"; };
 		5C6A19BE1ED3F48000BF1A52 /* ClassroomDivideVIewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassroomDivideVIewController.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				5CFAB8801EB609CD001885C4 /* TimeTable.storyboard */,
 				5CFAB8681EB60208001885C4 /* AppDelegate.swift */,
 				5C1E62041F4190A600CF7BEB /* ClassroomDivideChildViewController.swift */,
+				5C60FB461F4A141400268907 /* UIColorExtension.swift */,
 				5C6A19BE1ED3F48000BF1A52 /* ClassroomDivideVIewController.swift */,
 				5C6A19B81ED3B2FE00BF1A52 /* database.swift */,
 				5C74874C1F35EF3B0021D9A7 /* GetBuildingList.swift */,
@@ -274,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C60FB471F4A141400268907 /* UIColorExtension.swift in Sources */,
 				5CABE16A1ED02497009C271E /* SyllabusCustomViewCell.swift in Sources */,
 				5CFAB86B1EB60208001885C4 /* SyllabusListViewController.swift in Sources */,
 				5C6A19BB1ED3BE1600BF1A52 /* GetClassroomDivide.swift in Sources */,
