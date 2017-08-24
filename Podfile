@@ -11,5 +11,6 @@ target 'SuLi' do
   pod 'SwiftHTTP', '~> 2.0.0'
   pod 'RealmSwift'
   pod 'XLPagerTabStrip'
+  pod 'TOSMBClient'
 
 end

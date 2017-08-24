@@ -6,12 +6,14 @@ PODS:
   - RealmSwift (2.9.1):
     - Realm (= 2.9.1)
   - SwiftHTTP (2.0.2)
+  - TOSMBClient (1.0.7)
   - XLPagerTabStrip (7.0.0)
 
 DEPENDENCIES:
   - Kanna
   - RealmSwift
   - SwiftHTTP (~> 2.0.0)
+  - TOSMBClient
   - XLPagerTabStrip
 
 SPEC CHECKSUMS:
@@ -19,8 +21,9 @@ SPEC CHECKSUMS:
   Realm: f91fb43bd474c4f731a116ebf7392c75dd015920
   RealmSwift: 207f12a4a36b696c5183c60a1c06d70234a23e56
   SwiftHTTP: faa1a5f7670568ffc9361898229dbe84a6088468
+  TOSMBClient: 1a6d1b77ea65cafb90da1313ef0e70c86872681d
   XLPagerTabStrip: 9be80a66c6b7d60306b2c0a6004965016d68f813
 
-PODFILE CHECKSUM: 980db44252261ff9abe10f7fdb41c94192937e88
+PODFILE CHECKSUM: '078bf73c75d964a75a41cbd35bc09b24ffce5722'
 
 COCOAPODS: 1.2.1
