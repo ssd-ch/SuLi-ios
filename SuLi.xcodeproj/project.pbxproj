@@ -14,6 +14,7 @@
 		5C203F321F3EFF7700C89196 /* MoodleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C203F311F3EFF7700C89196 /* MoodleViewController.swift */; };
 		5C203F341F3F169600C89196 /* NoticeViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C203F331F3F169600C89196 /* NoticeViewContoller.swift */; };
 		5C22759B1EBC7F6D000A6AA9 /* URLEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22759A1EBC7F6D000A6AA9 /* URLEncoding.swift */; };
+		5C43DB941F4F743600A3B88E /* NoticeCustomViewDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C43DB931F4F743600A3B88E /* NoticeCustomViewDetailCell.swift */; };
 		5C60FB471F4A141400268907 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C60FB461F4A141400268907 /* UIColorExtension.swift */; };
 		5C60FB491F4A26B300268907 /* WorkFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C60FB481F4A26B300268907 /* WorkFolderView.swift */; };
 		5C6A19B91ED3B2FE00BF1A52 /* database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6A19B81ED3B2FE00BF1A52 /* database.swift */; };
@@ -46,6 +47,7 @@
 		5C203F311F3EFF7700C89196 /* MoodleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodleViewController.swift; sourceTree = "<group>"; };
 		5C203F331F3F169600C89196 /* NoticeViewContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeViewContoller.swift; sourceTree = "<group>"; };
 		5C22759A1EBC7F6D000A6AA9 /* URLEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLEncoding.swift; sourceTree = "<group>"; };
+		5C43DB931F4F743600A3B88E /* NoticeCustomViewDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeCustomViewDetailCell.swift; sourceTree = "<group>"; };
 		5C60FB461F4A141400268907 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		5C60FB481F4A26B300268907 /* WorkFolderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkFolderView.swift; sourceTree = "<group>"; };
 		5C60FB4D1F4A333800268907 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				5CBAACB01EC573C6003FE2B9 /* ClassroomDivide.storyboard */,
 				5CFAB87E1EB609A1001885C4 /* Material.storyboard */,
 				5CFAB87C1EB608FB001885C4 /* Notice.storyboard */,
+				5C43DB931F4F743600A3B88E /* NoticeCustomViewDetailCell.swift */,
 				5CFAB87A1EB607F6001885C4 /* Syllabus.storyboard */,
 				5CFAB8801EB609CD001885C4 /* TimeTable.storyboard */,
 				5CFAB8681EB60208001885C4 /* AppDelegate.swift */,
@@ -301,6 +304,7 @@
 				5C6A19BF1ED3F48000BF1A52 /* ClassroomDivideVIewController.swift in Sources */,
 				5C203F341F3F169600C89196 /* NoticeViewContoller.swift in Sources */,
 				5C161B021F4CF0B50095237B /* WorkFolderLoginView.swift in Sources */,
+				5C43DB941F4F743600A3B88E /* NoticeCustomViewDetailCell.swift in Sources */,
 				5CFAB8691EB60208001885C4 /* AppDelegate.swift in Sources */,
 				5C1E62051F4190A600CF7BEB /* ClassroomDivideChildViewController.swift in Sources */,
 				5C203F2E1F3A277A00C89196 /* GetSyllabusForm.swift in Sources */,

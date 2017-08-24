@@ -121,7 +121,7 @@
                             <constraint firstItem="nnh-wq-Nfu" firstAttribute="centerX" secondItem="hF9-xi-9Wh" secondAttribute="centerX" constant="20" id="zNE-Cr-iUx"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="WorkFolder" id="Pgj-iX-wY2" userLabel="WorkFolder">
+                    <navigationItem key="navigationItem" title="Share Folder" id="Pgj-iX-wY2" userLabel="WorkFolder">
                         <barButtonItem key="backBarButtonItem" title="Buck" id="03C-xr-RSF"/>
                     </navigationItem>
                     <connections>

@@ -16,6 +16,9 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
     //CancelInfoオブジェクト
     let cancelInfo = try! Realm().objects(CancelInfo.self).sorted(byKeyPath: "id")
     
+    //セルの種類(true:DetailCell false:Cell)
+    var cellType = [[Bool]]()
+    
     //セクション
     var sectionIndex: [(String, Int)] = []
     
@@ -36,7 +39,15 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
         //処理が完了したらCancelInfoを更新
         groupDispatch.notify(queue: DispatchQueue.main) {
             print("NoticeViewController : get cancelInfo in Realm")
+            //セルの状態を初期化
+            self.cellType = []
             self.setSectionIndex()
+            for i in 0..<self.sectionIndex.count {
+                self.cellType.append([Bool]())
+                for _ in 0..<self.sectionIndex[i].1 {
+                    self.cellType[i].append(false)
+                }
+            }
             self.tableView.reloadData()
             self.tableView.isScrollEnabled = true
         }
@@ -49,6 +60,14 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
         
         //セクションを作成
         self.setSectionIndex()
+        
+        //セルの状態を初期化
+        for i in 0..<self.sectionIndex.count {
+            self.cellType.append([Bool]())
+            for _ in 0..<self.sectionIndex[i].1 {
+                self.cellType[i].append(false)
+            }
+        }
         
         //テーブルビューデリゲート
         self.tableView.delegate = self
@@ -63,10 +82,22 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
     // セルの内容を返す
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = self.cancelInfo[indexPath.row].classname
-        cell.detailTextLabel?.text = self.cancelInfo[indexPath.row].person
-        return cell
+        if self.cellType[indexPath.section][indexPath.row] {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath) as! NoticeCustomViewDetailCell
+            cell.titleLabel?.text = self.cancelInfo.filter("date = '\(self.sectionIndex[indexPath.section].0)'")[indexPath.row].classname
+            cell.subtitleLabel?.text = self.cancelInfo.filter("date = '\(self.sectionIndex[indexPath.section].0)'")[indexPath.row].person
+            cell.classificationLabel?.text = "Classification : " + self.cancelInfo.filter("date = '\(self.sectionIndex[indexPath.section].0)'")[indexPath.row].classification
+            cell.timeLabel?.text = "Time : " + self.cancelInfo.filter("date = '\(self.sectionIndex[indexPath.section].0)'")[indexPath.row].time
+            cell.placeLabel?.text = "Place : " + self.cancelInfo.filter("date = '\(self.sectionIndex[indexPath.section].0)'")[indexPath.row].place
+            cell.noteLabel?.text = "Note : " + self.cancelInfo.filter("date = '\(self.sectionIndex[indexPath.section].0)'")[indexPath.row].note
+            return cell
+        }
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+            cell.textLabel?.text = self.cancelInfo.filter("date = '\(self.sectionIndex[indexPath.section].0)'")[indexPath.row].classname
+            cell.detailTextLabel?.text = self.cancelInfo.filter("date = '\(self.sectionIndex[indexPath.section].0)'")[indexPath.row].person
+            return cell
+        }
     }
     
     //セクション名を返す
@@ -82,6 +113,31 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
     //セクションの個数を返す
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.sectionIndex.count
+    }
+    
+    //セルが選択された時の処理
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //選択されたセルの状態を切り替える
+        if self.cellType[indexPath.section][indexPath.row] {
+            self.cellType[indexPath.section][indexPath.row] = false
+        }
+        else {
+            self.cellType[indexPath.section][indexPath.row] = true
+        }
+        //テーブルを更新
+        self.tableView.reloadData()
+    }
+    
+    //セルの高さを返す
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        var identifier = ""
+        if self.cellType[indexPath.section][indexPath.row] {
+            identifier = "DetailCell"
+        }
+        else {
+            identifier = "Cell"
+        }
+        return self.tableView.dequeueReusableCell(withIdentifier: identifier)!.bounds.size.height
     }
     
     func setSectionIndex() {
