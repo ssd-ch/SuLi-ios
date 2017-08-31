@@ -1,5 +1,5 @@
 //
-//  StringUtil.swift
+//  StringExtension.swift
 //  SuLi
 //
 //  Created by ssd_ch on 2017/05/20.

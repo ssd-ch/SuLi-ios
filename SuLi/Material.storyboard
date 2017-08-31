@@ -49,7 +49,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xvx-3y-9uw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1072.8" y="146.17691154422789"/>
+            <point key="canvasLocation" x="1191" y="145"/>
         </scene>
         <!--Work Folder Login View-->
         <scene sceneID="lii-E8-L5p">
@@ -136,7 +136,7 @@
         <!--Work Folder View Contoller-->
         <scene sceneID="IhA-Uz-dv8">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Mlg-RK-XK3" customClass="WorkFolderViewContoller" customModule="SuLi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShareFolderView" automaticallyAdjustsScrollViewInsets="NO" id="Mlg-RK-XK3" customClass="WorkFolderViewContoller" customModule="SuLi" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jp5-oV-sy2"/>
                         <viewControllerLayoutGuide type="bottom" id="g0t-sP-ZLd"/>
@@ -165,9 +165,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="Mlg-RK-XK3" kind="show" id="Vt4-Y0-Ked"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -186,7 +183,40 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vUe-b6-DcW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3141.5999999999999" y="-185.75712143928038"/>
+            <point key="canvasLocation" x="2993" y="-188"/>
+        </scene>
+        <!--Share File View Controller-->
+        <scene sceneID="I6X-Kv-5cT">
+            <objects>
+                <viewController storyboardIdentifier="ShareFileView" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Wxn-WF-2Dj" customClass="ShareFileViewController" customModule="SuLi" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fvz-vp-3hb"/>
+                        <viewControllerLayoutGuide type="bottom" id="MmT-Fc-cSu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jY0-DE-MGE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JZT-mP-yHu">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="JZT-mP-yHu" secondAttribute="trailing" id="9bK-Ga-g7R"/>
+                            <constraint firstItem="MmT-Fc-cSu" firstAttribute="top" secondItem="JZT-mP-yHu" secondAttribute="bottom" id="Giq-1I-Doo"/>
+                            <constraint firstItem="JZT-mP-yHu" firstAttribute="top" secondItem="fvz-vp-3hb" secondAttribute="bottom" id="Ipf-8J-XHu"/>
+                            <constraint firstItem="JZT-mP-yHu" firstAttribute="leading" secondItem="jY0-DE-MGE" secondAttribute="leading" id="aqc-9o-m1Y"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="JZT-mP-yHu" id="qJR-Mj-xaM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LVx-rc-CHK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3802.4000000000001" y="-188.45577211394306"/>
         </scene>
         <!--Moodle View-->
         <scene sceneID="hdC-aB-VAo">
@@ -239,10 +269,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2rK-2n-28k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="133.59999999999999" y="146.17691154422789"/>
+            <point key="canvasLocation" x="310" y="144"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="YW7-LW-Hy8"/>
-    </inferredMetricsTieBreakers>
 </document>

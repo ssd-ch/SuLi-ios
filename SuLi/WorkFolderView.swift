@@ -43,20 +43,29 @@ class WorkFolderViewContoller : UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-
+        
         cell.textLabel?.text = (self.files?[indexPath.row] as! TOSMBSessionFile).name
         return cell
     }
     
-    // Segueで遷移時の処理
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if let indexPath = self.tableView.indexPathForSelectedRow {
-            let controller = segue.destination as! WorkFolderViewContoller
-            controller.id = self.id
-            controller.password = self.password
-            controller.path = (self.files?[indexPath.row] as! TOSMBSessionFile).filePath
-            controller.navigationItem.title = (self.files?[indexPath.row] as! TOSMBSessionFile).name
+    // セルが選択された時の処理
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //フォルダとファイルで遷移するビューを切り替える
+        if (self.files?[indexPath.row] as! TOSMBSessionFile).directory {
+            let nextViewController = self.storyboard!.instantiateViewController(withIdentifier: "ShareFolderView") as! WorkFolderViewContoller
+            nextViewController.id = self.id
+            nextViewController.password = self.password
+            nextViewController.path = (self.files?[indexPath.row] as! TOSMBSessionFile).filePath
+            nextViewController.navigationItem.title = (self.files?[indexPath.row] as! TOSMBSessionFile).name
+            self.show(nextViewController, sender: nil)
+        }
+        else {
+            let nextViewController = self.storyboard!.instantiateViewController(withIdentifier: "ShareFileView") as! ShareFileViewController
+            nextViewController.id = self.id
+            nextViewController.password = self.password
+            nextViewController.atPath = (self.files?[indexPath.row] as! TOSMBSessionFile).filePath
+            nextViewController.navigationItem.title = (self.files?[indexPath.row] as! TOSMBSessionFile).name
+            self.show(nextViewController, sender: nil)
         }
     }
 }
