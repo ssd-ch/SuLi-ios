@@ -1,0 +1,45 @@
+
+/* Class = "UITabBarItem"; title = "syllabus"; ObjectID = "3IY-bq-waO"; */
+"3IY-bq-waO.title" = "シラバス";
+
+/* Class = "UISearchBar"; placeholder = "Lecture Name"; ObjectID = "BtM-1o-bAK"; */
+"BtM-1o-bAK.placeholder" = "講義名";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "Fkj-wM-zzi"; */
+"Fkj-wM-zzi.text" = "Detail";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "Ltg-XP-6PN"; */
+"Ltg-XP-6PN.text" = "Title";
+
+/* Class = "UILabel"; text = "teacher"; ObjectID = "MaF-dY-9K4"; */
+"MaF-dY-9K4.text" = "teacher";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "Mrf-5T-VCB"; */
+"Mrf-5T-VCB.text" = "Title";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "NSY-Ea-eyS"; */
+"NSY-Ea-eyS.text" = "Title";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "Pok-eC-BOf"; */
+"Pok-eC-BOf.text" = "Title";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "S2d-ab-0rA"; */
+"S2d-ab-0rA.text" = "Subtitle";
+
+/* Class = "UILabel"; text = "LectureName"; ObjectID = "T0A-HJ-Has"; */
+"T0A-HJ-Has.text" = "LectureName";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "dqQ-pu-g32"; */
+"dqQ-pu-g32.text" = "Detail";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "r7t-4X-A3G"; */
+"r7t-4X-A3G.title" = "戻る";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "x7V-RI-JVr"; */
+"x7V-RI-JVr.text" = "Detail";
+
+/* Class = "UINavigationItem"; title = "Syllabus Detail"; ObjectID = "zAl-Ou-uOn"; */
+"zAl-Ou-uOn.title" = "シラバス閲覧";
+
+/* Class = "UINavigationItem"; title = "Syllabus Search"; ObjectID = "zZY-PW-gly"; */
+"zZY-PW-gly.title" = "シラバス検索";

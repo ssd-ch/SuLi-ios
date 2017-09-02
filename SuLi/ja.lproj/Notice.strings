@@ -1,0 +1,30 @@
+
+/* Class = "UITabBarItem"; title = "notice"; ObjectID = "8cE-mb-Bf1"; */
+"8cE-mb-Bf1.title" = "講義案内";
+
+/* Class = "UILabel"; text = "Time"; ObjectID = "Ige-JM-ice"; */
+"Ige-JM-ice.text" = "Time";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "KHo-xO-gbe"; */
+"KHo-xO-gbe.text" = "Subtitle";
+
+/* Class = "UILabel"; text = "Note"; ObjectID = "Oxj-Rt-luV"; */
+"Oxj-Rt-luV.text" = "Note";
+
+/* Class = "UILabel"; text = "Classification"; ObjectID = "RMu-th-0mw"; */
+"RMu-th-0mw.text" = "Classification";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "XXC-Jo-0sJ"; */
+"XXC-Jo-0sJ.text" = "Subtitle";
+
+/* Class = "UILabel"; text = "Place"; ObjectID = "c5H-60-YLv"; */
+"c5H-60-YLv.text" = "Place";
+
+/* Class = "UINavigationItem"; title = "Notice"; ObjectID = "k3P-Mt-Lue"; */
+"k3P-Mt-Lue.title" = "講義案内";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "liF-RW-EcA"; */
+"liF-RW-EcA.text" = "Title";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "sKt-5l-ets"; */
+"sKt-5l-ets.text" = "Title";

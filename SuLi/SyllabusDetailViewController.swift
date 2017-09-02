@@ -25,10 +25,16 @@ class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UIT
     var tableData: SyllabusData = SyllabusData()
     
     //セクション
-    var sectionIndex = ["basic info", "details", "teacheres", "place"]
+    var sectionIndex = [NSLocalizedString("syllabus-section-basic", comment: "シラバスのセクション名:基本情報"),
+                        NSLocalizedString("syllabus-section-detail", comment: "シラバスのセクション名:詳細情報"),
+                        NSLocalizedString("syllabus-section-teachers", comment: "シラバスのセクション名:担当者"),
+                        NSLocalizedString("syllabus-section-place", comment: "シラバスのセクション名:場所")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //セクション名のみ表示されてしまうので非表示にしておく
+        self.tableView.isHidden = true
         
         self.tableView.estimatedRowHeight = 30
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -48,7 +54,7 @@ class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UIT
     
     //リロードデータ用デリゲートメソッド
     func reloadTableData(data: SyllabusData, mode: Bool) {
-        
+        self.tableView.isHidden = false
         self.tableData = data
         self.tableView.reloadData()
     }

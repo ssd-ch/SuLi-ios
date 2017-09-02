@@ -29,7 +29,11 @@ class ClassroomDivideChildViewController: UIViewController, IndicatorInfoProvide
     var buildingId = ClassroomDivideChildViewController.allData //建物
     
     //セクション
-    var sectionIndex = ["1.2 period", "3.4 period", "5.6 period", "7.8 period", "9.10 period"]
+    var sectionIndex = [NSLocalizedString("classroom-section-1", comment: "教室配当表のセクション名:1コマ"),
+                        NSLocalizedString("classroom-section-2", comment: "教室配当表のセクション名:2コマ"),
+                        NSLocalizedString("classroom-section-3", comment: "教室配当表のセクション名:3コマ"),
+                        NSLocalizedString("classroom-section-4", comment: "教室配当表のセクション名:4コマ"),
+                        NSLocalizedString("classroom-section-5", comment: "教室配当表のセクション名:5コマ")]
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -1,5 +1,5 @@
 //
-//  WorkFolderLoginView.swift
+//  ShareFolderLoginView.swift
 //  SuLi
 //
 //  Created by ssd_ch on 2017/08/23.
@@ -9,10 +9,13 @@
 import UIKit
 import TOSMBClient
 
-class WorkFolderLoginViewContoller : UIViewController, UITextFieldDelegate {
+class ShareFolderLoginViewContoller : UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    
+    private let host = "cosmos.shimane-u.ac.jp"
+    private let ip = "10.16.1.16"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +39,7 @@ class WorkFolderLoginViewContoller : UIViewController, UITextFieldDelegate {
     // Segueで遷移時の処理
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let controller = segue.destination as! WorkFolderViewContoller
-        controller.id = self.idTextField.text!
-        controller.password = self.passwordTextField.text!
+        SMBSessionController.session = TOSMBSession(hostName: self.host, ipAddress: self.ip)
+        SMBSessionController.session?.setLoginCredentialsWithUserName(self.idTextField.text!, password: self.passwordTextField.text!)
     }
 }

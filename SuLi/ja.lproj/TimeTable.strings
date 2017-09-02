@@ -1,0 +1,9 @@
+
+/* Class = "UILabel"; text = "timetable"; ObjectID = "6tz-nS-GZw"; */
+"6tz-nS-GZw.text" = "時間割";
+
+/* Class = "UIViewController"; title = "timetable"; ObjectID = "dPq-Zr-of4"; */
+"dPq-Zr-of4.title" = "時間割";
+
+/* Class = "UITabBarItem"; title = "timetable"; ObjectID = "rgU-Wo-4wD"; */
+"rgU-Wo-4wD.title" = "時間割";

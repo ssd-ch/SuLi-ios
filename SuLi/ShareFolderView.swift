@@ -1,5 +1,5 @@
 //
-//  WorkFolderView.swift
+//  ShareFolderView.swift
 //  SuLi
 //
 //  Created by ssd_ch on 2017/08/21.
@@ -9,12 +9,8 @@
 import UIKit
 import TOSMBClient
 
-class WorkFolderViewContoller : UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
-    let host = "cosmos.shimane-u.ac.jp"
-    let ip = "10.16.1.16"
-    var id = ""
-    var password = ""
+class ShareFolderViewContoller : UIViewController, UITableViewDataSource, UITableViewDelegate {
+
     var path = "/"
     
     @IBOutlet weak var tableView: UITableView!
@@ -28,10 +24,7 @@ class WorkFolderViewContoller : UIViewController, UITableViewDataSource, UITable
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        let session = TOSMBSession(hostName: self.host, ipAddress: self.ip)
-        session?.setLoginCredentialsWithUserName(self.id, password: self.password)
-        
-        self.files = try! session?.requestContentsOfDirectory(atFilePath: self.path)
+        self.files = try! SMBSessionController.session?.requestContentsOfDirectory(atFilePath: self.path)
     }
     
     // セルの行数を返す
@@ -41,7 +34,6 @@ class WorkFolderViewContoller : UIViewController, UITableViewDataSource, UITable
     
     // セルの内容を返す
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         cell.textLabel?.text = (self.files?[indexPath.row] as! TOSMBSessionFile).name
@@ -52,17 +44,13 @@ class WorkFolderViewContoller : UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //フォルダとファイルで遷移するビューを切り替える
         if (self.files?[indexPath.row] as! TOSMBSessionFile).directory {
-            let nextViewController = self.storyboard!.instantiateViewController(withIdentifier: "ShareFolderView") as! WorkFolderViewContoller
-            nextViewController.id = self.id
-            nextViewController.password = self.password
+            let nextViewController = self.storyboard!.instantiateViewController(withIdentifier: "ShareFolderView") as! ShareFolderViewContoller
             nextViewController.path = (self.files?[indexPath.row] as! TOSMBSessionFile).filePath
             nextViewController.navigationItem.title = (self.files?[indexPath.row] as! TOSMBSessionFile).name
             self.show(nextViewController, sender: nil)
         }
         else {
             let nextViewController = self.storyboard!.instantiateViewController(withIdentifier: "ShareFileView") as! ShareFileViewController
-            nextViewController.id = self.id
-            nextViewController.password = self.password
             nextViewController.atPath = (self.files?[indexPath.row] as! TOSMBSessionFile).filePath
             nextViewController.navigationItem.title = (self.files?[indexPath.row] as! TOSMBSessionFile).name
             self.show(nextViewController, sender: nil)

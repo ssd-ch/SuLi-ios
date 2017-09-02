@@ -1,0 +1,33 @@
+/* 
+  Localizable.strings
+  SuLi
+
+  Created by ssd_ch on 2017/09/02.
+  Copyright © 2017年 ssd. All rights reserved.
+*/
+
+//教室配当表のタブ名
+"classroom-tab-Monday" = "月";
+"classroom-tab-Tuesday" = "火";
+"classroom-tab-Wednesday" = "水";
+"classroom-tab-Thursday" = "木";
+"classroom-tab-Friday" = "金";
+
+//教室配当表のセクション名
+"classroom-section-1" = "1.2限 (1コマ)";
+"classroom-section-2" = "3.4限 (2コマ)";
+"classroom-section-3" = "5.6限 (3コマ)";
+"classroom-section-4" = "7.8限 (4コマ)";
+"classroom-section-5" = "9.10限 (5コマ)";
+
+//シラバスのセクション名
+"syllabus-section-basic" = "基本情報";
+"syllabus-section-detail" = "詳細情報";
+"syllabus-section-teachers" = "担当者教員一覧";
+"syllabus-section-place" = "場所";
+
+//講義案内の項目名
+"lectureNotice-item-classification" = "分類 : ";
+"lectureNotice-item-time" = "時限 : ";
+"lectureNotice-item-place" = "教室 : ";
+"lectureNotice-item-note" = "備考 : ";

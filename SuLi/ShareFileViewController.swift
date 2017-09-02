@@ -13,29 +13,19 @@ class ShareFileViewController : UIViewController {
     
     @IBOutlet weak var webView: UIWebView!
     
-    let host = "cosmos.shimane-u.ac.jp"
-    let ip = "10.16.1.16"
-    var id = ""
-    var password = ""
     var atPath = ""
     var destinationPath = ""
-    
-    //static変数にしないとメモリ解放されてEXC_BAD_ACCESSが発生する
-    private static var session: TOSMBSession?
-    private static var downloadTask: TOSMBSessionDownloadTask?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ShareFileViewController.session = TOSMBSession(hostName: self.host, ipAddress: self.ip)
-        ShareFileViewController.session?.setLoginCredentialsWithUserName(self.id, password: self.password)
-        ShareFileViewController.downloadTask = ShareFileViewController.session?.downloadTaskForFile(atPath: self.atPath, destinationPath: nil, progressHandler: {(totalBytesWritten, totalBytesExpected) in
+        SMBSessionController.downloadTask = SMBSessionController.session?.downloadTaskForFile(atPath: self.atPath, destinationPath: nil, progressHandler: {(totalBytesWritten, totalBytesExpected) in
         },completionHandler: { filepath in
             print("ShareFileView : File was downloaded to \(filepath!)")
             //メインスレッドで呼び出す
             DispatchQueue.main.async {
                 if let url = URL(string: filepath!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!) {
-                    print("ShareFileView : load request ")
+                    print("ShareFileView : webview load request")
                     let request = URLRequest(url: url)
                     self.webView.loadRequest(request)
                     
@@ -48,7 +38,7 @@ class ShareFileViewController : UIViewController {
         }, failHandler: { error in
             print("ShareFileView : \(String(describing: error?.localizedDescription))")
         })
-        ShareFileViewController.downloadTask?.resume()
+        SMBSessionController.downloadTask?.resume()
     }
     
     override func didMove(toParentViewController parent: UIViewController?) {

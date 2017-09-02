@@ -15,7 +15,11 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPi
     @IBOutlet weak var pickerView: UIPickerView!
     
     //タブのボタンのテキスト
-    let week = ["MON", "TUE", "WED", "THU", "FRI"]
+    let week = [NSLocalizedString("classroom-tab-Monday", comment: "教室配当表のタブ名:月曜日"),
+                NSLocalizedString("classroom-tab-Tuesday", comment: "教室配当表のタブ名:火曜日"),
+                NSLocalizedString("classroom-tab-Wednesday", comment: "教室配当表のタブ名:水曜日"),
+                NSLocalizedString("classroom-tab-Thursday", comment: "教室配当表のタブ名:木曜日"),
+                NSLocalizedString("classroom-tab-Friday", comment: "教室配当表のタブ名:金曜日")]
     
     //Buildingオブジェクト
     let building = try! Realm().objects(Building.self)
