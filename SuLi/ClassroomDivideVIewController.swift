@@ -112,7 +112,7 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPi
     //pickerViewの要素を返す
     func pickerView(_ namePickerview: UIPickerView, titleForRow row: Int, forComponent component: Int)-> String? {
         if row == 0 {
-            return "All"
+            return NSLocalizedString("classroomDivide-buildingType-all", comment: "教室配当表の建物:全て")
         }
         else {
             return self.building[row - 1].building_name

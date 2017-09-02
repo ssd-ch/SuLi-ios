@@ -178,13 +178,18 @@ class GetSyllabus {
                         
                         for data in placeQuery {
                             if data.person.matches(pattern: ".*\(tdBasic[10].text!.replaceAll(pattern: " |　", with: ".*")).*") {
-                                resultData.place.append((data.place, "\(data.weekday) \(data.time * 2 - 1).\(data.time * 2) period"))
+                                resultData.place.append(
+                                    (data.place, "\(NSLocalizedString("syllabus-place-weekday-\(data.weekday)", comment: "シラバスの場所:曜日")) \(NSLocalizedString("syllabus-place-time-\(data.time)", comment: "シラバスの場所:時限"))")
+                                )
                             }
                         }
                         
                         //一つも該当しなかった場合
                         if resultData.place.count <= 0 {
-                            resultData.place.append(("place not found", "check syllabus divide"))
+                            resultData.place.append(
+                                (NSLocalizedString("syllabus-place-error-title", comment: "シラバスの場所:該当なしの時のタイトル"),
+                                NSLocalizedString("syllabus-place-error-detail", comment: "シラバスの場所:該当なしの時の詳細"))
+                                )
                         }
                         
                         //メインスレッドで呼び出す

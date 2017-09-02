@@ -20,6 +20,9 @@
 "classroom-section-4" = "7.8 period (4 lecture)";
 "classroom-section-5" = "9.10 period (5 lecture)";
 
+//ClassroomDevide BuildingType All
+"classroomDivide-buildingType-all" = "All";
+
 //Syllabus Section Name
 "syllabus-section-basic" = "Basic Info";
 "syllabus-section-detail" = "Detail Info";
@@ -31,3 +34,17 @@
 "lectureNotice-item-time" = "Time : ";
 "lectureNotice-item-place" = "Place : ";
 "lectureNotice-item-note" = "Note : ";
+
+//Syllabus Place Text
+"syllabus-place-weekday-0" = "Monday";
+"syllabus-place-weekday-1" = "Tuesday";
+"syllabus-place-weekday-2" = "Wednesday";
+"syllabus-place-weekday-3" = "Thursday";
+"syllabus-place-weekday-4" = "Friday";
+"syllabus-place-time-1" = "1.2 period (1 lecture)";
+"syllabus-place-time-2" = "3.4 period (2 lecture)";
+"syllabus-place-time-3" = "5.6 period (3 lecture)";
+"syllabus-place-time-4" = "7.8 period (4 lecture)";
+"syllabus-place-time-5" = "9.10 period (5 lecture)";
+"syllabus-place-error-title" = "place not found";
+"syllabus-place-error-detail" = "check syllabus divide";

@@ -20,6 +20,9 @@
 "classroom-section-4" = "7.8限 (4コマ)";
 "classroom-section-5" = "9.10限 (5コマ)";
 
+//教室配当表の建物:全て
+"classroomDivide-buildingType-all" = "全て";
+
 //シラバスのセクション名
 "syllabus-section-basic" = "基本情報";
 "syllabus-section-detail" = "詳細情報";
@@ -31,3 +34,17 @@
 "lectureNotice-item-time" = "時限 : ";
 "lectureNotice-item-place" = "教室 : ";
 "lectureNotice-item-note" = "備考 : ";
+
+//シラバスの場所のテキスト
+"syllabus-place-weekday-0" = "月曜日";
+"syllabus-place-weekday-1" = "火曜日";
+"syllabus-place-weekday-2" = "水曜日";
+"syllabus-place-weekday-3" = "木曜日";
+"syllabus-place-weekday-4" = "金曜日";
+"syllabus-place-time-1" = "1.2限 (1コマ)";
+"syllabus-place-time-2" = "3.4限 (2コマ)";
+"syllabus-place-time-3" = "5.6限 (3コマ)";
+"syllabus-place-time-4" = "7.8限 (4コマ)";
+"syllabus-place-time-5" = "9.10限 (5コマ)";
+"syllabus-place-error-title" = "特定できませんでした";
+"syllabus-place-error-detail" = "教室配当表を確認してください";
