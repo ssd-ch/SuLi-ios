@@ -256,12 +256,13 @@
             </objects>
             <point key="canvasLocation" x="2118" y="517"/>
         </scene>
-        <!--material-->
+        <!--Material-->
         <scene sceneID="Z7K-VO-R4e">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eSC-hN-Lpr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="material" id="SQe-h2-DlT"/>
+                    <tabBarItem key="tabBarItem" title="Material" image="shareStorage" id="Kxb-ak-lOc"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="o0d-iR-AZR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -276,4 +277,7 @@
             <point key="canvasLocation" x="310" y="144"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="shareStorage" width="29" height="29"/>
+    </resources>
 </document>

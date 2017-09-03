@@ -31,7 +31,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="timetable" id="rgU-Wo-4wD"/>
+                    <tabBarItem key="tabBarItem" title="timetable" image="timeTable" id="rgU-Wo-4wD"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oiw-Dn-g9S" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -39,4 +39,7 @@
             <point key="canvasLocation" x="117.59999999999999" y="164.16791604197903"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="timeTable" width="29" height="29"/>
+    </resources>
 </document>

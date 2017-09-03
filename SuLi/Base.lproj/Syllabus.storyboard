@@ -171,13 +171,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fkj-wM-zzi" userLabel="Detail Label">
-                                                    <rect key="frame" x="16" y="32" width="390" height="19"/>
+                                                    <rect key="frame" x="16" y="32" width="351" height="19"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mrf-5T-VCB">
-                                                    <rect key="frame" x="16" y="8" width="390" height="21"/>
+                                                    <rect key="frame" x="16" y="8" width="351" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="93x-6a-Z90"/>
                                                     </constraints>
@@ -251,7 +251,7 @@
         <scene sceneID="nSW-jf-IOm">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fKq-ew-eAQ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="syllabus" id="3IY-bq-waO"/>
+                    <tabBarItem key="tabBarItem" title="syllabus" image="syllabus" id="3IY-bq-waO"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="TWU-lg-Z0W">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -267,4 +267,7 @@
             <point key="canvasLocation" x="-16.800000000000001" y="26.53673163418291"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="syllabus" width="29" height="29"/>
+    </resources>
 </document>

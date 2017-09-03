@@ -146,7 +146,7 @@
         <scene sceneID="Bsh-it-yAH">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1UL-fn-xub" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="classroom" id="NKT-mC-aKC"/>
+                    <tabBarItem key="tabBarItem" title="classroom" image="place" id="NKT-mC-aKC"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="z8K-Vd-nDz">
@@ -165,5 +165,6 @@
     </scenes>
     <resources>
         <image name="buildingType" width="29" height="29"/>
+        <image name="place" width="29" height="29"/>
     </resources>
 </document>

@@ -47,6 +47,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="sc8-Ki-FMM">
+                                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
@@ -169,7 +170,7 @@
         <scene sceneID="sON-qk-4VS">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rE2-tQ-RaH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="notice" id="8cE-mb-Bf1"/>
+                    <tabBarItem key="tabBarItem" title="notice" image="notice" id="8cE-mb-Bf1"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cOV-jU-juc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -185,4 +186,7 @@
             <point key="canvasLocation" x="133.59999999999999" y="130.88455772113943"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="notice" width="29" height="29"/>
+    </resources>
 </document>
