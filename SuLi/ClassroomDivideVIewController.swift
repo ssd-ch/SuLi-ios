@@ -50,6 +50,8 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPi
                 //各ビューのデータを更新
                 view.updateData()
             }
+            //pickerViewの更新
+            self.pickerView.reloadAllComponents()
         }
     }
     

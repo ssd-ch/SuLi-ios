@@ -19,8 +19,12 @@ struct GetClassroomDivide {
         
         print("GetClassroomDivide : start")
         
+        //建物別リンクを取得するスレッドの管理をするグループを作成
+        var groupDispatchBuilding = DispatchGroup()
+        groupDispatchBuilding.enter()
+        
         //建物別のリンクを取得
-        GetBuildingList.start()
+        GetBuildingList.start(groupDispatch: &groupDispatchBuilding)
         
         //Realmに接続
         let realm = try! Realm()
@@ -36,29 +40,33 @@ struct GetClassroomDivide {
         }
         print("GetClassroomDivide : all ClassroomDivide data delete complete")
         
-        //Buildingのすべてのオブジェクトを取得
-        let buildings = realm.objects(Building.self)
-        
         //スレッドを管理するグループを作成
         self.groupDispatchHTTP = DispatchGroup()
         
-        //スレッドの登録
-        for _ in buildings {
-            self.groupDispatchHTTP?.enter()
-        }
-        
-        //すべてのページの配当表を取得
-        buildings.forEach { building in
-            print("GetClassroomDivide : No.\(building.id) data init")
-            self.scrapingClassroomDivide(building_id: building.id, url: building.url)
-        }
-        
-        //すべてのスレッドの処理が完了
-        self.groupDispatchHTTP?.notify(queue: DispatchQueue.main) { [groupDispatch] in
-            print("GetClassroomDivide : all task complete")
-            let dispatch = groupDispatch
-            //引数で受け取ったディスパッチに通知
-            dispatch.leave()
+        //建物別のリンクが取得できるのを待つ
+        groupDispatchBuilding.notify(queue: DispatchQueue.main) { [groupDispatch] in
+            
+            //Buildingのすべてのオブジェクトを取得
+            let buildings = realm.objects(Building.self)
+            
+            //スレッドの登録
+            for _ in buildings {
+                self.groupDispatchHTTP?.enter()
+            }
+            
+            //すべてのページの配当表を取得
+            buildings.forEach { building in
+                print("GetClassroomDivide : No.\(building.id) data init")
+                self.scrapingClassroomDivide(building_id: building.id, url: building.url)
+            }
+            
+            //すべてのスレッドの処理が完了
+            self.groupDispatchHTTP?.notify(queue: DispatchQueue.main) {
+                print("GetClassroomDivide : all task complete")
+                let dispatch = groupDispatch
+                //引数で受け取ったディスパッチに通知
+                dispatch.leave()
+            }
         }
     }
     

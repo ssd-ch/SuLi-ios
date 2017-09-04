@@ -17,7 +17,15 @@ struct GetBuildingList {
     static let buildingUrl = "http://www.shimane-u.ac.jp/education/school_info/class_data/class_data01.html"
     var loadingStatus: Bool = true
     
-    static func start(){
+    private static var groupDispatchHTTP: DispatchGroup?
+    
+    static func start(groupDispatch: inout DispatchGroup){
+        
+        print("GetBuildingList : start task")
+        
+        self.groupDispatchHTTP = DispatchGroup()
+        self.groupDispatchHTTP?.enter()
+        
         autoreleasepool(){
             do {
                 let opt = try HTTP.GET(self.buildingUrl)
@@ -50,10 +58,17 @@ struct GetBuildingList {
                             }
                         }
                     }
+                    self.groupDispatchHTTP?.leave()
                 }
             } catch let error {
                 print("got an error creating the request: \(error)")
             }
+        }
+        
+        self.groupDispatchHTTP?.notify(queue: DispatchQueue.main) { [groupDispatch] in
+            print("GetBuildingList : all task complete")
+            let dispatch = groupDispatch
+            dispatch.leave()
         }
     }
 }
