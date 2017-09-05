@@ -12,6 +12,7 @@ import RealmSwift
 class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var progressView: UIProgressView!
     
     //CancelInfoオブジェクト
     let cancelInfo = try! Realm().objects(CancelInfo.self).sorted(byKeyPath: "id")
@@ -26,6 +27,10 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
     @IBAction func pushReloadButton(_ sender: Any) {
         //スクロールを禁止
         self.tableView.isScrollEnabled = false
+        
+        //プログレスバーを表示、0.1にセット
+        self.progressView.setProgress(0.1, animated: false)
+        self.progressView.isHidden = false
         
         //スレッドを管理するグループを作成
         var groupDispatch = DispatchGroup()
@@ -50,6 +55,11 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
             }
             self.tableView.reloadData()
             self.tableView.isScrollEnabled = true
+            
+            self.progressView.setProgress(1.0, animated: true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                self.progressView.isHidden = true
+            }
         }
         
     }
@@ -72,6 +82,8 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
         //テーブルビューデリゲート
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        self.progressView.isHidden = true
     }
     
     override func didReceiveMemoryWarning() {

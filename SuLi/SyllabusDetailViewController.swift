@@ -14,6 +14,7 @@ import RealmSwift
 class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SyllabusDetailDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var progressView: UIProgressView!
     
     //シラバスのURL
     var link: String?
@@ -32,6 +33,9 @@ class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UIT
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //プログレスバーを0.1にセットする
+        self.progressView.setProgress(0.1, animated: false)
         
         //セクション名のみ表示されてしまうので非表示にしておく
         self.tableView.isHidden = true
@@ -53,10 +57,21 @@ class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     //リロードデータ用デリゲートメソッド
-    func reloadTableData(data: SyllabusData, mode: Bool) {
+    func finishTask(data: SyllabusData, mode: Bool) {
+        self.progressView.setProgress(1.0, animated: true)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+            self.progressView.isHidden = true
+        }
+        
         self.tableView.isHidden = false
         self.tableData = data
         self.tableView.reloadData()
+    }
+    
+    //プログレス用デリゲートメソッド
+    func progress(_ progress: Float) {
+        self.progressView.setProgress(progress, animated: true)
     }
     
     //各セクションのデータの個数を返す
@@ -120,7 +135,8 @@ class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UIT
 
 protocol SyllabusDetailDelegate {
     
-    func reloadTableData(data: SyllabusData, mode: Bool) -> Void
+    func finishTask(data: SyllabusData, mode: Bool) -> Void
+    func progress(_ progress: Float) -> Void
 }
 
 class GetSyllabus {
@@ -140,6 +156,15 @@ class GetSyllabus {
         
         do {
             let opt = try HTTP.GET(self.URL)
+            
+            opt.progress = { progress in
+                //サーバーの関係で取得するデータサイズが-1になってしまうので10000byteあたりを想定してプログレスバーを更新する
+                let val = progress / Float(-10000.0)
+                if val < 1.0 && val > 0.1 {
+                    self.delegate!.progress(val)
+                }
+            }
+            
             opt.start { response in
                 if let err = response.error {
                     print("error: \(err.localizedDescription)")
@@ -194,11 +219,11 @@ class GetSyllabus {
                         
                         //メインスレッドで呼び出す
                         DispatchQueue.main.async {
-                            self.delegate?.reloadTableData(data: resultData, mode: false)
+                            self.delegate?.finishTask(data: resultData, mode: false)
                         }
                     }else {
                         DispatchQueue.main.async {
-                            self.delegate?.reloadTableData(data: resultData, mode: false)
+                            self.delegate?.finishTask(data: resultData, mode: false)
                         }
                     }
                 }

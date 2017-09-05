@@ -8,7 +8,7 @@ target 'SuLi' do
   
   # Pods for SuLi
   pod 'Kanna'
-  pod 'SwiftHTTP', '~> 2.0.0'
+  pod 'SwiftHTTP'
   pod 'RealmSwift'
   pod 'XLPagerTabStrip'
   pod 'TOSMBClient'

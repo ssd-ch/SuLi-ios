@@ -183,6 +183,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="JAP-80-Ipz" id="WEG-RN-Ma2"/>
+                        <segue destination="Wxn-WF-2Dj" kind="show" id="6cX-U8-gUr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vUe-b6-DcW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -202,25 +203,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JZT-mP-yHu">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iNd-qz-lqh">
+                                <rect key="frame" x="0.0" y="64" width="375" height="2.5"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="iNd-qz-lqh" firstAttribute="leading" secondItem="jY0-DE-MGE" secondAttribute="leading" id="6Xe-jC-qm5"/>
                             <constraint firstAttribute="trailing" secondItem="JZT-mP-yHu" secondAttribute="trailing" id="9bK-Ga-g7R"/>
                             <constraint firstItem="MmT-Fc-cSu" firstAttribute="top" secondItem="JZT-mP-yHu" secondAttribute="bottom" id="Giq-1I-Doo"/>
                             <constraint firstItem="JZT-mP-yHu" firstAttribute="top" secondItem="fvz-vp-3hb" secondAttribute="bottom" id="Ipf-8J-XHu"/>
                             <constraint firstItem="JZT-mP-yHu" firstAttribute="leading" secondItem="jY0-DE-MGE" secondAttribute="leading" id="aqc-9o-m1Y"/>
+                            <constraint firstAttribute="trailing" secondItem="iNd-qz-lqh" secondAttribute="trailing" id="juz-83-5f1"/>
+                            <constraint firstItem="iNd-qz-lqh" firstAttribute="top" secondItem="fvz-vp-3hb" secondAttribute="bottom" id="oRm-to-jT1"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="progressView" destination="iNd-qz-lqh" id="FYs-3s-D1Q"/>
                         <outlet property="webView" destination="JZT-mP-yHu" id="qJR-Mj-xaM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LVx-rc-CHK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3802.4000000000001" y="-188.45577211394306"/>
+            <point key="canvasLocation" x="3900" y="-188"/>
         </scene>
         <!--Moodle View-->
         <scene sceneID="hdC-aB-VAo">
@@ -260,7 +268,7 @@
         <scene sceneID="Z7K-VO-R4e">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eSC-hN-Lpr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Material" image="shareStorage" id="Kxb-ak-lOc"/>
+                    <tabBarItem key="tabBarItem" title="Material" image="book" id="Kxb-ak-lOc"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="o0d-iR-AZR">
@@ -278,6 +286,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="shareStorage" width="29" height="29"/>
+        <image name="book" width="29" height="29"/>
     </resources>
 </document>

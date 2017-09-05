@@ -229,17 +229,24 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="kc1-X4-QkZ">
+                                <rect key="frame" x="0.0" y="64" width="375" height="2"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="kc1-X4-QkZ" firstAttribute="leading" secondItem="LNl-lY-pC2" secondAttribute="leading" id="1Qa-Tu-BS6"/>
                             <constraint firstAttribute="trailing" secondItem="xCv-n1-SRe" secondAttribute="trailing" id="22t-tG-zGv"/>
                             <constraint firstItem="q5s-w1-5Pn" firstAttribute="top" secondItem="xCv-n1-SRe" secondAttribute="bottom" id="8eA-go-j1Z"/>
+                            <constraint firstAttribute="trailing" secondItem="kc1-X4-QkZ" secondAttribute="trailing" id="Hhb-9q-trb"/>
                             <constraint firstItem="xCv-n1-SRe" firstAttribute="leading" secondItem="LNl-lY-pC2" secondAttribute="leading" id="P7k-iV-JUU"/>
+                            <constraint firstItem="kc1-X4-QkZ" firstAttribute="top" secondItem="yEJ-jv-af9" secondAttribute="bottom" id="cd6-Ty-9bv"/>
                             <constraint firstItem="xCv-n1-SRe" firstAttribute="top" secondItem="yEJ-jv-af9" secondAttribute="bottom" id="kSw-bK-TTA"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Syllabus Detail" id="zAl-Ou-uOn"/>
                     <connections>
+                        <outlet property="progressView" destination="kc1-X4-QkZ" id="LDV-dd-O4g"/>
                         <outlet property="tableView" destination="xCv-n1-SRe" id="1Gd-Uv-94P"/>
                     </connections>
                 </viewController>

@@ -12,6 +12,7 @@ import TOSMBClient
 class ShareFileViewController : UIViewController {
     
     @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var progressView: UIProgressView!
     
     var atPath = ""
     var destinationPath = ""
@@ -19,7 +20,15 @@ class ShareFileViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //プログレスバーを0にセットする
+        self.progressView.setProgress(0.0, animated: false)
+        
         SMBSessionController.downloadTask = SMBSessionController.session?.downloadTaskForFile(atPath: self.atPath, destinationPath: nil, progressHandler: {(totalBytesWritten, totalBytesExpected) in
+            let progress = Float(totalBytesWritten) / Float(totalBytesExpected)
+            print("ShareFileView : downloaded " + String(format: "%.2f", progress * 100) + "%")
+            DispatchQueue.main.async {
+                self.progressView.setProgress(progress, animated: true)
+            }
         },completionHandler: { filepath in
             print("ShareFileView : File was downloaded to \(filepath!)")
             //メインスレッドで呼び出す
@@ -30,6 +39,9 @@ class ShareFileViewController : UIViewController {
                     self.webView.loadRequest(request)
                     
                     self.destinationPath = filepath!
+                    
+                    //プログレスバーを隠す
+                    self.progressView.isHidden = true
                 }
                 else {
                     print("ShareFileView : invalidation url")

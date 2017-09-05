@@ -13,6 +13,7 @@ import RealmSwift
 class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak var progressView: UIProgressView!
     
     //タブのボタンのテキスト
     let week = [NSLocalizedString("classroom-tab-Monday", comment: "教室配当表のタブ名:月曜日"),
@@ -35,6 +36,10 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPi
             view.rockAccess()
         }
         
+        //プログレスバーを表示、0.1にセット
+        self.progressView.setProgress(0.1, animated: false)
+        self.progressView.isHidden = false
+        
         //スレッドを管理するグループを作成
         var groupDispatch = DispatchGroup()
         
@@ -52,6 +57,11 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPi
             }
             //pickerViewの更新
             self.pickerView.reloadAllComponents()
+            
+            self.progressView.setProgress(1.0, animated: true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                self.progressView.isHidden = true
+            }
         }
     }
     
@@ -81,6 +91,10 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPi
         self.pickerView.delegate = self
         self.pickerView.dataSource = self
         self.pickerView.isHidden = true
+        
+        self.progressView.isHidden = true
+        //最前面に表示(storyboardでは前面にしているがタブバーが前面に表示されるので)
+        self.view.bringSubview(toFront: self.progressView)
     }
     
     override func didReceiveMemoryWarning() {

@@ -45,6 +45,9 @@
                                     <constraint firstAttribute="height" constant="220" id="QeX-DF-QNZ"/>
                                 </constraints>
                             </pickerView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5Te-C0-RVe">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="2"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -56,8 +59,11 @@
                             <constraint firstItem="4bA-qB-IO6" firstAttribute="leading" secondItem="B1D-Jx-CEd" secondAttribute="leading" id="Wcn-hj-fKE"/>
                             <constraint firstItem="FMr-si-bMe" firstAttribute="top" secondItem="DbL-Ej-bYC" secondAttribute="bottom" id="aOE-a3-w4N"/>
                             <constraint firstItem="FMr-si-bMe" firstAttribute="leading" secondItem="B1D-Jx-CEd" secondAttribute="leading" id="bBy-8j-R4E"/>
+                            <constraint firstAttribute="trailing" secondItem="5Te-C0-RVe" secondAttribute="trailing" id="mOE-dr-uaP"/>
                             <constraint firstItem="scq-WI-vGH" firstAttribute="top" secondItem="4bA-qB-IO6" secondAttribute="bottom" id="rFY-M6-vki"/>
+                            <constraint firstItem="5Te-C0-RVe" firstAttribute="top" secondItem="DbL-Ej-bYC" secondAttribute="bottom" id="sxv-1Y-f84"/>
                             <constraint firstAttribute="trailing" secondItem="Sm8-ZR-WTe" secondAttribute="trailing" id="t5E-gX-6Gx"/>
+                            <constraint firstItem="5Te-C0-RVe" firstAttribute="leading" secondItem="B1D-Jx-CEd" secondAttribute="leading" id="wHc-Ph-bI7"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
@@ -77,6 +83,7 @@
                     <connections>
                         <outlet property="containerView" destination="Sm8-ZR-WTe" id="xZY-qs-OeU"/>
                         <outlet property="pickerView" destination="4bA-qB-IO6" id="yvc-UF-mwS"/>
+                        <outlet property="progressView" destination="5Te-C0-RVe" id="zus-nG-p0k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fJb-z0-mXl" userLabel="First Responder" sceneMemberID="firstResponder"/>
