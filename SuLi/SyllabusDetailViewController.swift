@@ -161,7 +161,9 @@ class GetSyllabus {
                 //サーバーの関係で取得するデータサイズが-1になってしまうので10000byteあたりを想定してプログレスバーを更新する
                 let val = progress / Float(-10000.0)
                 if val < 1.0 && val > 0.1 {
-                    self.delegate!.progress(val)
+                    DispatchQueue.main.async {
+                        self.delegate!.progress(val)
+                    }
                 }
             }
             

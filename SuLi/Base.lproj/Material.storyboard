@@ -26,7 +26,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="Moodle"/>
                                 <connections>
-                                    <segue destination="Yit-bC-4Un" kind="show" id="wcf-25-lcL"/>
+                                    <segue destination="Yit-bC-4Un" kind="show" identifier="" id="wcf-25-lcL"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UfG-7b-hyi">
@@ -34,7 +34,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="WorkFolder"/>
                                 <connections>
-                                    <segue destination="t8P-05-108" kind="show" id="JkX-Ev-EAd"/>
+                                    <segue destination="t8P-05-108" kind="show" identifier="" id="JkX-Ev-EAd"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -107,7 +107,7 @@
                                 <rect key="frame" x="288.5" y="243.5" width="38" height="30"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
-                                    <segue destination="Mlg-RK-XK3" kind="show" id="YW7-LW-Hy8"/>
+                                    <segue destination="Mlg-RK-XK3" kind="show" identifier="" id="YW7-LW-Hy8"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -183,7 +183,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="JAP-80-Ipz" id="WEG-RN-Ma2"/>
-                        <segue destination="Wxn-WF-2Dj" kind="show" id="6cX-U8-gUr"/>
+                        <segue destination="Wxn-WF-2Dj" kind="show" identifier="dummy" id="6cX-U8-gUr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vUe-b6-DcW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -270,7 +270,6 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eSC-hN-Lpr" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Material" image="book" id="Kxb-ak-lOc"/>
                     <toolbarItems/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="o0d-iR-AZR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

@@ -188,7 +188,6 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Fkj-wM-zzi" secondAttribute="trailing" id="0vP-8S-zNp"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Fkj-wM-zzi" secondAttribute="bottom" constant="0.5" id="7HO-rq-whJ"/>
                                                 <constraint firstItem="Mrf-5T-VCB" firstAttribute="top" secondItem="AUY-T1-yRr" secondAttribute="topMargin" id="O0J-II-HBa"/>
                                                 <constraint firstItem="Mrf-5T-VCB" firstAttribute="leading" secondItem="AUY-T1-yRr" secondAttribute="leadingMargin" constant="8" id="P5Q-m0-g8R"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Fkj-wM-zzi" secondAttribute="bottom" id="PhO-Jo-sUJ"/>
@@ -229,8 +228,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="kc1-X4-QkZ">
-                                <rect key="frame" x="0.0" y="64" width="375" height="2"/>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="kc1-X4-QkZ">
+                                <rect key="frame" x="0.0" y="63.5" width="375" height="2.5"/>
                             </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -142,20 +141,18 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="IYE-5r-vXB">
-                                <rect key="frame" x="0.0" y="64" width="375" height="2"/>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="IYE-5r-vXB">
+                                <rect key="frame" x="0.0" y="64" width="375" height="2.5"/>
                             </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="IYE-5r-vXB" firstAttribute="leading" secondItem="adp-Hn-4pm" secondAttribute="leading" id="0Uo-1k-0RI"/>
-                            <constraint firstAttribute="trailing" secondItem="IYE-5r-vXB" secondAttribute="trailing" id="9Y6-tk-RG6"/>
-                            <constraint firstItem="IYE-5r-vXB" firstAttribute="leading" secondItem="adp-Hn-4pm" secondAttribute="leadingMargin" id="Bf6-xD-hri"/>
                             <constraint firstAttribute="trailing" secondItem="exD-IK-z3S" secondAttribute="trailing" id="Bg3-Q4-wYh"/>
+                            <constraint firstItem="IYE-5r-vXB" firstAttribute="leading" secondItem="adp-Hn-4pm" secondAttribute="leading" id="HBH-wA-8sz"/>
                             <constraint firstItem="exD-IK-z3S" firstAttribute="leading" secondItem="adp-Hn-4pm" secondAttribute="leading" id="LoT-rU-Q5I"/>
                             <constraint firstItem="exD-IK-z3S" firstAttribute="top" secondItem="Yuy-0f-6Rw" secondAttribute="bottom" id="Ohf-Kl-ceV"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="IYE-5r-vXB" secondAttribute="trailing" id="Uft-RS-UMc"/>
-                            <constraint firstItem="IYE-5r-vXB" firstAttribute="top" secondItem="Yuy-0f-6Rw" secondAttribute="bottom" id="h0b-Z0-c1v"/>
+                            <constraint firstAttribute="trailing" secondItem="IYE-5r-vXB" secondAttribute="trailing" id="TwZ-ce-02i"/>
+                            <constraint firstItem="IYE-5r-vXB" firstAttribute="top" secondItem="Yuy-0f-6Rw" secondAttribute="bottom" id="WIU-TM-ZCb"/>
                             <constraint firstItem="Pcq-QU-EL0" firstAttribute="top" secondItem="exD-IK-z3S" secondAttribute="bottom" id="k5T-6z-vKh"/>
                         </constraints>
                     </view>
