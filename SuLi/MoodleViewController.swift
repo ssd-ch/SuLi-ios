@@ -12,7 +12,7 @@ class MoodleViewContoller : UIViewController {
 
     @IBOutlet weak var webView: UIWebView!
     
-    let link = "https://moodle.cerd.shimane-u.ac.jp/moodle/login/index.php"
+    let link = NSLocalizedString("moodle", tableName: "ResourceAddress", comment: "MoodleのURL")
     
     override func viewDidLoad() {
         super.viewDidLoad()

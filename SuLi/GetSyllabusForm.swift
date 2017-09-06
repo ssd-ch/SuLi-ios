@@ -14,7 +14,7 @@ import RealmSwift
 
 struct GetSyllabusForm {
     
-    static let syllabusFormUrl = "http://gakumuweb1.shimane-u.ac.jp/shinwa/SYOutsideReferSearchInput"
+    static let syllabusFormUrl = NSLocalizedString("syllabus-form", tableName: "ResourceAddress", comment: "シラバスの検索フォームのURL")
     
     static func start(){
         

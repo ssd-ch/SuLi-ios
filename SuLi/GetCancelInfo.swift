@@ -14,7 +14,7 @@ import RealmSwift
 
 struct GetCancelInfo {
     
-    static let cancelInfoUrl = "http://www.kougi.shimane-u.ac.jp/selectweb/conduct_list.asp"
+    static let cancelInfoUrl = NSLocalizedString("cancelInfo", tableName: "ResourceAddress", comment: "講義案内のURL")
     
     static func start( groupDispatch: inout DispatchGroup){
         

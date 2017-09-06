@@ -14,7 +14,7 @@ import RealmSwift
 
 struct GetBuildingList {
     
-    static let buildingUrl = "http://www.shimane-u.ac.jp/education/school_info/class_data/class_data01.html"
+    static let buildingUrl = NSLocalizedString("buildingList", tableName: "ResourceAddress", comment: "建物別教室配当表一覧のURL")
     var loadingStatus: Bool = true
     
     private static var groupDispatchHTTP: DispatchGroup?

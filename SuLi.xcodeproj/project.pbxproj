@@ -32,6 +32,7 @@
 		5CABE16A1ED02497009C271E /* SyllabusCustomViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CABE1691ED02497009C271E /* SyllabusCustomViewCell.swift */; };
 		5CABE16C1ED06A7E009C271E /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CABE16B1ED06A7E009C271E /* StringExtension.swift */; };
 		5CD8E5BC1F5149D80021586F /* ShareFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD8E5BB1F5149D80021586F /* ShareFileViewController.swift */; };
+		5CE589101F604847005E32BB /* ResourceAddress.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5CE5890F1F604847005E32BB /* ResourceAddress.strings */; };
 		5CE6175A1EBDCD7C00561E74 /* sjisHTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE617591EBDCD7C00561E74 /* sjisHTTP.swift */; };
 		5CFAB8691EB60208001885C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFAB8681EB60208001885C4 /* AppDelegate.swift */; };
 		5CFAB86B1EB60208001885C4 /* SyllabusListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFAB86A1EB60208001885C4 /* SyllabusListViewController.swift */; };
@@ -77,6 +78,7 @@
 		5CABE1691ED02497009C271E /* SyllabusCustomViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusCustomViewCell.swift; sourceTree = "<group>"; };
 		5CABE16B1ED06A7E009C271E /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		5CD8E5BB1F5149D80021586F /* ShareFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareFileViewController.swift; sourceTree = "<group>"; };
+		5CE5890F1F604847005E32BB /* ResourceAddress.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = ResourceAddress.strings; sourceTree = "<group>"; };
 		5CE617591EBDCD7C00561E74 /* sjisHTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sjisHTTP.swift; sourceTree = "<group>"; };
 		5CFAB8651EB60208001885C4 /* SuLi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuLi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CFAB8681EB60208001885C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			children = (
 				5C60FB4D1F4A333800268907 /* Bridging-Header.h */,
 				5CFAB8741EB60208001885C4 /* Info.plist */,
+				5CE5890F1F604847005E32BB /* ResourceAddress.strings */,
 				5CFAB8681EB60208001885C4 /* AppDelegate.swift */,
 				5C1E62041F4190A600CF7BEB /* ClassroomDivideChildViewController.swift */,
 				5C6A19BE1ED3F48000BF1A52 /* ClassroomDivideVIewController.swift */,
@@ -245,6 +248,7 @@
 				5C276E551F5AB01100425815 /* TimeTable.storyboard in Resources */,
 				5C276E4B1F5AAFF600425815 /* Notice.storyboard in Resources */,
 				5C276E411F5AAE2E00425815 /* Localizable.strings in Resources */,
+				5CE589101F604847005E32BB /* ResourceAddress.strings in Resources */,
 				5C276E371F5AAAA100425815 /* Material.storyboard in Resources */,
 				5CFAB8701EB60208001885C4 /* Assets.xcassets in Resources */,
 				5C276E461F5AAFDE00425815 /* ClassroomDivide.storyboard in Resources */,

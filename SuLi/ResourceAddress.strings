@@ -1,0 +1,26 @@
+/* 
+  ResourceAddress.strings
+  SuLi
+
+  Created by ssd_ch on 2017/09/07.
+  Copyright © 2017年 ssd. All rights reserved.
+*/
+
+//Syllabus
+"syllabus-form" = "http://gakumuweb1.shimane-u.ac.jp/shinwa/SYOutsideReferSearchInput";
+"syllabus-search" = "http://gakumuweb1.shimane-u.ac.jp/shinwa/SYOutsideReferSearchList";
+"syllabus-domain" = "http://gakumuweb1.shimane-u.ac.jp";
+
+//ShareStorage
+"shareStorage-hostName" = "cosmos.shimane-u.ac.jp";
+"shareStorage-ip" = "10.16.1.16";
+"shareStorage-rootPath" = "/work/";
+
+//Moodle
+"moodle" = "https://moodle.cerd.shimane-u.ac.jp/moodle/login/index.php";
+
+//ClassroomDivide
+"buildingList" = "http://www.shimane-u.ac.jp/education/school_info/class_data/class_data01.html";
+
+//CancelInfo
+"cancelInfo" = "http://www.kougi.shimane-u.ac.jp/selectweb/conduct_list.asp";

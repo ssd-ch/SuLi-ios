@@ -14,8 +14,8 @@ class ShareFolderLoginViewContoller : UIViewController, UITextFieldDelegate {
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    private let host = "cosmos.shimane-u.ac.jp"
-    private let ip = "10.16.1.16"
+    private let host = NSLocalizedString("shareStorage-hostName", tableName: "ResourceAddress", comment: "共有ストレージのホスト名")
+    private let ip = NSLocalizedString("shareStorage-ip", tableName: "ResourceAddress", comment: "共有ストレージのホスト名")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,5 +41,7 @@ class ShareFolderLoginViewContoller : UIViewController, UITextFieldDelegate {
         
         SMBSessionController.session = TOSMBSession(hostName: self.host, ipAddress: self.ip)
         SMBSessionController.session?.setLoginCredentialsWithUserName(self.idTextField.text!, password: self.passwordTextField.text!)
+        let controller = segue.destination as! ShareFolderViewContoller
+        controller.navigationItem.title = "work"
     }
 }

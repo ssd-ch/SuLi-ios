@@ -107,7 +107,6 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if tableView.contentOffset.y + tableView.frame.size.height > tableView.contentSize.height && tableView.isDragging {
             //一番下に来た時の処理
-            print("end scroll")
             if syllabus!.loadingStatus {
                 syllabus!.load()
             }
@@ -123,9 +122,10 @@ protocol SyllabusListDelegate {
 
 class SearchSyllabus {
     
-    let URL = "http://gakumuweb1.shimane-u.ac.jp/shinwa/SYOutsideReferSearchList"
-    let URLdomain = "http://gakumuweb1.shimane-u.ac.jp"
+    let URL = NSLocalizedString("syllabus-search", tableName: "ResourceAddress", comment: "シラバスの検索結果のURL")
+    let URLdomain = NSLocalizedString("syllabus-domain", tableName: "ResourceAddress", comment: "シラバスの検索ページのドメイン")
     let dispCnt: String = "100"
+    let searchForm = try! Realm().objects(SyllabusForm.self)
     var searchword: String
     var loadCount: Int
     var hitNum: Int
@@ -146,10 +146,11 @@ class SearchSyllabus {
         do {
             self.loadingStatus = false
             
-            //オブジェクトを取得
-            let object = try! Realm().objects(SyllabusForm.self).filter("form = 'nendo'").first!
-            
-            let opt = try sjisHTTP.GET(self.URL, parameters: ["nendo": object.value, "disp_cnt": dispCnt, "j_name": self.searchword, "s_cnt": String(loadCount)])
+            let opt = try sjisHTTP.GET(self.URL, parameters: [
+                "nendo": self.searchForm.filter("form = 'nendo'").first!.value,
+                "disp_cnt": dispCnt,
+                "j_name": self.searchword,
+                "s_cnt": String(loadCount)])
             opt.start { response in
                 if let err = response.error {
                     print("error: \(err.localizedDescription)")
@@ -196,7 +197,7 @@ class SearchSyllabus {
             
             do {
                 let opt = try sjisHTTP.GET(self.URL, parameters: [
-                    "nendo": "2017",
+                    "nendo": self.searchForm.filter("form = 'nendo'").first!.value,
                     "j_s_cd": "",
                     "kamokud_cd": "",
                     "j_name": self.searchword,

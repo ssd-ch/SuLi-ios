@@ -21,15 +21,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="timetable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6tz-nS-GZw">
-                                <rect key="frame" x="150" y="323" width="75" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="timetable" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6tz-nS-GZw">
+                                <rect key="frame" x="152" y="323" width="71.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6tz-nS-GZw" firstAttribute="centerX" secondItem="fsT-cK-gTO" secondAttribute="centerX" id="8r0-xU-zAb"/>
+                            <constraint firstItem="6tz-nS-GZw" firstAttribute="centerY" secondItem="fsT-cK-gTO" secondAttribute="centerY" id="cU0-lv-7fU"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="timetable" image="timeTable" id="rgU-Wo-4wD"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>

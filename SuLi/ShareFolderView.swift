@@ -11,7 +11,7 @@ import TOSMBClient
 
 class ShareFolderViewContoller : UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    var path = "/"
+    var path = NSLocalizedString("shareStorage-rootPath", tableName: "ResourceAddress", comment: "共有ストレージの最初に表示する階層")
     
     @IBOutlet weak var tableView: UITableView!
     
