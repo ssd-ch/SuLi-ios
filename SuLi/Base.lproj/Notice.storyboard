@@ -105,8 +105,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oxj-Rt-luV">
-                                                    <rect key="frame" x="30" y="100" width="31.5" height="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Oxj-Rt-luV">
+                                                    <rect key="frame" x="30" y="100" width="315" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="16" id="UqZ-5P-8UB"/>
                                                     </constraints>
@@ -123,6 +123,7 @@
                                                 <constraint firstItem="XXC-Jo-0sJ" firstAttribute="leading" secondItem="zq1-zx-rAN" secondAttribute="leading" constant="15" id="PnV-BR-fed"/>
                                                 <constraint firstItem="Oxj-Rt-luV" firstAttribute="leading" secondItem="zq1-zx-rAN" secondAttribute="leading" constant="30" id="TJs-Fj-3qI"/>
                                                 <constraint firstItem="RMu-th-0mw" firstAttribute="top" secondItem="zq1-zx-rAN" secondAttribute="top" constant="40" id="YfO-H4-yE4"/>
+                                                <constraint firstAttribute="trailing" secondItem="Oxj-Rt-luV" secondAttribute="trailing" constant="30" id="biy-nk-b5P"/>
                                                 <constraint firstItem="XXC-Jo-0sJ" firstAttribute="top" secondItem="zq1-zx-rAN" secondAttribute="top" constant="25.5" id="dAZ-8t-akT"/>
                                                 <constraint firstItem="RMu-th-0mw" firstAttribute="leading" secondItem="zq1-zx-rAN" secondAttribute="leading" constant="30" id="mI5-il-x8F"/>
                                                 <constraint firstItem="Ige-JM-ice" firstAttribute="top" secondItem="zq1-zx-rAN" secondAttribute="top" constant="60" id="nVC-CN-jHW"/>

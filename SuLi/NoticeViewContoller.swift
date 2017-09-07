@@ -101,7 +101,7 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
             cell.classificationLabel?.text = NSLocalizedString("lectureNotice-item-classification", comment: "講義案内:分類") + self.cancelInfo.filter("date = '\(self.sectionIndex[indexPath.section].0)'")[indexPath.row].classification
             cell.timeLabel?.text = NSLocalizedString("lectureNotice-item-time", comment: "講義案内:時限") + self.cancelInfo.filter("date = '\(self.sectionIndex[indexPath.section].0)'")[indexPath.row].time
             cell.placeLabel?.text = NSLocalizedString("lectureNotice-item-place", comment: "講義案内:教室") + self.cancelInfo.filter("date = '\(self.sectionIndex[indexPath.section].0)'")[indexPath.row].place
-            cell.noteLabel?.text = NSLocalizedString("lectureNotice-item-classification", comment: "講義案内:備考") + self.cancelInfo.filter("date = '\(self.sectionIndex[indexPath.section].0)'")[indexPath.row].note
+            cell.noteLabel?.text = NSLocalizedString("lectureNotice-item-note", comment: "講義案内:備考") + self.cancelInfo.filter("date = '\(self.sectionIndex[indexPath.section].0)'")[indexPath.row].note
             return cell
         }
         else {
