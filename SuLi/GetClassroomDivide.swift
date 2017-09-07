@@ -121,16 +121,16 @@ struct GetClassroomDivide {
                                         }
                                         else {
                                             text = text.replaceAll(pattern: "\r\n|\n", with: "")
-                                            if let style = tdData[i == 0 ? pn + 2 : pn + 1].css("span").first?["style"] {
-                                                if let index = style.range(of: "#") {
-                                                    let index_int = style.distance(from: style.startIndex, to: index.lowerBound)
-                                                    color = style.substring(with: style.index(style.startIndex, offsetBy: index_int)..<style.index(style.startIndex, offsetBy: index_int + 7))
-                                                }
-                                            }
-                                            else {
-                                                L_Info = self.ExtractionLecture(str: text)
+                                            L_Info = self.ExtractionLecture(str: text)
+                                        }
+                                        
+                                        if let style = tdData[i == 0 ? pn + 2 : pn + 1].css("span").first?["style"] {
+                                            if let index = style.range(of: "#") {
+                                                let index_int = style.distance(from: style.startIndex, to: index.lowerBound)
+                                                color = style.substring(with: style.index(style.startIndex, offsetBy: index_int)..<style.index(style.startIndex, offsetBy: index_int + 7))
                                             }
                                         }
+                                        
                                         let id = "\(NSString(format: "%02d", building_id))\(NSString(format: "%02d", pn))\(d)\(i)"
                                         
                                         //書き込むデータを作成

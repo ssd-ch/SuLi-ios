@@ -67,7 +67,7 @@ extension String {
     }
     
     //区切る文字
-    static let separeteCharacter = ","
+    static let separeteCharacter = ";"
     
     //正規表現で一致した文字列を返す(複数の場合はsepareCharacterで区切る)
     func matcherSubString(pattern: String, options: NSRegularExpression.Options = []) -> String {
@@ -83,6 +83,6 @@ extension String {
                 matches.append((self as NSString).substring(with: range) + String.separeteCharacter)
             }
         }
-        return matches.replaceAll(pattern: ",$", with: "")
+        return matches.replaceAll(pattern: String.separeteCharacter + "$", with: "")
     }
 }

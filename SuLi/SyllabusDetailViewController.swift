@@ -201,7 +201,8 @@ class GetSyllabus {
                         
                         //講義場所
                         //(授業名または担当教員の苗字が一致)かつ(いずれかの曜日時限が一致)する場所を問い合わせる
-                        let placeQuery = try! Realm().objects(ClassroomDivide.self).filter("( classname like '*\(tdBasic[4].text!)*' or person like '*\(tdBasic[10].text!.replaceAll(pattern: "[ 　]+.*", with: ""))*' ) and " + self.CreateWhereTime(text: tdBasic[7].text!))
+                        let filter = "( classname like '*\(tdBasic[4].text!)*' or person like '*\(tdBasic[10].text!.replaceAll(pattern: "[ 　]+.*", with: ""))*' ) and " + self.CreateWhereTime(text: tdBasic[7].text!)
+                        let placeQuery = try! Realm().objects(ClassroomDivide.self).filter(filter)
                         
                         for data in placeQuery {
                             if data.person.matches(pattern: ".*\(tdBasic[10].text!.replaceAll(pattern: " |　", with: ".*")).*") {
@@ -240,7 +241,7 @@ class GetSyllabus {
         var whereText: String = ""
         
         let weekday_array = text.matcherSubString(pattern: "[月火水木金土日]+").components(separatedBy: String.separeteCharacter)
-        var time_array = text.matcherSubString(pattern: "\\(.{1,2}限,([2468]+|10|12|14)").replaceAll(pattern: "\\(.{1,2}限,", with: "").components(separatedBy: String.separeteCharacter)
+        var time_array = text.matcherSubString(pattern: "\\(\\d+限,\\d").replaceAll(pattern: "\\(\\d+限,", with: "").components(separatedBy: String.separeteCharacter)
         
         for i in 0..<weekday_array.count {
             
