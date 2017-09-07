@@ -56,6 +56,7 @@ struct GetCancelInfo {
                         opt.start { response in
                             if let err = response.error {
                                 print("error: \(err.localizedDescription)")
+                                dispatch.leave()
                                 nextFlg = false
                                 return //also notify app of failure as needed
                             }
@@ -106,6 +107,7 @@ struct GetCancelInfo {
                         
                     } catch let error {
                         print("got an error creating the request: \(error)")
+                        dispatch.leave()
                         nextFlg = false
                     }
                 }
@@ -114,8 +116,7 @@ struct GetCancelInfo {
             
             //すべての処理が完了したので通知
             dispatch.notify(queue: DispatchQueue.main) { [groupDispatch] in
-                let dispatch = groupDispatch
-                dispatch.leave()
+                groupDispatch.leave()
                 print("GetCancelInfo : all task complete")
             }
         }

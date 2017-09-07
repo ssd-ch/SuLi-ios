@@ -12,7 +12,7 @@ import Kanna
 import RealmSwift
 
 class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, SyllabusListDelegate {
-
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
@@ -27,7 +27,7 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
         // Do any additional setup after loading the view, typically from a nib.
         
         self.searchBar.delegate = self
-
+        
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
@@ -36,7 +36,7 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
         
         GetSyllabusForm.start()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -60,7 +60,7 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
         self.searchBar.showsCancelButton = true
         self.syllabus = SearchSyllabus(self.searchBar.text!)
         self.syllabus?.delegate = self
-        self.syllabus!.start()
+        self.syllabus!.load(addMode: false)
         self.tableView.isScrollEnabled = true
         //self.tableView.reloadData()
     }
@@ -78,7 +78,7 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
         self.searchBar.showsCancelButton = true
         return true
     }
-
+    
     // セルの行数を返す
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableData.count
@@ -108,7 +108,7 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
         if tableView.contentOffset.y + tableView.frame.size.height > tableView.contentSize.height && tableView.isDragging {
             //一番下に来た時の処理
             if syllabus!.loadingStatus {
-                syllabus!.load()
+                syllabus!.load(addMode: true)
             }
         }
     }
@@ -139,56 +139,7 @@ class SearchSyllabus {
         hitNum = 0
     }
     
-    func start() {
-        
-        var resultData : [SyllabusList] = []
-        
-        do {
-            self.loadingStatus = false
-            
-            let opt = try sjisHTTP.GET(self.URL, parameters: [
-                "nendo": self.searchForm.filter("form = 'nendo'").first!.value,
-                "disp_cnt": dispCnt,
-                "j_name": self.searchword,
-                "s_cnt": String(loadCount)])
-            opt.start { response in
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
-                    return //also notify app of failure as needed
-                }
-                if let doc = HTML(html: response.data, encoding: .shiftJIS)?.css("body tr") {
-                    if doc.count > 0 {
-                        let cntText = (HTML(html: response.data, encoding: .shiftJIS)?.css("p")[0].text?.replaceAll(pattern: "(.*｜　全)|(件　｜.*)", with: ""))!
-                        self.hitNum = Int(cntText)!
-                        self.loadCount += doc.count-1
-                        for i in 1..<doc.count {
-                            let td_node = doc[i].css("td")
-                            let lecture = (td_node[2].text?.replaceAll(pattern: "\n|(　／　.*)", with: ""))!
-                            let teacher = td_node[3].text
-                            let link = self.URLdomain + (td_node[2].css("a").first?["href"]!)!
-                            resultData.append(SyllabusList(data: (lecture,teacher!,link)))
-                        }
-                        //メインスレッドで呼び出す
-                        DispatchQueue.main.async {
-                            self.delegate?.reloadTableData(data: resultData, mode: false)
-                        }
-                    }else {
-                        DispatchQueue.main.async {
-                            self.delegate?.reloadTableData(data: resultData, mode: false)
-                        }
-                    }
-                }
-                if(self.hitNum > self.loadCount) {
-                    //追加読み込み可の状態へ
-                    self.loadingStatus = true
-                }
-            }
-        } catch let error {
-            print("got an error creating the request: \(error)")
-        }
-    }
-    
-    func load(){
+    func load(addMode: Bool){
         
         if(self.loadingStatus) {
             self.loadingStatus = false //ロード中
@@ -206,8 +157,8 @@ class SearchSyllabus {
                     "tantonm": "",
                     "yobi": "",
                     "jigen": "",
-                    "disp_cnt": String(loadCount),
-                    "s_cnt": self.dispCnt ])
+                    "disp_cnt": self.dispCnt,
+                    "s_cnt": String(self.loadCount) ])
                 opt.start { response in
                     if let err = response.error {
                         print("error: \(err.localizedDescription)")
@@ -228,7 +179,7 @@ class SearchSyllabus {
                             }
                             //メインスレッドで呼び出す
                             DispatchQueue.main.async {
-                                self.delegate?.reloadTableData(data: resultData, mode: true)
+                                self.delegate?.reloadTableData(data: resultData, mode: addMode)
                             }
                         }else {
                             //print(response.description)

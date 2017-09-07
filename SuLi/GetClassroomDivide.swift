@@ -63,9 +63,8 @@ struct GetClassroomDivide {
             //すべてのスレッドの処理が完了
             self.groupDispatchHTTP?.notify(queue: DispatchQueue.main) {
                 print("GetClassroomDivide : all task complete")
-                let dispatch = groupDispatch
                 //引数で受け取ったディスパッチに通知
-                dispatch.leave()
+                groupDispatch.leave()
             }
         }
     }

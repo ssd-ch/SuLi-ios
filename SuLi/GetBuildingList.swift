@@ -67,8 +67,7 @@ struct GetBuildingList {
         
         self.groupDispatchHTTP?.notify(queue: DispatchQueue.main) { [groupDispatch] in
             print("GetBuildingList : all task complete")
-            let dispatch = groupDispatch
-            dispatch.leave()
+            groupDispatch.leave()
         }
     }
 }
