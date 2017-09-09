@@ -107,7 +107,7 @@
                                 <rect key="frame" x="288.5" y="243.5" width="38" height="30"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
-                                    <segue destination="Mlg-RK-XK3" kind="show" identifier="" id="YW7-LW-Hy8"/>
+                                    <action selector="pushLoginButton:" destination="t8P-05-108" eventType="touchUpInside" id="LcW-w5-0yi"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -131,6 +131,7 @@
                     <connections>
                         <outlet property="idTextField" destination="nnh-wq-Nfu" id="3tR-D4-hXL"/>
                         <outlet property="passwordTextField" destination="FIt-nP-itH" id="GCV-tW-CKn"/>
+                        <segue destination="Mlg-RK-XK3" kind="show" identifier="dummy" id="hcm-Tb-6SY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7bc-ld-Ve4" userLabel="First Responder" sceneMemberID="firstResponder"/>

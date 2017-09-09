@@ -10,7 +10,7 @@ import UIKit
 import TOSMBClient
 
 class ShareFolderViewContoller : UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
     var path = NSLocalizedString("shareStorage-rootPath", tableName: "ResourceAddress", comment: "共有ストレージの最初に表示する階層")
     
     @IBOutlet weak var tableView: UITableView!
@@ -20,11 +20,23 @@ class ShareFolderViewContoller : UIViewController, UITableViewDataSource, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //テーブルビューデリゲート
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
+        SMBSessionController.session?.requestContentsOfDirectory( atFilePath: self.path, success: { data in
+            self.files = data
+            
+            //テーブルビューデリゲート
+            self.tableView.delegate = self
+            self.tableView.dataSource = self
+            
+            self.tableView.reloadData()
+        }, error: { error in
+            print(error!.localizedDescription)
+            //アラートを作成
+            let alert = MyAlertController.action(title: NSLocalizedString("alert-error-title", comment: "エラーアラートのタイトル"), message: error!.localizedDescription)
+            //アラートを表示
+            self.present(alert, animated: true, completion: nil)
+        })
         
-        self.files = try! SMBSessionController.session?.requestContentsOfDirectory(atFilePath: self.path)
+        //self.files = try! SMBSessionController.session?.requestContentsOfDirectory(atFilePath: self.path)
     }
     
     // セルの行数を返す
