@@ -16,7 +16,7 @@ struct GetSyllabusForm {
     
     static let syllabusFormUrl = NSLocalizedString("syllabus-form", tableName: "ResourceAddress", comment: "シラバスの検索フォームのURL")
     
-    static func start(){
+    static func start(errorHandler: @escaping (String) -> ()){
         
         autoreleasepool(){
             
@@ -25,6 +25,7 @@ struct GetSyllabusForm {
                 opt.start { response in
                     if let err = response.error {
                         print("error: \(err.localizedDescription)")
+                        errorHandler(err.localizedDescription)
                         return //also notify app of failure as needed
                     }
                     if let doc = HTML(html: response.data, encoding: .shiftJIS)?.css("table").first {
@@ -99,6 +100,7 @@ struct GetSyllabusForm {
                 }
             } catch let error {
                 print("got an error creating the request: \(error)")
+                errorHandler(error.localizedDescription)
             }
         }
     }

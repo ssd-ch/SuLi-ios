@@ -15,8 +15,7 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
-    
-    var selectedLink: String?
+
     var syllabus: SearchSyllabus?
     
     // セルに表示するテキスト
@@ -34,7 +33,14 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
         //最初はスクロール禁止
         self.tableView.isScrollEnabled = false
         
-        GetSyllabusForm.start()
+        GetSyllabusForm.start(errorHandler: { message in
+            DispatchQueue.main.async {
+                //アラートを作成
+                let alert = MyAlertController.action(title: NSLocalizedString("alert-error-title", comment: "エラーアラートのタイトル"), message: "シラバスのフォームデータが取得できませんでした。" + message)
+                //アラートを表示
+                self.present(alert, animated: true, completion: nil)
+            }
+        })
     }
     
     override func didReceiveMemoryWarning() {
@@ -51,7 +57,20 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
         else {
             self.tableData = data
         }
-        self.tableView.reloadData()
+        //メインスレッドで呼び出す
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    //エラー用デリゲートメソッド
+    func errorHandler(message: String) {
+        DispatchQueue.main.async {
+        //アラートを作成
+        let alert = MyAlertController.action(title: NSLocalizedString("alert-error-title", comment: "エラーアラートのタイトル"), message: message)
+        //アラートを表示
+        self.present(alert, animated: true, completion: nil)
+        }
     }
     
     // 検索ボタンが押された時に呼ばれる
@@ -118,6 +137,7 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
 protocol SyllabusListDelegate {
     
     func reloadTableData(data: [SyllabusList], mode: Bool) -> Void
+    func errorHandler(message: String) -> Void
 }
 
 class SearchSyllabus {
@@ -162,6 +182,7 @@ class SearchSyllabus {
                 opt.start { response in
                     if let err = response.error {
                         print("error: \(err.localizedDescription)")
+                        self.delegate!.errorHandler(message: err.localizedDescription)
                         return //also notify app of failure as needed
                     }
                     if let doc = HTML(html: response.data, encoding: .shiftJIS)?.css("body tr") {
@@ -177,10 +198,7 @@ class SearchSyllabus {
                                 let link = self.URLdomain + (td_node[2].css("a").first?["href"]!)!
                                 resultData.append(SyllabusList(data: (lecture,teacher!,link)))
                             }
-                            //メインスレッドで呼び出す
-                            DispatchQueue.main.async {
-                                self.delegate?.reloadTableData(data: resultData, mode: addMode)
-                            }
+                            self.delegate?.reloadTableData(data: resultData, mode: addMode)
                         }else {
                             //print(response.description)
                             print("no data")
@@ -192,6 +210,7 @@ class SearchSyllabus {
                 }
             } catch let error {
                 print("got an error creating the request: \(error)")
+                self.delegate!.errorHandler(message: error.localizedDescription)
             }
         }
     }

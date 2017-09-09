@@ -58,20 +58,35 @@ class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UIT
     
     //リロードデータ用デリゲートメソッド
     func finishTask(data: SyllabusData, mode: Bool) {
-        self.progressView.setProgress(1.0, animated: true)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-            self.progressView.isHidden = true
+        //メインスレッドで呼び出す
+        DispatchQueue.main.async {
+            self.progressView.setProgress(1.0, animated: true)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                self.progressView.isHidden = true
+            }
+            
+            self.tableView.isHidden = false
+            self.tableData = data
+            self.tableView.reloadData()
         }
-        
-        self.tableView.isHidden = false
-        self.tableData = data
-        self.tableView.reloadData()
     }
     
     //プログレス用デリゲートメソッド
     func progress(_ progress: Float) {
         self.progressView.setProgress(progress, animated: true)
+    }
+    
+    //エラー用デリゲートメソッド
+    func errorHandler(message: String) {
+        DispatchQueue.main.async {
+            self.progressView.isHidden = true
+            
+            //アラートを作成
+            let alert = MyAlertController.action(title: NSLocalizedString("alert-error-title", comment: "エラーアラートのタイトル"), message: message)
+            //アラートを表示
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     //各セクションのデータの個数を返す
@@ -137,6 +152,7 @@ protocol SyllabusDetailDelegate {
     
     func finishTask(data: SyllabusData, mode: Bool) -> Void
     func progress(_ progress: Float) -> Void
+    func errorHandler(message: String) -> Void
 }
 
 class GetSyllabus {
@@ -170,6 +186,7 @@ class GetSyllabus {
             opt.start { response in
                 if let err = response.error {
                     print("error: \(err.localizedDescription)")
+                    self.delegate!.errorHandler(message: err.localizedDescription)
                     return //also notify app of failure as needed
                 }
                 if let doc = HTML(html: response.data, encoding: .shiftJIS)?.css("table.normal") {
@@ -216,23 +233,22 @@ class GetSyllabus {
                         if resultData.place.count <= 0 {
                             resultData.place.append(
                                 (NSLocalizedString("syllabus-place-error-title", comment: "シラバスの場所:該当なしの時のタイトル"),
-                                NSLocalizedString("syllabus-place-error-detail", comment: "シラバスの場所:該当なしの時の詳細"))
-                                )
+                                 NSLocalizedString("syllabus-place-error-detail", comment: "シラバスの場所:該当なしの時の詳細"))
+                            )
                         }
                         
-                        //メインスレッドで呼び出す
-                        DispatchQueue.main.async {
-                            self.delegate?.finishTask(data: resultData, mode: false)
-                        }
+                        self.delegate?.finishTask(data: resultData, mode: false)
+                        
                     }else {
                         DispatchQueue.main.async {
-                            self.delegate?.finishTask(data: resultData, mode: false)
+                            self.delegate?.errorHandler(message: "取得したデータが不正です。")
                         }
                     }
                 }
             }
         } catch let error {
             print("got an error creating the request: \(error)")
+            self.delegate!.errorHandler(message: error.localizedDescription)
         }
     }
     
@@ -279,7 +295,7 @@ class GetSyllabus {
         
         return " ( \(whereText) ) "
     }
-
+    
 }
 
 class SyllabusData {

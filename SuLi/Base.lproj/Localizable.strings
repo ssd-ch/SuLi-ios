@@ -48,3 +48,7 @@
 "syllabus-place-time-5" = "9.10 period (5 lecture)";
 "syllabus-place-error-title" = "place not found";
 "syllabus-place-error-detail" = "check syllabus divide";
+
+//Alert
+"alert-ok-button" = "OK";
+"alert-error-title" = "error";

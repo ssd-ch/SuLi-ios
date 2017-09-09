@@ -11,28 +11,22 @@ import SwiftHTTP
 import Kanna
 import RealmSwift
 
-
 struct GetBuildingList {
     
-    static let buildingUrl = NSLocalizedString("buildingList", tableName: "ResourceAddress", comment: "建物別教室配当表一覧のURL")
-    var loadingStatus: Bool = true
+    private static let buildingUrl = NSLocalizedString("buildingList", tableName: "ResourceAddress", comment: "建物別教室配当表一覧のURL")
     
-    private static var groupDispatchHTTP: DispatchGroup?
-    
-    static func start(groupDispatch: inout DispatchGroup){
+    static func start(completeHandler: @escaping () -> (), errorHandler: @escaping (String) -> ()){
         
         print("GetBuildingList : start task")
         
-        self.groupDispatchHTTP = DispatchGroup()
-        self.groupDispatchHTTP?.enter()
-        
-        autoreleasepool(){
+        autoreleasepool{
             do {
                 let opt = try HTTP.GET(self.buildingUrl)
                 opt.start { response in
                     if let err = response.error {
-                        print("error: \(err.localizedDescription)")
-                        return //also notify app of failure as needed
+                        print("GetBuildingList : failed task. \(err.localizedDescription)")
+                        errorHandler(err.localizedDescription)
+                        return
                     }
                     if let doc = HTML(html: response.data, encoding: .utf8)?.css(".body li a") {
                         
@@ -57,17 +51,16 @@ struct GetBuildingList {
                                 realm.add(writeData)
                             }
                         }
+                        
+                        print("GetBuildingList : all task complete")
+                        completeHandler()
                     }
-                    self.groupDispatchHTTP?.leave()
                 }
             } catch let error {
                 print("got an error creating the request: \(error)")
+                errorHandler(error.localizedDescription)
             }
         }
         
-        self.groupDispatchHTTP?.notify(queue: DispatchQueue.main) { [groupDispatch] in
-            print("GetBuildingList : all task complete")
-            groupDispatch.leave()
-        }
     }
 }

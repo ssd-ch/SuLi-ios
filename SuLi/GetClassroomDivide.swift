@@ -15,58 +15,56 @@ struct GetClassroomDivide {
     
     private static var groupDispatchHTTP: DispatchGroup?
     
-    static func start( groupDispatch: inout DispatchGroup) {
+    static func start(completeHandler: @escaping () -> (), errorHandler: @escaping (String) -> ()) {
         
         print("GetClassroomDivide : start")
         
-        //建物別リンクを取得するスレッドの管理をするグループを作成
-        var groupDispatchBuilding = DispatchGroup()
-        groupDispatchBuilding.enter()
-        
-        //建物別のリンクを取得
-        GetBuildingList.start(groupDispatch: &groupDispatchBuilding)
-        
-        //Realmに接続
-        let realm = try! Realm()
-        
-        //ClassroomDivideのすべてのオブジェクトを取得
-        let objects = realm.objects(ClassroomDivide.self)
-        
-        print("GetClassroomDivide : all ClassroomDivide data delete init")
-        //トランザクションを開始
-        try! realm.write() {
-            //取得したすべてのオブジェクトを削除
-            realm.delete(objects)
+        autoreleasepool{
+            
+            //建物別のリンクを取得
+            GetBuildingList.start(completeHandler: {
+                //Realmに接続
+                let realm = try! Realm()
+                
+                //ClassroomDivideのすべてのオブジェクトを取得
+                let objects = realm.objects(ClassroomDivide.self)
+                //トランザクションを開始
+                try! realm.write() {
+                    //取得したすべてのオブジェクトを削除
+                    realm.delete(objects)
+                    print("GetClassroomDivide : all ClassroomDivide data delete")
+                }
+                
+                //Buildingのすべてのオブジェクトを取得
+                let buildings = realm.objects(Building.self)
+                
+                //スレッドを管理するグループを作成
+                self.groupDispatchHTTP = DispatchGroup()
+                
+                //スレッドの登録
+                for _ in buildings {
+                    self.groupDispatchHTTP?.enter()
+                }
+                
+                //すべてのページの配当表を取得
+                buildings.forEach { building in
+                    print("GetClassroomDivide : No.\(building.id) data init")
+                    self.scrapingClassroomDivide(building_id: building.id, url: building.url)
+                }
+                
+                //すべてのスレッドの処理が完了
+                self.groupDispatchHTTP?.notify(queue: DispatchQueue.main) {
+                    print("GetClassroomDivide : all task complete")
+                    completeHandler()
+                }
+                
+            }, errorHandler: { message in
+                print("GetClassroomDivide : failed task.")
+                errorHandler(message)
+                return
+            })
         }
-        print("GetClassroomDivide : all ClassroomDivide data delete complete")
         
-        //スレッドを管理するグループを作成
-        self.groupDispatchHTTP = DispatchGroup()
-        
-        //建物別のリンクが取得できるのを待つ
-        groupDispatchBuilding.notify(queue: DispatchQueue.main) { [groupDispatch] in
-            
-            //Buildingのすべてのオブジェクトを取得
-            let buildings = realm.objects(Building.self)
-            
-            //スレッドの登録
-            for _ in buildings {
-                self.groupDispatchHTTP?.enter()
-            }
-            
-            //すべてのページの配当表を取得
-            buildings.forEach { building in
-                print("GetClassroomDivide : No.\(building.id) data init")
-                self.scrapingClassroomDivide(building_id: building.id, url: building.url)
-            }
-            
-            //すべてのスレッドの処理が完了
-            self.groupDispatchHTTP?.notify(queue: DispatchQueue.main) {
-                print("GetClassroomDivide : all task complete")
-                //引数で受け取ったディスパッチに通知
-                groupDispatch.leave()
-            }
-        }
     }
     
     private static func scrapingClassroomDivide(building_id: Int,url: String) {

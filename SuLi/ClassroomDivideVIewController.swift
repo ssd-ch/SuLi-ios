@@ -30,6 +30,8 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPi
     
     //リロードボタンが押された時の処理
     @IBAction func pushReloadButton(_ sender: Any) {
+        //タッチアクションを無効化
+        UIApplication.shared.beginIgnoringInteractionEvents()
         
         for view in super.viewControllers as! [ClassroomDivideChildViewController] {
             //データの更新をロックする
@@ -40,29 +42,36 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPi
         self.progressView.setProgress(0.1, animated: false)
         self.progressView.isHidden = false
         
-        //スレッドを管理するグループを作成
-        var groupDispatch = DispatchGroup()
-        
-        //スレッドの登録
-        groupDispatch.enter()
-        
         //処理が完了したら通知させるディスパッチを参照で渡して更新処理を始める
-        GetClassroomDivide.start(groupDispatch: &groupDispatch)
-        
-        //処理が完了したらの各ビューのデータを更新
-        groupDispatch.notify(queue: DispatchQueue.main) {
-            for view in super.viewControllers as! [ClassroomDivideChildViewController] {
-                //各ビューのデータを更新
-                view.updateData()
+        GetClassroomDivide.start(completeHandler: {
+            //処理が完了したらの各ビューのデータを更新
+            DispatchQueue.main.async {
+                for view in super.viewControllers as! [ClassroomDivideChildViewController] {
+                    //各ビューのデータを更新
+                    view.updateData()
+                }
+                //pickerViewの更新
+                self.pickerView.reloadAllComponents()
+                
+                //タッチアクションを有効化
+                UIApplication.shared.endIgnoringInteractionEvents()
+                
+                self.progressView.setProgress(1.0, animated: true)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                    self.progressView.isHidden = true
+                }
             }
-            //pickerViewの更新
-            self.pickerView.reloadAllComponents()
-            
-            self.progressView.setProgress(1.0, animated: true)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+        }, errorHandler: { message in
+            DispatchQueue.main.async {
+                //タッチアクションを有効化
+                UIApplication.shared.endIgnoringInteractionEvents()
                 self.progressView.isHidden = true
+                //アラートを作成
+                let alert = MyAlertController.action(title: NSLocalizedString("alert-error-title", comment: "エラーアラートのタイトル"), message: message)
+                //アラートを表示
+                self.present(alert, animated: true, completion: nil)
             }
-        }
+        })
     }
     
     //建物選択ボタンが押された時の処理

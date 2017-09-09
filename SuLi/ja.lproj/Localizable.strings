@@ -48,3 +48,7 @@
 "syllabus-place-time-5" = "9.10限 (5コマ)";
 "syllabus-place-error-title" = "特定できませんでした";
 "syllabus-place-error-detail" = "教室配当表を確認してください";
+
+//Alert
+"alert-ok-button" = "OK";
+"alert-error-title" = "エラー";

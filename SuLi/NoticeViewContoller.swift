@@ -25,59 +25,44 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
     
     //リロードボタンが押された時の処理
     @IBAction func pushReloadButton(_ sender: Any) {
-        //スクロールを禁止
-        self.tableView.isScrollEnabled = false
+        //タッチアクションを無効化
+        UIApplication.shared.beginIgnoringInteractionEvents()
         
         //プログレスバーを表示、0.1にセット
         self.progressView.setProgress(0.1, animated: false)
         self.progressView.isHidden = false
         
-        //スレッドを管理するグループを作成
-        var groupDispatch = DispatchGroup()
-        
-        //スレッドの登録
-        groupDispatch.enter()
-        
-        //処理が完了したら通知させるディスパッチを参照で渡して更新処理を始める
-        GetCancelInfo.start(groupDispatch: &groupDispatch)
-        
-        //処理が完了したらCancelInfoを更新
-        groupDispatch.notify(queue: DispatchQueue.main) {
-            print("NoticeViewController : get cancelInfo in Realm")
-            //セルの状態を初期化
-            self.cellType = []
-            self.setSectionIndex()
-            for i in 0..<self.sectionIndex.count {
-                self.cellType.append([Bool]())
-                for _ in 0..<self.sectionIndex[i].1 {
-                    self.cellType[i].append(false)
+        GetCancelInfo.start(
+            completeHandler: {
+                DispatchQueue.main.async {
+                    self.setSectionIndexCellType()
+                    self.tableView.reloadData()
+                    //タッチアクションを有効化
+                    UIApplication.shared.endIgnoringInteractionEvents()
+                    self.progressView.setProgress(1.0, animated: true)
                 }
-            }
-            self.tableView.reloadData()
-            self.tableView.isScrollEnabled = true
-            
-            self.progressView.setProgress(1.0, animated: true)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-                self.progressView.isHidden = true
-            }
-        }
-        
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                    self.progressView.isHidden = true
+                }
+        },
+            errorHandler: { message in
+                DispatchQueue.main.async {
+                    //タッチアクションを有効化
+                    UIApplication.shared.endIgnoringInteractionEvents()
+                    self.progressView.isHidden = true
+                    //アラートを作成
+                    let alert = MyAlertController.action(title: NSLocalizedString("alert-error-title", comment: "エラーアラートのタイトル"), message: message)
+                    //アラートを表示
+                    self.present(alert, animated: true, completion: nil)
+                }
+        })
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        //セクションを作成
-        self.setSectionIndex()
-        
-        //セルの状態を初期化
-        for i in 0..<self.sectionIndex.count {
-            self.cellType.append([Bool]())
-            for _ in 0..<self.sectionIndex[i].1 {
-                self.cellType[i].append(false)
-            }
-        }
+        self.setSectionIndexCellType()
         
         //テーブルビューデリゲート
         self.tableView.delegate = self
@@ -152,7 +137,8 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
         return self.tableView.dequeueReusableCell(withIdentifier: identifier)!.bounds.size.height
     }
     
-    func setSectionIndex() {
+    //セクションとセルタイプを設定する
+    func setSectionIndexCellType() {
         
         var array: [(String, Int)] = []
         var tmp = ""
@@ -167,6 +153,16 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
             }
         }
         self.sectionIndex = array
+        
+        //セルの状態を初期化
+        self.cellType = []
+        
+        for i in 0..<self.sectionIndex.count {
+            self.cellType.append([Bool]())
+            for _ in 0..<self.sectionIndex[i].1 {
+                self.cellType[i].append(false)
+            }
+        }
     }
     
 }
