@@ -24,4 +24,24 @@ class MyAlertController {
         
         return alertController
     }
+    
+    static func indicator(title: String) -> UIAlertController {
+        
+        let alert = UIAlertController(title: title, message: "\n", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let indicator = UIActivityIndicatorView()
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        alert.view.addSubview(indicator)
+        
+        let views: [String: UIView] = ["alert": alert.view, "indicator": indicator]
+        var constraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[indicator]-(12)-|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[indicator]|", options: [], metrics: nil, views: views)
+        alert.view.addConstraints(constraints)
+        
+        indicator.isUserInteractionEnabled = false
+        indicator.color = UIColor.lightGray
+        indicator.startAnimating()
+        
+        return alert
+    }
 }

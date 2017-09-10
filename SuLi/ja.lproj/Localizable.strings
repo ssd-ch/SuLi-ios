@@ -51,4 +51,10 @@
 
 //Alert
 "alert-ok-button" = "OK";
+"alert-indicator-title" = "データ取得中";
+"alert-failed-get-data" = "データの取得に失敗しました。";
+"alert-syllabus-title" = "シラバス検索結果";
+"alert-syllabus-not-found" = "該当するシラバスが見つかりませんでした。";
+"alert-syllabus-form-not-found" = "シラバスのフォームデータが取得されていません。";
 "alert-error-title" = "エラー";
+"alert-error-server-not-found" = "サーバーに接続できませんでした。";

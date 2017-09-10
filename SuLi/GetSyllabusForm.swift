@@ -16,7 +16,9 @@ struct GetSyllabusForm {
     
     static let syllabusFormUrl = NSLocalizedString("syllabus-form", tableName: "ResourceAddress", comment: "シラバスの検索フォームのURL")
     
-    static func start(errorHandler: @escaping (String) -> ()){
+    static func start(completeHandler: @escaping () -> (), errorHandler: @escaping (String) -> ()){
+        
+        print("GetSyllabusForm : start task")
         
         autoreleasepool(){
             
@@ -24,7 +26,7 @@ struct GetSyllabusForm {
                 let opt = try HTTP.GET(self.syllabusFormUrl)
                 opt.start { response in
                     if let err = response.error {
-                        print("error: \(err.localizedDescription)")
+                        print("GetSyllabusForm : failed. \(err.localizedDescription)")
                         errorHandler(err.localizedDescription)
                         return //also notify app of failure as needed
                     }
@@ -96,6 +98,10 @@ struct GetSyllabusForm {
                                 realm.add(writeData)
                             }
                         }
+                        
+                        //処理が完了
+                        print("GetSyllabusForm : all task complete")
+                        completeHandler()
                     }
                 }
             } catch let error {

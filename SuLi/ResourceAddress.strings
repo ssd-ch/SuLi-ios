@@ -13,6 +13,7 @@
 
 //ShareStorage
 "shareStorage-hostName" = "cosmos.shimane-u.ac.jp";
+"shareStorage-domain" = "nafs.cosmos.shimane-u.ac.jp";
 "shareStorage-ip" = "10.16.1.16";
 "shareStorage-rootPath" = "/work/";
 

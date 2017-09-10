@@ -17,7 +17,7 @@ struct GetClassroomDivide {
     
     static func start(completeHandler: @escaping () -> (), errorHandler: @escaping (String) -> ()) {
         
-        print("GetClassroomDivide : start")
+        print("GetClassroomDivide : start task")
         
         autoreleasepool{
             

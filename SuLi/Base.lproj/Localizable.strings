@@ -51,4 +51,10 @@
 
 //Alert
 "alert-ok-button" = "OK";
+"alert-indicator-title" = "Now Loading";
+"alert-failed-get-data" = "loading data failed.";
+"alert-syllabus-title" = "syllabus search result";
+"alert-syllabus-not-found" = "No syllabus found.";
+"alert-syllabus-form-not-found" = "syllabus form has not been loaded";
 "alert-error-title" = "error";
+"alert-error-server-not-found" = "server not found";

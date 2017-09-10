@@ -15,7 +15,7 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
-
+    
     var syllabus: SearchSyllabus?
     
     // セルに表示するテキスト
@@ -32,15 +32,6 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
         
         //最初はスクロール禁止
         self.tableView.isScrollEnabled = false
-        
-        GetSyllabusForm.start(errorHandler: { message in
-            DispatchQueue.main.async {
-                //アラートを作成
-                let alert = MyAlertController.action(title: NSLocalizedString("alert-error-title", comment: "エラーアラートのタイトル"), message: "シラバスのフォームデータが取得できませんでした。" + message)
-                //アラートを表示
-                self.present(alert, animated: true, completion: nil)
-            }
-        })
     }
     
     override func didReceiveMemoryWarning() {
@@ -51,11 +42,18 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
     //リロードデータ用デリゲートメソッド
     func reloadTableData(data: [SyllabusList], mode: Bool) {
         if(mode) {
-            print("add data")
             self.tableData += data
         }
         else {
             self.tableData = data
+            if data.count == 0 {
+                DispatchQueue.main.async {
+                    //アラートを作成
+                    let alert = MyAlertController.action(title: NSLocalizedString("alert-syllabus-title", comment: "シラバス検索結果のタイトル"), message: NSLocalizedString("alert-syllabus-not-found", comment: "シラバス検索結果0のメッセージ"))
+                    //アラートを表示
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
         }
         //メインスレッドで呼び出す
         DispatchQueue.main.async {
@@ -66,10 +64,10 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
     //エラー用デリゲートメソッド
     func errorHandler(message: String) {
         DispatchQueue.main.async {
-        //アラートを作成
-        let alert = MyAlertController.action(title: NSLocalizedString("alert-error-title", comment: "エラーアラートのタイトル"), message: message)
-        //アラートを表示
-        self.present(alert, animated: true, completion: nil)
+            //アラートを作成
+            let alert = MyAlertController.action(title: NSLocalizedString("alert-error-title", comment: "エラーアラートのタイトル"), message: message)
+            //アラートを表示
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -161,6 +159,11 @@ class SearchSyllabus {
     
     func load(addMode: Bool){
         
+        if self.searchForm.count == 0 {
+            self.delegate?.errorHandler(message: NSLocalizedString("alert-syllabus-form-not-found", comment: "シラバスのフォームデータが取得されていない時のメッセージ"))
+            return
+        }
+        
         if(self.loadingStatus) {
             self.loadingStatus = false //ロード中
             
@@ -181,7 +184,7 @@ class SearchSyllabus {
                     "s_cnt": String(self.loadCount) ])
                 opt.start { response in
                     if let err = response.error {
-                        print("error: \(err.localizedDescription)")
+                        print("Search Syllabus : failed. \(err.localizedDescription)")
                         self.delegate!.errorHandler(message: err.localizedDescription)
                         return //also notify app of failure as needed
                     }
@@ -198,11 +201,11 @@ class SearchSyllabus {
                                 let link = self.URLdomain + (td_node[2].css("a").first?["href"]!)!
                                 resultData.append(SyllabusList(data: (lecture,teacher!,link)))
                             }
-                            self.delegate?.reloadTableData(data: resultData, mode: addMode)
                         }else {
                             //print(response.description)
-                            print("no data")
+                            print("Search Syllabus : no syllabus found")
                         }
+                        self.delegate?.reloadTableData(data: resultData, mode: addMode)
                     }
                     if(self.hitNum > self.loadCount) {
                         self.loadingStatus = true

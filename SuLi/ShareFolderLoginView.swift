@@ -16,6 +16,7 @@ class ShareFolderLoginViewContoller : UIViewController, UITextFieldDelegate {
     
     private let host = NSLocalizedString("shareStorage-hostName", tableName: "ResourceAddress", comment: "共有ストレージのホスト名")
     private let ip = NSLocalizedString("shareStorage-ip", tableName: "ResourceAddress", comment: "共有ストレージのホスト名")
+    private let domain = NSLocalizedString("shareStorage-domain", tableName: "ResourceAddress", comment: "共有ストレージのドメイン名")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +41,7 @@ class ShareFolderLoginViewContoller : UIViewController, UITextFieldDelegate {
     @IBAction func pushLoginButton(_ sender: Any) {
         
         //DNSを逆引きする
-        let host = CFHostCreateWithName(nil, "nafs.cosmos.shimane-u.ac.jp" as CFString).takeRetainedValue()
+        let host = CFHostCreateWithName(nil, self.domain as CFString).takeRetainedValue()
         CFHostStartInfoResolution(host, .addresses, nil)
         var success: DarwinBoolean = false
         if let addresses = CFHostGetAddressing(host, &success)?.takeUnretainedValue() as NSArray?,
@@ -70,16 +71,11 @@ class ShareFolderLoginViewContoller : UIViewController, UITextFieldDelegate {
         else {
             print("can't resolve smb server address")
             //アラートを作成
-            let alert = MyAlertController.action(title: NSLocalizedString("alert-error-title", comment: "エラーアラートのタイトル"), message: "サーバに接続できませんでした。")
+            let alert = MyAlertController.action(title: NSLocalizedString("alert-error-title", comment: "エラーアラートのタイトル"), message: NSLocalizedString("alert-error-server-not-found", comment: "サーバーが見つからない時のメッセージ"))
             //アラートを表示
             self.present(alert, animated: true, completion: nil)
         }
         
     }
-    
-    // Segueで遷移時の処理
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let controller = segue.destination as! ShareFolderViewContoller
-        controller.navigationItem.title = "work"
-    }
+
 }
