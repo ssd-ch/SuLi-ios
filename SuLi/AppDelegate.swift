@@ -79,6 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }, errorHandler: { error in
             indicator.dismiss(animated: true, completion: nil)
 
+            //アラートを作成
             let alert = UIAlertController(title: NSLocalizedString("alert-error-title", comment: "エラーアラートのタイトル"), message: NSLocalizedString("alert-failed-get-data", comment: "データ取得失敗のアラートメッセージ"), preferredStyle: UIAlertControllerStyle.alert)
             
             //OKボタンを作成
@@ -91,6 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //OKボタンを追加
             alert.addAction(okAction)
             
+            //アラートを表示
             self.window?.rootViewController?.present(alert, animated: true, completion: nil)
         })
     }

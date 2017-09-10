@@ -14,3 +14,9 @@ target 'SuLi' do
   pod 'TOSMBClient'
 
 end
+
+post_install do | installer |
+    require 'fileutils'
+    FileUtils.cp_r('Pods/Target Support Files/Pods-SuLi/Pods-SuLi-acknowledgements.plist', 'SuLi/Settings.bundle/Acknowledgements.plist', :remove_destination => true)
+    FileUtils.cp_r('Pods/Target Support Files/Pods-SuLi/Pods-SuLi-acknowledgements.markdown', 'Acknowledgements.md', :remove_destination => true)
+end

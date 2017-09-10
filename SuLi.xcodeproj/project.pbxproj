@@ -35,6 +35,7 @@
 		5CE589101F604847005E32BB /* ResourceAddress.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5CE5890F1F604847005E32BB /* ResourceAddress.strings */; };
 		5CE589121F62BE31005E32BB /* MyAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE589111F62BE31005E32BB /* MyAlertController.swift */; };
 		5CE589141F65216D005E32BB /* UpdateAllData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE589131F65216D005E32BB /* UpdateAllData.swift */; };
+		5CE589161F6590C0005E32BB /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5CE589151F6590C0005E32BB /* Settings.bundle */; };
 		5CE6175A1EBDCD7C00561E74 /* sjisHTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE617591EBDCD7C00561E74 /* sjisHTTP.swift */; };
 		5CFAB8691EB60208001885C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFAB8681EB60208001885C4 /* AppDelegate.swift */; };
 		5CFAB86B1EB60208001885C4 /* SyllabusListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFAB86A1EB60208001885C4 /* SyllabusListViewController.swift */; };
@@ -83,6 +84,7 @@
 		5CE5890F1F604847005E32BB /* ResourceAddress.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = ResourceAddress.strings; sourceTree = "<group>"; };
 		5CE589111F62BE31005E32BB /* MyAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAlertController.swift; sourceTree = "<group>"; };
 		5CE589131F65216D005E32BB /* UpdateAllData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateAllData.swift; sourceTree = "<group>"; };
+		5CE589151F6590C0005E32BB /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		5CE617591EBDCD7C00561E74 /* sjisHTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sjisHTTP.swift; sourceTree = "<group>"; };
 		5CFAB8651EB60208001885C4 /* SuLi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuLi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CFAB8681EB60208001885C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -128,11 +130,11 @@
 		5CFAB8671EB60208001885C4 /* SuLi */ = {
 			isa = PBXGroup;
 			children = (
+				5CE589151F6590C0005E32BB /* Settings.bundle */,
 				5C60FB4D1F4A333800268907 /* Bridging-Header.h */,
 				5CFAB8741EB60208001885C4 /* Info.plist */,
 				5CE5890F1F604847005E32BB /* ResourceAddress.strings */,
 				5CFAB8681EB60208001885C4 /* AppDelegate.swift */,
-				5CE589131F65216D005E32BB /* UpdateAllData.swift */,
 				5C1E62041F4190A600CF7BEB /* ClassroomDivideChildViewController.swift */,
 				5C6A19BE1ED3F48000BF1A52 /* ClassroomDivideVIewController.swift */,
 				5C6A19B81ED3B2FE00BF1A52 /* database.swift */,
@@ -141,9 +143,9 @@
 				5C6A19BA1ED3BE1600BF1A52 /* GetClassroomDivide.swift */,
 				5C203F2D1F3A277A00C89196 /* GetSyllabusForm.swift */,
 				5C203F311F3EFF7700C89196 /* MoodleViewController.swift */,
+				5CE589111F62BE31005E32BB /* MyAlertController.swift */,
 				5C43DB931F4F743600A3B88E /* NoticeCustomViewDetailCell.swift */,
 				5C203F331F3F169600C89196 /* NoticeViewContoller.swift */,
-				5CE589111F62BE31005E32BB /* MyAlertController.swift */,
 				5CD8E5BB1F5149D80021586F /* ShareFileViewController.swift */,
 				5C161B011F4CF0B50095237B /* ShareFolderLoginView.swift */,
 				5C60FB481F4A26B300268907 /* ShareFolderView.swift */,
@@ -154,6 +156,7 @@
 				5C77D4CA1EB87A3300CCC745 /* SyllabusDetailViewController.swift */,
 				5CFAB86A1EB60208001885C4 /* SyllabusListViewController.swift */,
 				5C60FB461F4A141400268907 /* UIColorExtension.swift */,
+				5CE589131F65216D005E32BB /* UpdateAllData.swift */,
 				5C22759A1EBC7F6D000A6AA9 /* URLEncoding.swift */,
 				5CFAB86F1EB60208001885C4 /* Assets.xcassets */,
 				5C276E481F5AAFDE00425815 /* ClassroomDivide.storyboard */,
@@ -258,6 +261,7 @@
 				5C276E371F5AAAA100425815 /* Material.storyboard in Resources */,
 				5CFAB8701EB60208001885C4 /* Assets.xcassets in Resources */,
 				5C276E461F5AAFDE00425815 /* ClassroomDivide.storyboard in Resources */,
+				5CE589161F6590C0005E32BB /* Settings.bundle in Resources */,
 				5CFAB86E1EB60208001885C4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
