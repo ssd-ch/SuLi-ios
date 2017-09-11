@@ -9,52 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Materials-->
-        <scene sceneID="5id-rH-TAr">
-            <objects>
-                <viewController id="zVU-fP-3ER" userLabel="Materials" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="CxS-ZB-JSu"/>
-                        <viewControllerLayoutGuide type="bottom" id="wIJ-cx-V36"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="72c-Pi-LZg">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t9l-ed-BBA">
-                                <rect key="frame" x="147" y="358" width="80" height="41"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Moodle"/>
-                                <connections>
-                                    <segue destination="Yit-bC-4Un" kind="show" identifier="" id="wcf-25-lcL"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UfG-7b-hyi">
-                                <rect key="frame" x="125.5" y="243" width="123" height="41"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="WorkFolder"/>
-                                <connections>
-                                    <segue destination="t8P-05-108" kind="show" identifier="" id="JkX-Ev-EAd"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="t9l-ed-BBA" firstAttribute="centerY" secondItem="72c-Pi-LZg" secondAttribute="centerY" constant="45" id="OkL-wT-VM8"/>
-                            <constraint firstItem="UfG-7b-hyi" firstAttribute="centerX" secondItem="72c-Pi-LZg" secondAttribute="centerX" id="WXo-4N-g9m"/>
-                            <constraint firstItem="UfG-7b-hyi" firstAttribute="centerY" secondItem="72c-Pi-LZg" secondAttribute="centerY" constant="-70" id="ekL-G8-F2C"/>
-                            <constraint firstItem="t9l-ed-BBA" firstAttribute="centerX" secondItem="72c-Pi-LZg" secondAttribute="centerX" id="f8f-rR-z7k"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Materials" id="lrJ-q4-66V">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="3pY-4d-sbL"/>
-                    </navigationItem>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Xvx-3y-9uw" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1189.5999999999999" y="144.3778110944528"/>
-        </scene>
         <!--Share Folder Login View-->
         <scene sceneID="lii-E8-L5p">
             <objects>
@@ -151,7 +105,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JAP-80-Ipz">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="UYU-aH-Q6y" style="IBUITableViewCellStyleDefault" id="muE-Za-j6g">
@@ -277,12 +231,77 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="zVU-fP-3ER" kind="relationship" relationship="rootViewController" id="gh3-Xn-66m"/>
+                        <segue destination="zJI-fB-GRO" kind="relationship" relationship="rootViewController" id="vpz-w6-XEd"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2rK-2n-28k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="310" y="144"/>
+        </scene>
+        <!--Materials-->
+        <scene sceneID="08z-Xt-wNf">
+            <objects>
+                <tableViewController id="zJI-fB-GRO" userLabel="Materials" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="iM9-6r-FOK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection id="J7P-ex-vCH">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ShareStorage" textLabel="Tra-Ks-Dx2" style="IBUITableViewCellStyleDefault" id="Vlj-XJ-xBd">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vlj-XJ-xBd" id="bra-7L-3Qg">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Share Storare（Work Folder）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Tra-Ks-Dx2">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="t8P-05-108" kind="show" identifier="ShareStorage" id="fe4-Lg-R6G"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Moodle" textLabel="g3Z-du-kRZ" style="IBUITableViewCellStyleDefault" id="54k-Nx-h1j">
+                                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="54k-Nx-h1j" id="4gl-qi-Bd8">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Moodle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g3Z-du-kRZ">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Yit-bC-4Un" kind="show" identifier="Moodle" id="dcL-CW-NVT"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="zJI-fB-GRO" id="v0f-8q-kkB"/>
+                            <outlet property="delegate" destination="zJI-fB-GRO" id="i14-kn-OqO"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Materials" id="wlX-hK-iOz"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gbQ-yZ-2Ly" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1196" y="143"/>
         </scene>
     </scenes>
     <resources>

@@ -2,35 +2,32 @@
 /* Class = "UIBarButtonItem"; title = "Buck"; ObjectID = "03C-xr-RSF"; */
 "03C-xr-RSF.title" = "戻る";
 
-/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "3pY-4d-sbL"; */
-"3pY-4d-sbL.title" = "戻る";
-
 /* Class = "UIButton"; normalTitle = "Login"; ObjectID = "Hay-ff-28X"; */
 "Hay-ff-28X.normalTitle" = "ログイン";
 
 /* Class = "UINavigationItem"; title = "Moodle"; ObjectID = "ITl-WV-jfd"; */
 "ITl-WV-jfd.title" = "Moodle";
 
-/* Class = "UINavigationItem"; title = "Share Folder"; ObjectID = "Pgj-iX-wY2"; */
-"Pgj-iX-wY2.title" = "共有フォルダ";
-
-/* Class = "UITabBarItem"; title = "material"; ObjectID = "Kxb-ak-lOc"; */
+/* Class = "UITabBarItem"; title = "Material"; ObjectID = "Kxb-ak-lOc"; */
 "Kxb-ak-lOc.title" = "講義資料";
+
+/* Class = "UINavigationItem"; title = "Share Folder"; ObjectID = "Pgj-iX-wY2"; */
+"Pgj-iX-wY2.title" = "共有ストレージ";
+
+/* Class = "UILabel"; text = "Share Storare（Work Folder）"; ObjectID = "Tra-Ks-Dx2"; */
+"Tra-Ks-Dx2.text" = "共有ストレージ（workフォルダ）";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "UYU-aH-Q6y"; */
 "UYU-aH-Q6y.text" = "Title";
 
-/* Class = "UIButton"; normalTitle = "WorkFolder"; ObjectID = "UfG-7b-hyi"; */
-"UfG-7b-hyi.normalTitle" = "共有フォルダ(Workフォルダ)";
-
 /* Class = "UILabel"; text = "ID"; ObjectID = "XM4-Mn-J37"; */
 "XM4-Mn-J37.text" = "ID";
 
-/* Class = "UINavigationItem"; title = "Materials"; ObjectID = "lrJ-q4-66V"; */
-"lrJ-q4-66V.title" = "講義資料";
+/* Class = "UILabel"; text = "Moodle"; ObjectID = "g3Z-du-kRZ"; */
+"g3Z-du-kRZ.text" = "Moodle";
 
 /* Class = "UILabel"; text = "Password"; ObjectID = "mlE-Iz-yDq"; */
 "mlE-Iz-yDq.text" = "パスワード";
 
-/* Class = "UIButton"; normalTitle = "Moodle"; ObjectID = "t9l-ed-BBA"; */
-"t9l-ed-BBA.normalTitle" = "Moodle";
+/* Class = "UINavigationItem"; title = "Materials"; ObjectID = "wlX-hK-iOz"; */
+"wlX-hK-iOz.title" = "講義資料";
