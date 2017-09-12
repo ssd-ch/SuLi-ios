@@ -18,11 +18,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Pcq-QU-EL0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="adp-Hn-4pm">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="exD-IK-z3S">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="sKt-5l-ets" detailTextLabel="KHo-xO-gbe" imageView="sc8-Ki-FMM" style="IBUITableViewCellStyleSubtitle" id="S0x-Ub-PMf">
@@ -106,7 +106,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Oxj-Rt-luV">
-                                                    <rect key="frame" x="30" y="100" width="315" height="16"/>
+                                                    <rect key="frame" x="30" y="100" width="354" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="16" id="UqZ-5P-8UB"/>
                                                     </constraints>
@@ -143,7 +143,7 @@
                                 </prototypes>
                             </tableView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="IYE-5r-vXB">
-                                <rect key="frame" x="0.0" y="64" width="375" height="2.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="2.5"/>
                             </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -180,9 +180,14 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rE2-tQ-RaH" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="notice" image="notice" id="8cE-mb-Bf1"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cOV-jU-juc">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="cOV-jU-juc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

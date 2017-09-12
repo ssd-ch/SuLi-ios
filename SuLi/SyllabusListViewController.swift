@@ -30,6 +30,17 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
+        //ナビゲーションバーの下線をなくす
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        
+        //検索バーの枠線をなくす
+        self.searchBar.layer.borderColor = self.searchBar.barTintColor?.cgColor
+        self.searchBar.layer.borderWidth = 1.0
+        
+        //検索バーのテキストフィールドのカーソルの色を変える
+        UITextField.appearance(whenContainedInInstancesOf: [SyllabusListViewController.self]).tintColor = self.searchBar.barTintColor
+        
         //最初はスクロール禁止
         self.tableView.isScrollEnabled = false
     }

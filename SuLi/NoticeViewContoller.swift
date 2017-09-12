@@ -64,6 +64,9 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
         
         self.setSectionIndexCellType()
         
+        //ナビゲーションバーの半透過処理により色がおかしくなるのでオフにする
+        self.navigationController?.navigationBar.isTranslucent = false
+        
         //テーブルビューデリゲート
         self.tableView.delegate = self
         self.tableView.dataSource = self

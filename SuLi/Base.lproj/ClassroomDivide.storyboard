@@ -47,7 +47,23 @@
                             </pickerView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5Te-C0-RVe">
                                 <rect key="frame" x="0.0" y="-0.5" width="375" height="2.5"/>
+                                <color key="progressTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="trackTintColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </progressView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nn7-UK-EmH">
+                                <rect key="frame" x="0.0" y="290" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="75P-Hw-vQh"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="a54-eY-8P2"/>
+                                    <barButtonItem systemItem="done" id="jLY-r3-KbS">
+                                        <connections>
+                                            <action selector="pushDoneButton:" destination="330-2X-uQS" id="u2l-Lw-gl9"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -55,14 +71,17 @@
                             <constraint firstItem="Sm8-ZR-WTe" firstAttribute="leading" secondItem="B1D-Jx-CEd" secondAttribute="leading" id="CBB-qB-VNx"/>
                             <constraint firstAttribute="trailing" secondItem="FMr-si-bMe" secondAttribute="trailing" id="DU8-jy-vFF"/>
                             <constraint firstItem="Sm8-ZR-WTe" firstAttribute="top" secondItem="FMr-si-bMe" secondAttribute="bottom" id="G1J-cd-OV2"/>
+                            <constraint firstItem="nn7-UK-EmH" firstAttribute="leading" secondItem="B1D-Jx-CEd" secondAttribute="leading" id="JeT-2c-cKN"/>
                             <constraint firstItem="scq-WI-vGH" firstAttribute="top" secondItem="Sm8-ZR-WTe" secondAttribute="bottom" id="OYO-wI-08k"/>
                             <constraint firstItem="4bA-qB-IO6" firstAttribute="leading" secondItem="B1D-Jx-CEd" secondAttribute="leading" id="Wcn-hj-fKE"/>
                             <constraint firstItem="FMr-si-bMe" firstAttribute="top" secondItem="DbL-Ej-bYC" secondAttribute="bottom" id="aOE-a3-w4N"/>
                             <constraint firstItem="FMr-si-bMe" firstAttribute="leading" secondItem="B1D-Jx-CEd" secondAttribute="leading" id="bBy-8j-R4E"/>
+                            <constraint firstItem="4bA-qB-IO6" firstAttribute="top" secondItem="nn7-UK-EmH" secondAttribute="top" constant="44" id="ePW-kJ-ute"/>
                             <constraint firstAttribute="trailing" secondItem="5Te-C0-RVe" secondAttribute="trailing" id="mOE-dr-uaP"/>
                             <constraint firstItem="scq-WI-vGH" firstAttribute="top" secondItem="4bA-qB-IO6" secondAttribute="bottom" id="rFY-M6-vki"/>
                             <constraint firstItem="5Te-C0-RVe" firstAttribute="top" secondItem="DbL-Ej-bYC" secondAttribute="bottom" id="sxv-1Y-f84"/>
                             <constraint firstAttribute="trailing" secondItem="Sm8-ZR-WTe" secondAttribute="trailing" id="t5E-gX-6Gx"/>
+                            <constraint firstAttribute="trailing" secondItem="nn7-UK-EmH" secondAttribute="trailing" id="vGy-LT-bRo"/>
                             <constraint firstItem="5Te-C0-RVe" firstAttribute="leading" secondItem="B1D-Jx-CEd" secondAttribute="leading" id="wHc-Ph-bI7"/>
                         </constraints>
                     </view>
@@ -84,6 +103,7 @@
                         <outlet property="containerView" destination="Sm8-ZR-WTe" id="xZY-qs-OeU"/>
                         <outlet property="pickerView" destination="4bA-qB-IO6" id="yvc-UF-mwS"/>
                         <outlet property="progressView" destination="5Te-C0-RVe" id="zus-nG-p0k"/>
+                        <outlet property="toolbar" destination="nn7-UK-EmH" id="SrO-Gc-7Us"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fJb-z0-mXl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -159,6 +179,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="z8K-Vd-nDz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

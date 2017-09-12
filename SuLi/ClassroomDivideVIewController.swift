@@ -14,6 +14,7 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPi
     
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var toolbar: UIToolbar!
     
     //タブのボタンのテキスト
     let week = [NSLocalizedString("classroom-tab-Monday", comment: "教室配当表のタブ名:月曜日"),
@@ -27,6 +28,13 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPi
     
     //表示する配当表のbulding_id
     var buildingId = ClassroomDivideChildViewController.allData
+    
+    //ツールバーの完了ボタンが押された時
+    @IBAction func pushDoneButton(_ sender: Any) {
+        //ピッカー、ツールバーを隠す
+        self.pickerView.isHidden = true
+        self.toolbar.isHidden = true
+    }
     
     //リロードボタンが押された時の処理
     @IBAction func pushReloadButton(_ sender: Any) {
@@ -76,30 +84,42 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPi
     
     //建物選択ボタンが押された時の処理
     @IBAction func pushBuildingType(_ sender: Any) {
-        //ピッカーを表示・非表示を切り替える
+        //ピッカー,ツールバーの表示・非表示を切り替える
         if self.pickerView.isHidden {
             self.pickerView.isHidden = false
+            self.toolbar.isHidden = false
         }
         else {
             self.pickerView.isHidden = true
+            self.toolbar.isHidden = true
         }
     }
     
     override func viewDidLoad() {
         //バーの色
-        settings.style.buttonBarBackgroundColor = UIColor(red: 73/255, green: 72/255, blue: 62/255, alpha: 1)
+        settings.style.buttonBarBackgroundColor = self.navigationController?.navigationBar.barTintColor
         //ボタンの色
-        settings.style.buttonBarItemBackgroundColor = UIColor(red: 73/255, green: 72/255, blue: 62/255, alpha: 1)
+        settings.style.buttonBarItemBackgroundColor = self.navigationController?.navigationBar.barTintColor
         //セルの文字色
-        settings.style.buttonBarItemTitleColor = UIColor.white
+        settings.style.buttonBarItemTitleColor = UIColor.black
         //セレクトバーの色
-        settings.style.selectedBarBackgroundColor = UIColor(red: 254/255, green: 0, blue: 124/255, alpha: 1)
+        settings.style.selectedBarBackgroundColor = UIColor.darkGray
         super.viewDidLoad()
+        
+        //ナビゲーションバーの半透過処理により色がおかしくなるのでオフにする
+        self.navigationController?.navigationBar.isTranslucent = false
+        
+        //ナビゲーションバーの下線をなくす
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
         
         //ピッカーのデリゲートを設定して非表示にする
         self.pickerView.delegate = self
         self.pickerView.dataSource = self
         self.pickerView.isHidden = true
+        
+        //ツールバーを非表示
+        self.toolbar.isHidden = true
         
         self.progressView.isHidden = true
         //最前面に表示(storyboardでは前面にしているがタブバーが前面に表示されるので)
@@ -163,4 +183,5 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPi
             view.updateData()
         }
     }
+
 }

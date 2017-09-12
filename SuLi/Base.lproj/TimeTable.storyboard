@@ -35,6 +35,7 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="timetable" image="timeTable" id="rgU-Wo-4wD"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oiw-Dn-g9S" userLabel="First Responder" sceneMemberID="firstResponder"/>
