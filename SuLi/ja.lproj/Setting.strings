@@ -1,0 +1,30 @@
+
+/* Class = "UITableViewSection"; headerTitle = "General"; ObjectID = "4dM-Wa-xYD"; */
+"4dM-Wa-xYD.headerTitle" = "一般";
+
+/* Class = "UILabel"; text = "ssd_ch"; ObjectID = "AVZ-Pj-2km"; */
+"AVZ-Pj-2km.text" = "ssd_ch";
+
+/* Class = "UILabel"; text = "The manufacturing department Pim is doing creative activities regardless of genre. \nTeam members are now wanted!"; ObjectID = "GnU-0F-i3U"; */
+"GnU-0F-i3U.text" = "ものづくり部Pimはジャンルを問わないクリエイティブな活動をしています。\n興味がある方はお気軽にどうぞ!";
+
+/* Class = "UITabBarItem"; title = "Setting"; ObjectID = "P2W-MT-Wjd"; */
+"P2W-MT-Wjd.title" = "設定";
+
+/* Class = "UILabel"; text = "Automatic Data Sync"; ObjectID = "ZZz-Ut-Loy"; */
+"ZZz-Ut-Loy.text" = "自動データ同期";
+
+/* Class = "UITableViewSection"; headerTitle = "Invitation"; ObjectID = "jEv-fb-t2Y"; */
+"jEv-fb-t2Y.headerTitle" = "活動";
+
+/* Class = "UITableViewSection"; headerTitle = "Developer"; ObjectID = "q1s-4J-ahi"; */
+"q1s-4J-ahi.headerTitle" = "開発";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "unH-Ki-gJy"; */
+"unH-Ki-gJy.title" = "設定";
+
+/* Class = "UILabel"; text = "Taichi Shishido"; ObjectID = "vyl-zh-6dh"; */
+"vyl-zh-6dh.text" = "Taichi Shishido";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "zXr-zw-UzF"; */
+"zXr-zw-UzF.title" = "戻る";

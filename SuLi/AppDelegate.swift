@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         if let initialTab = self.window!.rootViewController as? UITabBarController  {
             // 0が一番左のタブ
-            initialTab.selectedIndex = 1 // 左から2つ目のタブを指定
+            initialTab.selectedIndex = 0 // 左から1つ目のタブを指定
         }
         return true
     }
@@ -45,10 +45,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // UserDefaultsを使って時刻を保持する
         let userDefault = UserDefaults.standard
-        // "updateInterval"をキーに、Double型の値を保持する
-        let dict = [updateInterval: 0.0]
+        
         // デフォルト値登録※すでに値が更新されていた場合は、更新後の値のままになる
-        userDefault.register(defaults: dict)
+        userDefault.register(defaults: [updateInterval: 0.0])
+        userDefault.register(defaults: [SettingViewContoller.dataSync: true])
         
         let now = Date()
         let interval = now.timeIntervalSince1970 - userDefault.double(forKey: updateInterval)
@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("update interval : \(interval)")
         
         //1日以上データを更新してない場合はデータを取得する
-        if interval >= 86400.0 {
+        if interval >= 86400.0 && userDefault.bool(forKey: SettingViewContoller.dataSync) {
             self.getData(completeHandler: {
                 userDefault.set(now.timeIntervalSince1970, forKey: updateInterval)
             })

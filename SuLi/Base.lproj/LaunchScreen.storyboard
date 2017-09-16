@@ -21,31 +21,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2017 ssd_ch All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s2b-Fa-H6z">
+                                <rect key="frame" x="35" y="629" width="305" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SuLi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sew-SQ-i8w">
-                                <rect key="frame" x="143" y="226.5" width="89" height="60"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="50"/>
+                                <rect key="frame" x="120" y="162.5" width="135.5" height="86"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="72"/>
                                 <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2017 ssd-ch All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s2b-Fa-H6z">
-                                <rect key="frame" x="37" y="452.5" width="301" height="18"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchscreen_logo" translatesAutoresizingMaskIntoConstraints="NO" id="tKs-1e-Cya">
+                                <rect key="frame" x="123" y="269" width="128" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="7Qs-gl-pkD"/>
+                                    <constraint firstAttribute="width" constant="128" id="ntu-kE-cga"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Sew-SQ-i8w" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-77" id="Mpx-Fv-MoU"/>
-                            <constraint firstItem="s2b-Fa-H6z" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="R7Z-MB-pWX"/>
-                            <constraint firstItem="Sew-SQ-i8w" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="TbB-tA-rZS"/>
-                            <constraint firstItem="s2b-Fa-H6z" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="128" id="fQc-hs-vL2"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="s2b-Fa-H6z" secondAttribute="bottom" constant="20" id="3gh-id-IC6"/>
+                            <constraint firstItem="tKs-1e-Cya" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="4ht-8U-nkC"/>
+                            <constraint firstItem="Sew-SQ-i8w" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="OY6-q9-qXL"/>
+                            <constraint firstItem="tKs-1e-Cya" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Ujm-ZR-CP9"/>
+                            <constraint firstItem="Sew-SQ-i8w" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-128" id="ZDN-dK-oy2"/>
+                            <constraint firstItem="s2b-Fa-H6z" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="pYB-ez-elm"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+            <point key="canvasLocation" x="0.80000000000000004" y="371.06446776611699"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="launchscreen_logo" width="256" height="256"/>
+    </resources>
 </document>

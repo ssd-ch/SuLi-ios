@@ -71,6 +71,9 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
+        //空白行のセパレーターを非表示にする
+        self.tableView.tableFooterView = UIView(frame: .zero)
+        
         self.progressView.isHidden = true
     }
     

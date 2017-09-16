@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5C161B021F4CF0B50095237B /* ShareFolderLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C161B011F4CF0B50095237B /* ShareFolderLoginView.swift */; };
+		5C184F8A1F6D4829003FF8DA /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C184F8C1F6D4829003FF8DA /* Setting.storyboard */; };
+		5C184F901F6D9759003FF8DA /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C184F8F1F6D9759003FF8DA /* SettingViewController.swift */; };
+		5C184F941F6DA622003FF8DA /* DeveloperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C184F931F6DA622003FF8DA /* DeveloperViewController.swift */; };
 		5C1E62051F4190A600CF7BEB /* ClassroomDivideChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1E62041F4190A600CF7BEB /* ClassroomDivideChildViewController.swift */; };
 		5C203F2E1F3A277A00C89196 /* GetSyllabusForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C203F2D1F3A277A00C89196 /* GetSyllabusForm.swift */; };
 		5C203F301F3A436200C89196 /* GetCancelInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C203F2F1F3A436200C89196 /* GetCancelInfo.swift */; };
@@ -48,6 +51,10 @@
 /* Begin PBXFileReference section */
 		264DBFE15683CD108CA7159E /* Pods-SuLi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuLi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuLi/Pods-SuLi.debug.xcconfig"; sourceTree = "<group>"; };
 		5C161B011F4CF0B50095237B /* ShareFolderLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareFolderLoginView.swift; sourceTree = "<group>"; };
+		5C184F8B1F6D4829003FF8DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Setting.storyboard; sourceTree = "<group>"; };
+		5C184F8F1F6D9759003FF8DA /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		5C184F921F6D9FCE003FF8DA /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Setting.strings; sourceTree = "<group>"; };
+		5C184F931F6DA622003FF8DA /* DeveloperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeveloperViewController.swift; sourceTree = "<group>"; };
 		5C1E62041F4190A600CF7BEB /* ClassroomDivideChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassroomDivideChildViewController.swift; sourceTree = "<group>"; };
 		5C203F2D1F3A277A00C89196 /* GetSyllabusForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetSyllabusForm.swift; sourceTree = "<group>"; };
 		5C203F2F1F3A436200C89196 /* GetCancelInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCancelInfo.swift; sourceTree = "<group>"; };
@@ -138,6 +145,7 @@
 				5C1E62041F4190A600CF7BEB /* ClassroomDivideChildViewController.swift */,
 				5C6A19BE1ED3F48000BF1A52 /* ClassroomDivideVIewController.swift */,
 				5C6A19B81ED3B2FE00BF1A52 /* database.swift */,
+				5C184F931F6DA622003FF8DA /* DeveloperViewController.swift */,
 				5C74874C1F35EF3B0021D9A7 /* GetBuildingList.swift */,
 				5C203F2F1F3A436200C89196 /* GetCancelInfo.swift */,
 				5C6A19BA1ED3BE1600BF1A52 /* GetClassroomDivide.swift */,
@@ -146,6 +154,7 @@
 				5CE589111F62BE31005E32BB /* MyAlertController.swift */,
 				5C43DB931F4F743600A3B88E /* NoticeCustomViewDetailCell.swift */,
 				5C203F331F3F169600C89196 /* NoticeViewContoller.swift */,
+				5C184F8F1F6D9759003FF8DA /* SettingViewController.swift */,
 				5CD8E5BB1F5149D80021586F /* ShareFileViewController.swift */,
 				5C161B011F4CF0B50095237B /* ShareFolderLoginView.swift */,
 				5C60FB481F4A26B300268907 /* ShareFolderView.swift */,
@@ -165,6 +174,7 @@
 				5CFAB86C1EB60208001885C4 /* Main.storyboard */,
 				5C276E391F5AAAA100425815 /* Material.storyboard */,
 				5C276E4D1F5AAFF600425815 /* Notice.storyboard */,
+				5C184F8C1F6D4829003FF8DA /* Setting.storyboard */,
 				5C276E521F5AB00500425815 /* Syllabus.storyboard */,
 				5C276E571F5AB01100425815 /* TimeTable.storyboard */,
 			);
@@ -263,6 +273,7 @@
 				5C276E461F5AAFDE00425815 /* ClassroomDivide.storyboard in Resources */,
 				5CE589161F6590C0005E32BB /* Settings.bundle in Resources */,
 				5CFAB86E1EB60208001885C4 /* Main.storyboard in Resources */,
+				5C184F8A1F6D4829003FF8DA /* Setting.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +335,7 @@
 				5C60FB471F4A141400268907 /* UIColorExtension.swift in Sources */,
 				5CABE16A1ED02497009C271E /* SyllabusCustomViewCell.swift in Sources */,
 				5CFAB86B1EB60208001885C4 /* SyllabusListViewController.swift in Sources */,
+				5C184F941F6DA622003FF8DA /* DeveloperViewController.swift in Sources */,
 				5C6A19BB1ED3BE1600BF1A52 /* GetClassroomDivide.swift in Sources */,
 				5C203F301F3A436200C89196 /* GetCancelInfo.swift in Sources */,
 				5CABE16C1ED06A7E009C271E /* StringExtension.swift in Sources */,
@@ -331,6 +343,7 @@
 				5C60FB491F4A26B300268907 /* ShareFolderView.swift in Sources */,
 				5C22759B1EBC7F6D000A6AA9 /* URLEncoding.swift in Sources */,
 				5C74874D1F35EF3B0021D9A7 /* GetBuildingList.swift in Sources */,
+				5C184F901F6D9759003FF8DA /* SettingViewController.swift in Sources */,
 				5CE6175A1EBDCD7C00561E74 /* sjisHTTP.swift in Sources */,
 				5CE589121F62BE31005E32BB /* MyAlertController.swift in Sources */,
 				5CE589141F65216D005E32BB /* UpdateAllData.swift in Sources */,
@@ -351,6 +364,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		5C184F8C1F6D4829003FF8DA /* Setting.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5C184F8B1F6D4829003FF8DA /* Base */,
+				5C184F921F6D9FCE003FF8DA /* ja */,
+			);
+			name = Setting.storyboard;
+			sourceTree = "<group>";
+		};
 		5C276E391F5AAAA100425815 /* Material.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

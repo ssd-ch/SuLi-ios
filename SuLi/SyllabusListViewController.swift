@@ -40,9 +40,7 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
         
         //検索バーのテキストフィールドのカーソルの色を変える
         UITextField.appearance(whenContainedInInstancesOf: [SyllabusListViewController.self]).tintColor = self.searchBar.barTintColor
-        
-        //最初はスクロール禁止
-        self.tableView.isScrollEnabled = false
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -89,7 +87,6 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
         self.syllabus = SearchSyllabus(self.searchBar.text!)
         self.syllabus?.delegate = self
         self.syllabus!.load(addMode: false)
-        self.tableView.isScrollEnabled = true
         //self.tableView.reloadData()
     }
     
@@ -135,8 +132,10 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if tableView.contentOffset.y + tableView.frame.size.height > tableView.contentSize.height && tableView.isDragging {
             //一番下に来た時の処理
-            if syllabus!.loadingStatus {
-                syllabus!.load(addMode: true)
+            if syllabus != nil {
+                if syllabus!.loadingStatus {
+                    syllabus!.load(addMode: true)
+                }
             }
         }
     }
@@ -164,8 +163,8 @@ class SearchSyllabus {
     
     init(_ searchWord: String) {
         self.searchword = searchWord
-        loadCount = 0
-        hitNum = 0
+        self.loadCount = 0
+        self.hitNum = 0
     }
     
     func load(addMode: Bool){
