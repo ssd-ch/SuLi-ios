@@ -10,11 +10,13 @@ import UIKit
 import SwiftHTTP
 import Kanna
 import RealmSwift
+import GoogleMobileAds
 
 class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SyllabusDetailDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var bannerView: GADBannerView!
     
     //シラバスのURL
     var link: String?
@@ -49,6 +51,13 @@ class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UIT
         self.syllabus = GetSyllabus(self.link!)
         self.syllabus?.delegate = self
         self.syllabus!.start()
+        
+        //バナー広告
+        self.bannerView.adUnitID = NSLocalizedString("banner-id", tableName: "ResourceAddress", comment: "バナーID")
+        self.bannerView.rootViewController = self
+        let request = GADRequest()
+        request.testDevices = [kGADSimulatorID, "17a73169a9326a325c38836f01f7624c"]
+        self.bannerView.load(request)
     }
     
     override func didReceiveMemoryWarning() {

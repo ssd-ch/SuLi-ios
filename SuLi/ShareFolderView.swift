@@ -8,12 +8,14 @@
 
 import UIKit
 import TOSMBClient
+import GoogleMobileAds
 
 class ShareFolderViewContoller : UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var path = NSLocalizedString("shareStorage-rootPath", tableName: "ResourceAddress", comment: "共有ストレージの最初に表示する階層")
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var bannerView: GADBannerView!
     
     var files:[Any]?
     
@@ -37,6 +39,13 @@ class ShareFolderViewContoller : UIViewController, UITableViewDataSource, UITabl
         })
         
         //self.files = try! SMBSessionController.session?.requestContentsOfDirectory(atFilePath: self.path)
+        
+        //バナー広告
+        self.bannerView.adUnitID = NSLocalizedString("banner-id", tableName: "ResourceAddress", comment: "バナーID")
+        self.bannerView.rootViewController = self
+        let request = GADRequest()
+        request.testDevices = [kGADSimulatorID, "17a73169a9326a325c38836f01f7624c"]
+        self.bannerView.load(request)
     }
     
     // セルの行数を返す

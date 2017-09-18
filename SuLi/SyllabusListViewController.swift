@@ -10,11 +10,13 @@ import UIKit
 import SwiftHTTP
 import Kanna
 import RealmSwift
+import GoogleMobileAds
 
 class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, SyllabusListDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var bannerView: GADBannerView!
     
     var syllabus: SearchSyllabus?
     
@@ -40,7 +42,13 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
         
         //検索バーのテキストフィールドのカーソルの色を変える
         UITextField.appearance(whenContainedInInstancesOf: [SyllabusListViewController.self]).tintColor = self.searchBar.barTintColor
-
+        
+        //バナー広告
+        self.bannerView.adUnitID = NSLocalizedString("banner-id", tableName: "ResourceAddress", comment: "バナーID")
+        self.bannerView.rootViewController = self
+        let request = GADRequest()
+        request.testDevices = [kGADSimulatorID, "17a73169a9326a325c38836f01f7624c"]
+        self.bannerView.load(request)
     }
     
     override func didReceiveMemoryWarning() {

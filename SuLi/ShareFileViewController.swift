@@ -8,11 +8,13 @@
 
 import UIKit
 import TOSMBClient
+import GoogleMobileAds
 
 class ShareFileViewController : UIViewController {
     
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var bannerView: GADBannerView!
     
     var atPath = ""
     var destinationPath = ""
@@ -51,6 +53,13 @@ class ShareFileViewController : UIViewController {
             print("ShareFileView : \(String(describing: error?.localizedDescription))")
         })
         SMBSessionController.downloadTask?.resume()
+        
+        //バナー広告
+        self.bannerView.adUnitID = NSLocalizedString("banner-id", tableName: "ResourceAddress", comment: "バナーID")
+        self.bannerView.rootViewController = self
+        let request = GADRequest()
+        request.testDevices = [kGADSimulatorID, "17a73169a9326a325c38836f01f7624c"]
+        self.bannerView.load(request)
     }
     
     override func didMove(toParentViewController parent: UIViewController?) {

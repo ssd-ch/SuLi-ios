@@ -8,11 +8,13 @@
 
 import UIKit
 import RealmSwift
+import GoogleMobileAds
 
 class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var bannerView: GADBannerView!
     
     //CancelInfoオブジェクト
     let cancelInfo = try! Realm().objects(CancelInfo.self).sorted(byKeyPath: "id")
@@ -75,6 +77,13 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
         self.tableView.tableFooterView = UIView(frame: .zero)
         
         self.progressView.isHidden = true
+        
+        //バナー広告
+        self.bannerView.adUnitID = NSLocalizedString("banner-id", tableName: "ResourceAddress", comment: "バナーID")
+        self.bannerView.rootViewController = self
+        let request = GADRequest()
+        request.testDevices = [kGADSimulatorID, "17a73169a9326a325c38836f01f7624c"]
+        self.bannerView.load(request)
     }
     
     override func didReceiveMemoryWarning() {

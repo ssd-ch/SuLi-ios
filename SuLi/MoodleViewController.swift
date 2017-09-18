@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class MoodleViewContoller : UIViewController {
 
     @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var bannerView: GADBannerView!
     
     let link = NSLocalizedString("moodle", tableName: "ResourceAddress", comment: "MoodleのURL")
     
@@ -20,5 +22,12 @@ class MoodleViewContoller : UIViewController {
             let request = URLRequest(url: url)
             self.webView.loadRequest(request)
         }
+        
+        //バナー広告
+        self.bannerView.adUnitID = NSLocalizedString("banner-id", tableName: "ResourceAddress", comment: "バナーID")
+        self.bannerView.rootViewController = self
+        let request = GADRequest()
+        request.testDevices = [kGADSimulatorID, "17a73169a9326a325c38836f01f7624c"]
+        self.bannerView.load(request)
     }
 }

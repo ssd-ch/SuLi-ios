@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -18,23 +18,26 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2017 ssd_ch All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s2b-Fa-H6z">
-                                <rect key="frame" x="35" y="629" width="305" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2017 Taichi Shishido All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="s2b-Fa-H6z">
+                                <rect key="frame" x="5" y="696" width="404" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="yF5-Wm-BOl"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SuLi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sew-SQ-i8w">
-                                <rect key="frame" x="120" y="162.5" width="135.5" height="86"/>
+                                <rect key="frame" x="139" y="197" width="136" height="86"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="72"/>
                                 <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchscreen_logo" translatesAutoresizingMaskIntoConstraints="NO" id="tKs-1e-Cya">
-                                <rect key="frame" x="123" y="269" width="128" height="128"/>
+                                <rect key="frame" x="143" y="304" width="128" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="7Qs-gl-pkD"/>
                                     <constraint firstAttribute="width" constant="128" id="ntu-kE-cga"/>
@@ -45,16 +48,17 @@
                         <constraints>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="s2b-Fa-H6z" secondAttribute="bottom" constant="20" id="3gh-id-IC6"/>
                             <constraint firstItem="tKs-1e-Cya" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="4ht-8U-nkC"/>
+                            <constraint firstItem="s2b-Fa-H6z" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="5" id="Ixu-W9-F6V"/>
                             <constraint firstItem="Sew-SQ-i8w" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="OY6-q9-qXL"/>
                             <constraint firstItem="tKs-1e-Cya" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Ujm-ZR-CP9"/>
                             <constraint firstItem="Sew-SQ-i8w" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-128" id="ZDN-dK-oy2"/>
-                            <constraint firstItem="s2b-Fa-H6z" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="pYB-ez-elm"/>
+                            <constraint firstAttribute="trailing" secondItem="s2b-Fa-H6z" secondAttribute="trailing" constant="5" id="nuj-7K-1gp"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.80000000000000004" y="371.06446776611699"/>
+            <point key="canvasLocation" x="0.0" y="370.92391304347831"/>
         </scene>
     </scenes>
     <resources>

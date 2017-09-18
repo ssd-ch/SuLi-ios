@@ -53,7 +53,6 @@
 		5C161B011F4CF0B50095237B /* ShareFolderLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareFolderLoginView.swift; sourceTree = "<group>"; };
 		5C184F8B1F6D4829003FF8DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Setting.storyboard; sourceTree = "<group>"; };
 		5C184F8F1F6D9759003FF8DA /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-		5C184F921F6D9FCE003FF8DA /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Setting.strings; sourceTree = "<group>"; };
 		5C184F931F6DA622003FF8DA /* DeveloperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeveloperViewController.swift; sourceTree = "<group>"; };
 		5C1E62041F4190A600CF7BEB /* ClassroomDivideChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassroomDivideChildViewController.swift; sourceTree = "<group>"; };
 		5C203F2D1F3A277A00C89196 /* GetSyllabusForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetSyllabusForm.swift; sourceTree = "<group>"; };
@@ -85,6 +84,7 @@
 		5C77D4CA1EB87A3300CCC745 /* SyllabusDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusDetailViewController.swift; sourceTree = "<group>"; };
 		5CABE1691ED02497009C271E /* SyllabusCustomViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusCustomViewCell.swift; sourceTree = "<group>"; };
 		5CABE16B1ED06A7E009C271E /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		5CD2F7631F6FE16C00BD62D4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Setting.strings; sourceTree = "<group>"; };
 		5CD8E5BB1F5149D80021586F /* ShareFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareFileViewController.swift; sourceTree = "<group>"; };
 		5CE5890F1F604847005E32BB /* ResourceAddress.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = ResourceAddress.strings; sourceTree = "<group>"; };
 		5CE589111F62BE31005E32BB /* MyAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAlertController.swift; sourceTree = "<group>"; };
@@ -233,7 +233,7 @@
 				TargetAttributes = {
 					5CFAB8641EB60208001885C4 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 9VH8XFQJ8C;
+						DevelopmentTeam = F9G7YZVLF5;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -368,7 +368,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				5C184F8B1F6D4829003FF8DA /* Base */,
-				5C184F921F6D9FCE003FF8DA /* ja */,
+				5CD2F7631F6FE16C00BD62D4 /* ja */,
 			);
 			name = Setting.storyboard;
 			sourceTree = "<group>";
@@ -548,11 +548,13 @@
 			baseConfigurationReference = 264DBFE15683CD108CA7159E /* Pods-SuLi.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9VH8XFQJ8C;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = F9G7YZVLF5;
 				INFOPLIST_FILE = SuLi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cf.ssdb.SuLi;
+				PRODUCT_BUNDLE_IDENTIFIER = "-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
@@ -563,11 +565,13 @@
 			baseConfigurationReference = D04638F9448F7ABD8FCA6394 /* Pods-SuLi.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9VH8XFQJ8C;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = F9G7YZVLF5;
 				INFOPLIST_FILE = SuLi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cf.ssdb.SuLi;
+				PRODUCT_BUNDLE_IDENTIFIER = "-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

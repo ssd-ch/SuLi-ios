@@ -2,29 +2,41 @@
 /* Class = "UITableViewSection"; headerTitle = "General"; ObjectID = "4dM-Wa-xYD"; */
 "4dM-Wa-xYD.headerTitle" = "一般";
 
-/* Class = "UILabel"; text = "ssd_ch"; ObjectID = "AVZ-Pj-2km"; */
-"AVZ-Pj-2km.text" = "ssd_ch";
+/* Class = "UILabel"; text = "0.0"; ObjectID = "4gS-Pf-ceT"; */
+"4gS-Pf-ceT.text" = "0.0";
 
-/* Class = "UILabel"; text = "The manufacturing department Pim is doing creative activities regardless of genre. \nTeam members are now wanted!"; ObjectID = "GnU-0F-i3U"; */
-"GnU-0F-i3U.text" = "ものづくり部Pimはジャンルを問わないクリエイティブな活動をしています。\n興味がある方はお気軽にどうぞ!";
+/* Class = "UILabel"; text = "Taichi Shishido"; ObjectID = "AVZ-Pj-2km"; */
+"AVZ-Pj-2km.text" = "Taichi Shishido";
+
+/* Class = "UILabel"; text = "The manufacturing department Pim is doing creative activities regardless of genre. \nTeam members are now wanted!\nE-mail:pim.shimane@gmail.com"; ObjectID = "GnU-0F-i3U"; */
+"GnU-0F-i3U.text" = "ものづくり部Pimはジャンルを問わないクリエイティブな活動をしています。\n興味がある方はお気軽にどうぞ! \nメール: pim.shimane@gmail.com";
 
 /* Class = "UITabBarItem"; title = "Setting"; ObjectID = "P2W-MT-Wjd"; */
 "P2W-MT-Wjd.title" = "設定";
 
-/* Class = "UILabel"; text = "Automatic Data Sync"; ObjectID = "ZZz-Ut-Loy"; */
-"ZZz-Ut-Loy.text" = "自動データ同期";
+/* Class = "UINavigationItem"; title = "Developer"; ObjectID = "VlA-8n-E2m"; */
+"VlA-8n-E2m.title" = "開発者";
 
-/* Class = "UITableViewSection"; headerTitle = "Invitation"; ObjectID = "jEv-fb-t2Y"; */
+/* Class = "UILabel"; text = "Automatic Data Sync"; ObjectID = "ZZz-Ut-Loy"; */
+"ZZz-Ut-Loy.text" = "データ同期";
+
+/* Class = "UITableViewSection"; headerTitle = "About"; ObjectID = "dBZ-Rw-26H"; */
+"dBZ-Rw-26H.headerTitle" = "このアプリについて";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "dxj-W2-CnY"; */
+"dxj-W2-CnY.title" = "戻る";
+
+/* Class = "UITableViewSection"; headerTitle = "Activity"; ObjectID = "jEv-fb-t2Y"; */
 "jEv-fb-t2Y.headerTitle" = "活動";
 
 /* Class = "UITableViewSection"; headerTitle = "Developer"; ObjectID = "q1s-4J-ahi"; */
-"q1s-4J-ahi.headerTitle" = "開発";
+"q1s-4J-ahi.headerTitle" = "開発者";
 
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "unH-Ki-gJy"; */
 "unH-Ki-gJy.title" = "設定";
 
-/* Class = "UILabel"; text = "Taichi Shishido"; ObjectID = "vyl-zh-6dh"; */
-"vyl-zh-6dh.text" = "Taichi Shishido";
+/* Class = "UILabel"; text = "Version"; ObjectID = "xxm-UR-LL5"; */
+"xxm-UR-LL5.text" = "バージョン";
 
 /* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "zXr-zw-UzF"; */
 "zXr-zw-UzF.title" = "戻る";

@@ -9,12 +9,14 @@
 import UIKit
 import XLPagerTabStrip
 import RealmSwift
+import GoogleMobileAds
 
 class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var toolbar: UIToolbar!
+    @IBOutlet weak var bannerView: GADBannerView!
     
     //タブのボタンのテキスト
     let week = [NSLocalizedString("classroom-tab-Monday", comment: "教室配当表のタブ名:月曜日"),
@@ -124,6 +126,13 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPi
         self.progressView.isHidden = true
         //最前面に表示(storyboardでは前面にしているがタブバーが前面に表示されるので)
         self.view.bringSubview(toFront: self.progressView)
+        
+        //バナー広告
+        self.bannerView.adUnitID = NSLocalizedString("banner-id", tableName: "ResourceAddress", comment: "バナーID")
+        self.bannerView.rootViewController = self
+        let request = GADRequest()
+        request.testDevices = [kGADSimulatorID, "17a73169a9326a325c38836f01f7624c"]
+        self.bannerView.load(request)
     }
     
     override func didReceiveMemoryWarning() {

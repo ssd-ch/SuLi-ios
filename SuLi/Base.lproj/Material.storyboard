@@ -64,10 +64,19 @@
                                     <action selector="pushLoginButton:" destination="t8P-05-108" eventType="touchUpInside" id="LcW-w5-0yi"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qyI-lI-6qM" customClass="GADBannerView">
+                                <rect key="frame" x="0.0" y="553" width="375" height="50"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="eXt-m9-IJO"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="qyI-lI-6qM" secondAttribute="trailing" id="3xk-Yn-8Wi"/>
                             <constraint firstItem="Hay-ff-28X" firstAttribute="centerX" secondItem="hF9-xi-9Wh" secondAttribute="centerX" constant="120" id="5q4-oZ-v5s"/>
+                            <constraint firstItem="qyI-lI-6qM" firstAttribute="leading" secondItem="hF9-xi-9Wh" secondAttribute="leading" id="7pe-ud-yaZ"/>
                             <constraint firstItem="FIt-nP-itH" firstAttribute="leading" secondItem="mlE-Iz-yDq" secondAttribute="leading" constant="100" id="8Yr-MP-L1R"/>
                             <constraint firstItem="FIt-nP-itH" firstAttribute="centerY" secondItem="hF9-xi-9Wh" secondAttribute="centerY" constant="-50" id="E7Y-WJ-ySu"/>
                             <constraint firstItem="nnh-wq-Nfu" firstAttribute="leading" secondItem="XM4-Mn-J37" secondAttribute="leading" constant="100" id="Lry-Nt-FMf"/>
@@ -75,6 +84,7 @@
                             <constraint firstItem="nnh-wq-Nfu" firstAttribute="centerY" secondItem="hF9-xi-9Wh" secondAttribute="centerY" constant="-100" id="Ti2-Eu-Lgm"/>
                             <constraint firstItem="FIt-nP-itH" firstAttribute="centerY" secondItem="mlE-Iz-yDq" secondAttribute="centerY" id="VUl-F9-ebO"/>
                             <constraint firstItem="nnh-wq-Nfu" firstAttribute="centerY" secondItem="XM4-Mn-J37" secondAttribute="centerY" id="YEO-gC-kv1"/>
+                            <constraint firstItem="RVg-Z2-N9x" firstAttribute="top" secondItem="qyI-lI-6qM" secondAttribute="bottom" id="hZn-oU-4cP"/>
                             <constraint firstItem="Hay-ff-28X" firstAttribute="centerY" secondItem="hF9-xi-9Wh" secondAttribute="centerY" constant="-75" id="tv5-yF-m33"/>
                             <constraint firstItem="nnh-wq-Nfu" firstAttribute="centerX" secondItem="hF9-xi-9Wh" secondAttribute="centerX" constant="20" id="zNE-Cr-iUx"/>
                         </constraints>
@@ -83,6 +93,7 @@
                         <barButtonItem key="backBarButtonItem" title="Buck" id="03C-xr-RSF"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="bannerView" destination="qyI-lI-6qM" id="t1y-1q-IYf"/>
                         <outlet property="idTextField" destination="nnh-wq-Nfu" id="3tR-D4-hXL"/>
                         <outlet property="passwordTextField" destination="FIt-nP-itH" id="GCV-tW-CKn"/>
                         <segue destination="Mlg-RK-XK3" kind="show" identifier="dummy" id="hcm-Tb-6SY"/>
@@ -105,7 +116,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JAP-80-Ipz">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="553"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="UYU-aH-Q6y" style="IBUITableViewCellStyleDefault" id="muE-Za-j6g">
@@ -127,23 +138,34 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XXx-Qx-iLq" customClass="GADBannerView">
+                                <rect key="frame" x="0.0" y="553" width="375" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="rIy-mh-02L"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="g0t-sP-ZLd" firstAttribute="top" secondItem="XXx-Qx-iLq" secondAttribute="bottom" id="ErB-IU-t5b"/>
+                            <constraint firstAttribute="trailing" secondItem="XXx-Qx-iLq" secondAttribute="trailing" id="LkQ-JD-diD"/>
                             <constraint firstItem="JAP-80-Ipz" firstAttribute="top" secondItem="jp5-oV-sy2" secondAttribute="bottom" id="MDb-1C-pNI"/>
-                            <constraint firstItem="g0t-sP-ZLd" firstAttribute="top" secondItem="JAP-80-Ipz" secondAttribute="bottom" id="fuN-HX-FFf"/>
+                            <constraint firstItem="XXx-Qx-iLq" firstAttribute="leading" secondItem="dOH-0X-Cvc" secondAttribute="leading" id="Veb-Z0-yTO"/>
                             <constraint firstItem="JAP-80-Ipz" firstAttribute="leading" secondItem="dOH-0X-Cvc" secondAttribute="leading" id="hgK-cL-RH5"/>
                             <constraint firstAttribute="trailing" secondItem="JAP-80-Ipz" secondAttribute="trailing" id="tG4-gg-YRf"/>
+                            <constraint firstItem="XXx-Qx-iLq" firstAttribute="top" secondItem="JAP-80-Ipz" secondAttribute="bottom" id="xKG-63-uFN"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bannerView" destination="XXx-Qx-iLq" id="DgB-Hg-j5J"/>
                         <outlet property="tableView" destination="JAP-80-Ipz" id="WEG-RN-Ma2"/>
                         <segue destination="Wxn-WF-2Dj" kind="show" identifier="dummy" id="6cX-U8-gUr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vUe-b6-DcW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2993" y="-188"/>
+            <point key="canvasLocation" x="2992.8000000000002" y="-188.45577211394306"/>
         </scene>
         <!--Share File View Controller-->
         <scene sceneID="I6X-Kv-5cT">
@@ -158,32 +180,43 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JZT-mP-yHu">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="553"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iNd-qz-lqh">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="2.5"/>
                             </progressView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="URh-UD-SG7" customClass="GADBannerView">
+                                <rect key="frame" x="0.0" y="553" width="375" height="50"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Vvf-vM-6Gg"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="URh-UD-SG7" firstAttribute="leading" secondItem="jY0-DE-MGE" secondAttribute="leading" id="007-PA-Fov"/>
                             <constraint firstItem="iNd-qz-lqh" firstAttribute="leading" secondItem="jY0-DE-MGE" secondAttribute="leading" id="6Xe-jC-qm5"/>
                             <constraint firstAttribute="trailing" secondItem="JZT-mP-yHu" secondAttribute="trailing" id="9bK-Ga-g7R"/>
-                            <constraint firstItem="MmT-Fc-cSu" firstAttribute="top" secondItem="JZT-mP-yHu" secondAttribute="bottom" id="Giq-1I-Doo"/>
+                            <constraint firstItem="MmT-Fc-cSu" firstAttribute="top" secondItem="URh-UD-SG7" secondAttribute="bottom" id="ISE-e0-m8S"/>
                             <constraint firstItem="JZT-mP-yHu" firstAttribute="top" secondItem="fvz-vp-3hb" secondAttribute="bottom" id="Ipf-8J-XHu"/>
+                            <constraint firstItem="URh-UD-SG7" firstAttribute="top" secondItem="JZT-mP-yHu" secondAttribute="bottom" id="ZMm-Cc-kou"/>
                             <constraint firstItem="JZT-mP-yHu" firstAttribute="leading" secondItem="jY0-DE-MGE" secondAttribute="leading" id="aqc-9o-m1Y"/>
                             <constraint firstAttribute="trailing" secondItem="iNd-qz-lqh" secondAttribute="trailing" id="juz-83-5f1"/>
                             <constraint firstItem="iNd-qz-lqh" firstAttribute="top" secondItem="fvz-vp-3hb" secondAttribute="bottom" id="oRm-to-jT1"/>
+                            <constraint firstAttribute="trailing" secondItem="URh-UD-SG7" secondAttribute="trailing" id="pVP-sr-F39"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bannerView" destination="URh-UD-SG7" id="HCC-BT-Wf3"/>
                         <outlet property="progressView" destination="iNd-qz-lqh" id="FYs-3s-D1Q"/>
                         <outlet property="webView" destination="JZT-mP-yHu" id="qJR-Mj-xaM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LVx-rc-CHK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3900" y="-188"/>
+            <point key="canvasLocation" x="3900" y="-188.45577211394306"/>
         </scene>
         <!--Moodle View-->
         <scene sceneID="hdC-aB-VAo">
@@ -198,13 +231,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="POq-uc-Edn">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="553"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qA0-ft-IIJ" customClass="GADBannerView">
+                                <rect key="frame" x="0.0" y="553" width="375" height="50"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="yEm-Aj-m61"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="CSp-DT-0Z6" firstAttribute="top" secondItem="POq-uc-Edn" secondAttribute="bottom" id="FWp-Ql-UOT"/>
+                            <constraint firstItem="qA0-ft-IIJ" firstAttribute="top" secondItem="POq-uc-Edn" secondAttribute="bottom" id="0gG-nI-nc4"/>
+                            <constraint firstAttribute="trailing" secondItem="qA0-ft-IIJ" secondAttribute="trailing" id="3oB-uO-fYH"/>
+                            <constraint firstItem="CSp-DT-0Z6" firstAttribute="top" secondItem="qA0-ft-IIJ" secondAttribute="bottom" id="FKH-nk-Uji"/>
+                            <constraint firstItem="qA0-ft-IIJ" firstAttribute="leading" secondItem="FcU-c0-Kgq" secondAttribute="leading" id="QOE-MH-hpN"/>
                             <constraint firstAttribute="trailing" secondItem="POq-uc-Edn" secondAttribute="trailing" id="ZZ6-zE-Gv5"/>
                             <constraint firstItem="POq-uc-Edn" firstAttribute="top" secondItem="Tdn-Dh-Mww" secondAttribute="bottom" id="aF8-DR-N0R"/>
                             <constraint firstItem="POq-uc-Edn" firstAttribute="leading" secondItem="FcU-c0-Kgq" secondAttribute="leading" id="waV-LF-CQY"/>
@@ -212,12 +255,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Moodle" id="ITl-WV-jfd"/>
                     <connections>
+                        <outlet property="bannerView" destination="qA0-ft-IIJ" id="saq-3p-UXU"/>
                         <outlet property="webView" destination="POq-uc-Edn" id="Afa-kp-CCL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZIE-gY-iLb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2118" y="517"/>
+            <point key="canvasLocation" x="2117.5999999999999" y="516.79160419790105"/>
         </scene>
         <!--Material-->
         <scene sceneID="Z7K-VO-R4e">

@@ -11,6 +11,7 @@ import UIKit
 class SettingViewContoller : UITableViewController {
     
     @IBOutlet weak var switchDataSync: UISwitch!
+    @IBOutlet weak var versionLabel: UILabel!
     
     //設定の状態を取得するためのキー
     static let dataSync = "dataSync"
@@ -22,6 +23,13 @@ class SettingViewContoller : UITableViewController {
         super.viewDidLoad()
         
         self.switchDataSync.isOn = self.userDefault.bool(forKey: SettingViewContoller.dataSync)
+        
+        if let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
+            self.versionLabel!.text = appVersion
+        }
+        else {
+            self.versionLabel!.text = "0.0"
+        }
     }
     
     //自動データ同期のスイッチの値を変更した時に呼ばれる

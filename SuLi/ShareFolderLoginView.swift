@@ -8,11 +8,13 @@
 
 import UIKit
 import TOSMBClient
+import GoogleMobileAds
 
 class ShareFolderLoginViewContoller : UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var bannerView: GADBannerView!
     
     private let host = NSLocalizedString("shareStorage-hostName", tableName: "ResourceAddress", comment: "共有ストレージのホスト名")
     private let ip = NSLocalizedString("shareStorage-ip", tableName: "ResourceAddress", comment: "共有ストレージのホスト名")
@@ -27,6 +29,12 @@ class ShareFolderLoginViewContoller : UIViewController, UITextFieldDelegate {
         //パスワード表示にする
         self.passwordTextField.isSecureTextEntry = true
         
+        //バナー広告
+        self.bannerView.adUnitID = NSLocalizedString("banner-id", tableName: "ResourceAddress", comment: "バナーID")
+        self.bannerView.rootViewController = self
+        let request = GADRequest()
+        request.testDevices = [kGADSimulatorID, "17a73169a9326a325c38836f01f7624c"]
+        self.bannerView.load(request)
     }
     
     // 改行ボタンを押した時の処理

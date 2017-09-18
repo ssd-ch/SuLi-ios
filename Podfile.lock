@@ -1,15 +1,17 @@
 PODS:
+  - Google-Mobile-Ads-SDK (7.23.0)
   - Kanna (2.2.1)
-  - Realm (2.10.0):
-    - Realm/Headers (= 2.10.0)
-  - Realm/Headers (2.10.0)
-  - RealmSwift (2.10.0):
-    - Realm (= 2.10.0)
+  - Realm (2.10.1):
+    - Realm/Headers (= 2.10.1)
+  - Realm/Headers (2.10.1)
+  - RealmSwift (2.10.1):
+    - Realm (= 2.10.1)
   - SwiftHTTP (2.0.2)
   - TOSMBClient (1.0.8)
   - XLPagerTabStrip (7.0.0)
 
 DEPENDENCIES:
+  - Google-Mobile-Ads-SDK
   - Kanna
   - RealmSwift
   - SwiftHTTP
@@ -17,13 +19,14 @@ DEPENDENCIES:
   - XLPagerTabStrip
 
 SPEC CHECKSUMS:
+  Google-Mobile-Ads-SDK: a43dc8efdb566c74d00ac6934c781de969348d80
   Kanna: 182789ab065e8f9a6ccc2a74ce6283d3401c0c4a
-  Realm: 98b3a25643cf6b3e07d2b99fb43fe0eb9c801dec
-  RealmSwift: 34073ad3a31232bbaf7c0db898c037940284cba2
+  Realm: fc7a317a5c2c9ba91f5f235ede4e2ea76e9eba0c
+  RealmSwift: 505ed6c15942a2e76f5cfa78a8667cfa997ee75b
   SwiftHTTP: faa1a5f7670568ffc9361898229dbe84a6088468
   TOSMBClient: 8884ede03ae70e6087962433fda22fb6b4b8c7f8
   XLPagerTabStrip: 9be80a66c6b7d60306b2c0a6004965016d68f813
 
-PODFILE CHECKSUM: fe24b327781f35f4e69b3721bd8fcaea1411b142
+PODFILE CHECKSUM: 5f146188af8064319dcb6adf8a59a295cd9ba1db
 
 COCOAPODS: 1.2.1
