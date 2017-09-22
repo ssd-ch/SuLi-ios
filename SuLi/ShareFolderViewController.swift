@@ -1,5 +1,5 @@
 //
-//  ShareFolderView.swift
+//  ShareFolderViewController.swift
 //  SuLi
 //
 //  Created by ssd_ch on 2017/08/21.
@@ -10,12 +10,14 @@ import UIKit
 import TOSMBClient
 import GoogleMobileAds
 
-class ShareFolderViewContoller : UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ShareFolderViewContoller : UIViewController, UITableViewDataSource, UITableViewDelegate, GADBannerViewDelegate {
     
     var path = NSLocalizedString("shareStorage-rootPath", tableName: "ResourceAddress", comment: "共有ストレージの最初に表示する階層")
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bannerView: GADBannerView!
+    
+    @IBOutlet weak var bannerViewHeightConstraint: NSLayoutConstraint!
     
     var files:[Any]?
     
@@ -46,6 +48,30 @@ class ShareFolderViewContoller : UIViewController, UITableViewDataSource, UITabl
         let request = GADRequest()
         request.testDevices = [kGADSimulatorID, "17a73169a9326a325c38836f01f7624c"]
         self.bannerView.load(request)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("ShareFolderViewController : load display")
+        
+        //バナー広告
+        if UserDefaults.standard.bool(forKey: SettingViewContoller.adsDisplay) {
+            self.bannerView.isAutoloadEnabled = true
+            self.bannerViewHeightConstraint.constant = 50
+            self.bannerView.isHidden = false
+        }
+        else {
+            self.bannerView.isAutoloadEnabled = false
+            self.bannerViewHeightConstraint.constant = 0
+            self.bannerView.isHidden = true
+        }
+        
+    }
+    
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print("ShareFolderViewController : \(error.localizedDescription)")
+        self.bannerViewHeightConstraint.constant = 0
+        self.bannerView.isHidden = true
     }
     
     // セルの行数を返す

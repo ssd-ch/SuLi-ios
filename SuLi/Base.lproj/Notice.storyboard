@@ -177,6 +177,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="bannerView" destination="R24-gK-sid" id="8Xk-Cf-ekg"/>
+                        <outlet property="bannerViewHeightConstraint" destination="Uf8-uq-R0w" id="fwL-Wa-FHj"/>
                         <outlet property="progressView" destination="IYE-5r-vXB" id="IpJ-Gy-ZaD"/>
                         <outlet property="tableView" destination="exD-IK-z3S" id="1O5-FR-3Mh"/>
                     </connections>

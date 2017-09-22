@@ -35,8 +35,12 @@
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "unH-Ki-gJy"; */
 "unH-Ki-gJy.title" = "設定";
 
+/* Class = "UILabel"; text = "Ads display"; ObjectID = "wSt-JC-Xyd"; */
+"wSt-JC-Xyd.text" = "広告表示";
+
 /* Class = "UILabel"; text = "Version"; ObjectID = "xxm-UR-LL5"; */
 "xxm-UR-LL5.text" = "バージョン";
 
 /* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "zXr-zw-UzF"; */
 "zXr-zw-UzF.title" = "戻る";
+

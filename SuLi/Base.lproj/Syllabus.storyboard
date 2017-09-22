@@ -90,6 +90,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="bannerView" destination="eej-aa-CpJ" id="xJS-Sf-D1N"/>
+                        <outlet property="bannerViewHeightConstraint" destination="6mC-9V-0rx" id="gne-Dv-PYp"/>
                         <outlet property="searchBar" destination="BtM-1o-bAK" id="e6g-Yi-fjA"/>
                         <outlet property="tableView" destination="pbt-Qg-JZc" id="LPF-kK-lVE"/>
                     </connections>
@@ -181,13 +182,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fkj-wM-zzi" userLabel="Detail Label">
-                                                    <rect key="frame" x="16" y="32" width="351" height="8"/>
+                                                    <rect key="frame" x="16" y="32" width="296" height="8"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mrf-5T-VCB">
-                                                    <rect key="frame" x="15" y="8" width="352" height="21"/>
+                                                    <rect key="frame" x="15" y="8" width="297" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="93x-6a-Z90"/>
                                                     </constraints>
@@ -266,6 +267,7 @@
                     <navigationItem key="navigationItem" title="Syllabus Detail" id="zAl-Ou-uOn"/>
                     <connections>
                         <outlet property="bannerView" destination="y9d-Sd-Yqu" id="eid-ma-gVh"/>
+                        <outlet property="bannerViewHeightConstraint" destination="U7f-Mf-Ino" id="QLx-3H-gVj"/>
                         <outlet property="progressView" destination="kc1-X4-QkZ" id="LDV-dd-O4g"/>
                         <outlet property="tableView" destination="xCv-n1-SRe" id="1Gd-Uv-94P"/>
                     </connections>

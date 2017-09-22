@@ -11,12 +11,14 @@ import XLPagerTabStrip
 import RealmSwift
 import GoogleMobileAds
 
-class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPickerViewDataSource, UIPickerViewDelegate, GADBannerViewDelegate {
     
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var bannerView: GADBannerView!
+    
+    @IBOutlet weak var bannerViewHeightConstraint: NSLayoutConstraint!
     
     //タブのボタンのテキスト
     let week = [NSLocalizedString("classroom-tab-Monday", comment: "教室配当表のタブ名:月曜日"),
@@ -138,6 +140,30 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPi
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("ClassroomDivideViewContoroller : load display")
+        
+        //バナー広告
+        if UserDefaults.standard.bool(forKey: SettingViewContoller.adsDisplay) {
+            self.bannerView.isAutoloadEnabled = true
+            self.bannerViewHeightConstraint.constant = 50
+            self.bannerView.isHidden = false
+        }
+        else {
+            self.bannerView.isAutoloadEnabled = false
+            self.bannerViewHeightConstraint.constant = 0
+            self.bannerView.isHidden = true
+        }
+        
+    }
+    
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print("ClassroomDivideViewContoroller : \(error.localizedDescription)")
+        self.bannerViewHeightConstraint.constant = 0
+        self.bannerView.isHidden = true
     }
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {

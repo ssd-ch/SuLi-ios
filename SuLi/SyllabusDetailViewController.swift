@@ -12,11 +12,13 @@ import Kanna
 import RealmSwift
 import GoogleMobileAds
 
-class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SyllabusDetailDelegate {
+class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SyllabusDetailDelegate, GADBannerViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var bannerView: GADBannerView!
+    
+    @IBOutlet weak var bannerViewHeightConstraint: NSLayoutConstraint!
     
     //シラバスのURL
     var link: String?
@@ -63,6 +65,30 @@ class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UIT
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("SyllabusDetailViewController : load display")
+        
+        //バナー広告
+        if UserDefaults.standard.bool(forKey: SettingViewContoller.adsDisplay) {
+            self.bannerView.isAutoloadEnabled = true
+            self.bannerViewHeightConstraint.constant = 50
+            self.bannerView.isHidden = false
+        }
+        else {
+            self.bannerView.isAutoloadEnabled = false
+            self.bannerViewHeightConstraint.constant = 0
+            self.bannerView.isHidden = true
+        }
+        
+    }
+    
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print("SyllabusDetailViewController : \(error.localizedDescription)")
+        self.bannerViewHeightConstraint.constant = 0
+        self.bannerView.isHidden = true
     }
     
     //リロードデータ用デリゲートメソッド

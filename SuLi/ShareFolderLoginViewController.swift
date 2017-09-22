@@ -1,5 +1,5 @@
 //
-//  ShareFolderLoginView.swift
+//  ShareFolderLoginViewContoller.swift
 //  SuLi
 //
 //  Created by ssd_ch on 2017/08/23.
@@ -10,11 +10,13 @@ import UIKit
 import TOSMBClient
 import GoogleMobileAds
 
-class ShareFolderLoginViewContoller : UIViewController, UITextFieldDelegate {
+class ShareFolderLoginViewContoller : UIViewController, UITextFieldDelegate, GADBannerViewDelegate {
     
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var bannerView: GADBannerView!
+    
+    @IBOutlet weak var bannerViewHeightConstraint: NSLayoutConstraint!
     
     private let host = NSLocalizedString("shareStorage-hostName", tableName: "ResourceAddress", comment: "共有ストレージのホスト名")
     private let ip = NSLocalizedString("shareStorage-ip", tableName: "ResourceAddress", comment: "共有ストレージのホスト名")
@@ -35,6 +37,30 @@ class ShareFolderLoginViewContoller : UIViewController, UITextFieldDelegate {
         let request = GADRequest()
         request.testDevices = [kGADSimulatorID, "17a73169a9326a325c38836f01f7624c"]
         self.bannerView.load(request)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("ShareFolderLoginViewContoller : load display")
+        
+        //バナー広告
+        if UserDefaults.standard.bool(forKey: SettingViewContoller.adsDisplay) {
+            self.bannerView.isAutoloadEnabled = true
+            self.bannerViewHeightConstraint.constant = 50
+            self.bannerView.isHidden = false
+        }
+        else {
+            self.bannerView.isAutoloadEnabled = false
+            self.bannerViewHeightConstraint.constant = 0
+            self.bannerView.isHidden = true
+        }
+        
+    }
+    
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print("ShareFolderLoginViewContoller : \(error.localizedDescription)")
+        self.bannerViewHeightConstraint.constant = 0
+        self.bannerView.isHidden = true
     }
     
     // 改行ボタンを押した時の処理

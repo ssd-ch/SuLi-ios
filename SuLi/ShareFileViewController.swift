@@ -10,11 +10,13 @@ import UIKit
 import TOSMBClient
 import GoogleMobileAds
 
-class ShareFileViewController : UIViewController {
+class ShareFileViewController : UIViewController, GADBannerViewDelegate {
     
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var bannerView: GADBannerView!
+    
+    @IBOutlet weak var bannerViewHeightConstraint: NSLayoutConstraint!
     
     var atPath = ""
     var destinationPath = ""
@@ -60,6 +62,30 @@ class ShareFileViewController : UIViewController {
         let request = GADRequest()
         request.testDevices = [kGADSimulatorID, "17a73169a9326a325c38836f01f7624c"]
         self.bannerView.load(request)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("ShareFileViewController : load display")
+        
+        //バナー広告
+        if UserDefaults.standard.bool(forKey: SettingViewContoller.adsDisplay) {
+            self.bannerView.isAutoloadEnabled = true
+            self.bannerViewHeightConstraint.constant = 50
+            self.bannerView.isHidden = false
+        }
+        else {
+            self.bannerView.isAutoloadEnabled = false
+            self.bannerViewHeightConstraint.constant = 0
+            self.bannerView.isHidden = true
+        }
+        
+    }
+    
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print("ShareFileViewController : \(error.localizedDescription)")
+        self.bannerViewHeightConstraint.constant = 0
+        self.bannerView.isHidden = true
     }
     
     override func didMove(toParentViewController parent: UIViewController?) {

@@ -12,13 +12,15 @@ import Kanna
 import RealmSwift
 import GoogleMobileAds
 
-class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, SyllabusListDelegate {
+class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, SyllabusListDelegate, GADBannerViewDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bannerView: GADBannerView!
     
-    var syllabus: SearchSyllabus?
+    @IBOutlet weak var bannerViewHeightConstraint: NSLayoutConstraint!
+    
+    private var syllabus: SearchSyllabus?
     
     // セルに表示するテキスト
     var tableData : [SyllabusList] = []
@@ -49,11 +51,36 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
         let request = GADRequest()
         request.testDevices = [kGADSimulatorID, "17a73169a9326a325c38836f01f7624c"]
         self.bannerView.load(request)
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("SyllabusListViewController : load display")
+        
+        //バナー広告
+        if UserDefaults.standard.bool(forKey: SettingViewContoller.adsDisplay) {
+            self.bannerView.isAutoloadEnabled = true
+            self.bannerViewHeightConstraint.constant = 50
+            self.bannerView.isHidden = false
+        }
+        else {
+            self.bannerView.isAutoloadEnabled = false
+            self.bannerViewHeightConstraint.constant = 0
+            self.bannerView.isHidden = true
+        }
+        
+    }
+    
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print("SyllabusListViewController : \(error.localizedDescription)")
+        self.bannerViewHeightConstraint.constant = 0
+        self.bannerView.isHidden = true
     }
     
     //リロードデータ用デリゲートメソッド

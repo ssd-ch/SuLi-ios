@@ -94,6 +94,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bannerView" destination="qyI-lI-6qM" id="t1y-1q-IYf"/>
+                        <outlet property="bannerViewHeightConstraint" destination="eXt-m9-IJO" id="Gfz-U9-OEr"/>
                         <outlet property="idTextField" destination="nnh-wq-Nfu" id="3tR-D4-hXL"/>
                         <outlet property="passwordTextField" destination="FIt-nP-itH" id="GCV-tW-CKn"/>
                         <segue destination="Mlg-RK-XK3" kind="show" identifier="dummy" id="hcm-Tb-6SY"/>
@@ -159,6 +160,7 @@
                     </view>
                     <connections>
                         <outlet property="bannerView" destination="XXx-Qx-iLq" id="DgB-Hg-j5J"/>
+                        <outlet property="bannerViewHeightConstraint" destination="rIy-mh-02L" id="a2Q-tE-zUM"/>
                         <outlet property="tableView" destination="JAP-80-Ipz" id="WEG-RN-Ma2"/>
                         <segue destination="Wxn-WF-2Dj" kind="show" identifier="dummy" id="6cX-U8-gUr"/>
                     </connections>
@@ -210,6 +212,7 @@
                     </view>
                     <connections>
                         <outlet property="bannerView" destination="URh-UD-SG7" id="HCC-BT-Wf3"/>
+                        <outlet property="bannerViewHeightConstraint" destination="Vvf-vM-6Gg" id="A9z-af-Obm"/>
                         <outlet property="progressView" destination="iNd-qz-lqh" id="FYs-3s-D1Q"/>
                         <outlet property="webView" destination="JZT-mP-yHu" id="qJR-Mj-xaM"/>
                     </connections>
@@ -256,6 +259,7 @@
                     <navigationItem key="navigationItem" title="Moodle" id="ITl-WV-jfd"/>
                     <connections>
                         <outlet property="bannerView" destination="qA0-ft-IIJ" id="saq-3p-UXU"/>
+                        <outlet property="bannerViewHeightConstraint" destination="yEm-Aj-m61" id="sOj-dR-CVN"/>
                         <outlet property="webView" destination="POq-uc-Edn" id="Afa-kp-CCL"/>
                     </connections>
                 </viewController>

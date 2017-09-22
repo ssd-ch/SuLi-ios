@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5C161B021F4CF0B50095237B /* ShareFolderLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C161B011F4CF0B50095237B /* ShareFolderLoginView.swift */; };
+		5C161B021F4CF0B50095237B /* ShareFolderLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C161B011F4CF0B50095237B /* ShareFolderLoginViewController.swift */; };
 		5C184F8A1F6D4829003FF8DA /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C184F8C1F6D4829003FF8DA /* Setting.storyboard */; };
 		5C184F901F6D9759003FF8DA /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C184F8F1F6D9759003FF8DA /* SettingViewController.swift */; };
 		5C184F941F6DA622003FF8DA /* DeveloperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C184F931F6DA622003FF8DA /* DeveloperViewController.swift */; };
@@ -26,7 +26,7 @@
 		5C276E551F5AB01100425815 /* TimeTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C276E571F5AB01100425815 /* TimeTable.storyboard */; };
 		5C43DB941F4F743600A3B88E /* NoticeCustomViewDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C43DB931F4F743600A3B88E /* NoticeCustomViewDetailCell.swift */; };
 		5C60FB471F4A141400268907 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C60FB461F4A141400268907 /* UIColorExtension.swift */; };
-		5C60FB491F4A26B300268907 /* ShareFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C60FB481F4A26B300268907 /* ShareFolderView.swift */; };
+		5C60FB491F4A26B300268907 /* ShareFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C60FB481F4A26B300268907 /* ShareFolderViewController.swift */; };
 		5C6A19B91ED3B2FE00BF1A52 /* database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6A19B81ED3B2FE00BF1A52 /* database.swift */; };
 		5C6A19BB1ED3BE1600BF1A52 /* GetClassroomDivide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6A19BA1ED3BE1600BF1A52 /* GetClassroomDivide.swift */; };
 		5C6A19BF1ED3F48000BF1A52 /* ClassroomDivideVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6A19BE1ED3F48000BF1A52 /* ClassroomDivideVIewController.swift */; };
@@ -50,7 +50,7 @@
 
 /* Begin PBXFileReference section */
 		264DBFE15683CD108CA7159E /* Pods-SuLi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuLi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuLi/Pods-SuLi.debug.xcconfig"; sourceTree = "<group>"; };
-		5C161B011F4CF0B50095237B /* ShareFolderLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareFolderLoginView.swift; sourceTree = "<group>"; };
+		5C161B011F4CF0B50095237B /* ShareFolderLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareFolderLoginViewController.swift; sourceTree = "<group>"; };
 		5C184F8B1F6D4829003FF8DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Setting.storyboard; sourceTree = "<group>"; };
 		5C184F8F1F6D9759003FF8DA /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		5C184F931F6DA622003FF8DA /* DeveloperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeveloperViewController.swift; sourceTree = "<group>"; };
@@ -75,16 +75,16 @@
 		5C276E591F5AB01900425815 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/TimeTable.strings; sourceTree = "<group>"; };
 		5C43DB931F4F743600A3B88E /* NoticeCustomViewDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeCustomViewDetailCell.swift; sourceTree = "<group>"; };
 		5C60FB461F4A141400268907 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
-		5C60FB481F4A26B300268907 /* ShareFolderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareFolderView.swift; sourceTree = "<group>"; };
+		5C60FB481F4A26B300268907 /* ShareFolderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareFolderViewController.swift; sourceTree = "<group>"; };
 		5C60FB4D1F4A333800268907 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		5C6A19B81ED3B2FE00BF1A52 /* database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = database.swift; sourceTree = "<group>"; };
 		5C6A19BA1ED3BE1600BF1A52 /* GetClassroomDivide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetClassroomDivide.swift; sourceTree = "<group>"; };
 		5C6A19BE1ED3F48000BF1A52 /* ClassroomDivideVIewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassroomDivideVIewController.swift; sourceTree = "<group>"; };
 		5C74874C1F35EF3B0021D9A7 /* GetBuildingList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetBuildingList.swift; sourceTree = "<group>"; };
 		5C77D4CA1EB87A3300CCC745 /* SyllabusDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusDetailViewController.swift; sourceTree = "<group>"; };
+		5C892A511F74B84600DB3728 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Setting.strings; sourceTree = "<group>"; };
 		5CABE1691ED02497009C271E /* SyllabusCustomViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusCustomViewCell.swift; sourceTree = "<group>"; };
 		5CABE16B1ED06A7E009C271E /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
-		5CD2F7631F6FE16C00BD62D4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Setting.strings; sourceTree = "<group>"; };
 		5CD8E5BB1F5149D80021586F /* ShareFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareFileViewController.swift; sourceTree = "<group>"; };
 		5CE5890F1F604847005E32BB /* ResourceAddress.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = ResourceAddress.strings; sourceTree = "<group>"; };
 		5CE589111F62BE31005E32BB /* MyAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAlertController.swift; sourceTree = "<group>"; };
@@ -156,8 +156,8 @@
 				5C203F331F3F169600C89196 /* NoticeViewContoller.swift */,
 				5C184F8F1F6D9759003FF8DA /* SettingViewController.swift */,
 				5CD8E5BB1F5149D80021586F /* ShareFileViewController.swift */,
-				5C161B011F4CF0B50095237B /* ShareFolderLoginView.swift */,
-				5C60FB481F4A26B300268907 /* ShareFolderView.swift */,
+				5C161B011F4CF0B50095237B /* ShareFolderLoginViewController.swift */,
+				5C60FB481F4A26B300268907 /* ShareFolderViewController.swift */,
 				5CE617591EBDCD7C00561E74 /* sjisHTTP.swift */,
 				5C276E311F58343100425815 /* SMBSessionController.swift */,
 				5CABE16B1ED06A7E009C271E /* StringExtension.swift */,
@@ -340,7 +340,7 @@
 				5C203F301F3A436200C89196 /* GetCancelInfo.swift in Sources */,
 				5CABE16C1ED06A7E009C271E /* StringExtension.swift in Sources */,
 				5C77D4CB1EB87A3300CCC745 /* SyllabusDetailViewController.swift in Sources */,
-				5C60FB491F4A26B300268907 /* ShareFolderView.swift in Sources */,
+				5C60FB491F4A26B300268907 /* ShareFolderViewController.swift in Sources */,
 				5C22759B1EBC7F6D000A6AA9 /* URLEncoding.swift in Sources */,
 				5C74874D1F35EF3B0021D9A7 /* GetBuildingList.swift in Sources */,
 				5C184F901F6D9759003FF8DA /* SettingViewController.swift in Sources */,
@@ -352,7 +352,7 @@
 				5C203F321F3EFF7700C89196 /* MoodleViewController.swift in Sources */,
 				5C6A19BF1ED3F48000BF1A52 /* ClassroomDivideVIewController.swift in Sources */,
 				5C203F341F3F169600C89196 /* NoticeViewContoller.swift in Sources */,
-				5C161B021F4CF0B50095237B /* ShareFolderLoginView.swift in Sources */,
+				5C161B021F4CF0B50095237B /* ShareFolderLoginViewController.swift in Sources */,
 				5C276E321F58343100425815 /* SMBSessionController.swift in Sources */,
 				5C43DB941F4F743600A3B88E /* NoticeCustomViewDetailCell.swift in Sources */,
 				5CFAB8691EB60208001885C4 /* AppDelegate.swift in Sources */,
@@ -368,7 +368,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				5C184F8B1F6D4829003FF8DA /* Base */,
-				5CD2F7631F6FE16C00BD62D4 /* ja */,
+				5C892A511F74B84600DB3728 /* ja */,
 			);
 			name = Setting.storyboard;
 			sourceTree = "<group>";

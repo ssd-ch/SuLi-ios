@@ -1,5 +1,5 @@
 PODS:
-  - Google-Mobile-Ads-SDK (7.23.0)
+  - Google-Mobile-Ads-SDK (7.24.0)
   - Kanna (2.2.1)
   - Realm (2.10.1):
     - Realm/Headers (= 2.10.1)
@@ -19,7 +19,7 @@ DEPENDENCIES:
   - XLPagerTabStrip
 
 SPEC CHECKSUMS:
-  Google-Mobile-Ads-SDK: a43dc8efdb566c74d00ac6934c781de969348d80
+  Google-Mobile-Ads-SDK: f405b7acb098fe89e6fcd05fdbf400c1a5bcb935
   Kanna: 182789ab065e8f9a6ccc2a74ce6283d3401c0c4a
   Realm: fc7a317a5c2c9ba91f5f235ede4e2ea76e9eba0c
   RealmSwift: 505ed6c15942a2e76f5cfa78a8667cfa997ee75b

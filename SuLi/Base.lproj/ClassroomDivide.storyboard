@@ -111,6 +111,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="bannerView" destination="uSg-ys-yim" id="ZYH-Qm-wCY"/>
+                        <outlet property="bannerViewHeightConstraint" destination="CYZ-mw-Qyb" id="D4G-Od-j7b"/>
                         <outlet property="containerView" destination="Sm8-ZR-WTe" id="xZY-qs-OeU"/>
                         <outlet property="pickerView" destination="4bA-qB-IO6" id="yvc-UF-mwS"/>
                         <outlet property="progressView" destination="5Te-C0-RVe" id="zus-nG-p0k"/>

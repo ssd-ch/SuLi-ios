@@ -54,6 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // デフォルト値登録※すでに値が更新されていた場合は、更新後の値のままになる
         userDefault.register(defaults: [updateInterval: 0.0])
         userDefault.register(defaults: [SettingViewContoller.dataSync: true])
+        userDefault.register(defaults: [SettingViewContoller.adsDisplay: true])
         
         let now = Date()
         let interval = now.timeIntervalSince1970 - userDefault.double(forKey: updateInterval)
