@@ -15,6 +15,7 @@ class ShareFolderLoginViewContoller : UIViewController, UITextFieldDelegate, GAD
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var bannerView: GADBannerView!
+    @IBOutlet weak var loginButton: UIButton!
     
     @IBOutlet weak var bannerViewHeightConstraint: NSLayoutConstraint!
     
@@ -82,6 +83,9 @@ class ShareFolderLoginViewContoller : UIViewController, UITextFieldDelegate, GAD
     
     @IBAction func pushLoginButton(_ sender: Any) {
         
+        self.loginButton.isEnabled = false
+        self.view.endEditing(true)
+        
         //DNSを逆引きする
         let host = CFHostCreateWithName(nil, self.domain as CFString).takeRetainedValue()
         CFHostStartInfoResolution(host, .addresses, nil)
@@ -92,7 +96,7 @@ class ShareFolderLoginViewContoller : UIViewController, UITextFieldDelegate, GAD
             if getnameinfo(theAddress.bytes.assumingMemoryBound(to: sockaddr.self), socklen_t(theAddress.length), &hostname, socklen_t(hostname.count), nil, 0, NI_NUMERICHOST) == 0 {
                 //IPアドレスが解決できたので遷移を許可する
                 let numAddress = String(cString: hostname)
-                print("resolved host address \(numAddress)")
+                print("ShareFolderLoginViewContoller : resolved host address \(numAddress)")
                 SMBSessionController.session = TOSMBSession(hostName: self.host, ipAddress: numAddress)
                 SMBSessionController.session?.setLoginCredentialsWithUserName(self.idTextField.text!, password: self.passwordTextField.text!)
                 SMBSessionController.session?.requestContentsOfDirectory(atFilePath: "/", success: { d in
@@ -100,24 +104,30 @@ class ShareFolderLoginViewContoller : UIViewController, UITextFieldDelegate, GAD
                         let nextViewController = self.storyboard!.instantiateViewController(withIdentifier: "ShareFolderView") as! ShareFolderViewContoller
                         nextViewController.navigationItem.title = "work"
                         self.show(nextViewController, sender: nil)
+                        self.loginButton.isEnabled = true
                     }
                 }, error: { error in
                     print(error!.localizedDescription)
-                    //アラートを作成
-                    let alert = MyAlertController.action(title: NSLocalizedString("alert-error-title", comment: "エラーアラートのタイトル"), message: error!.localizedDescription)
-                    //アラートを表示
-                    self.present(alert, animated: true, completion: nil)
+                    DispatchQueue.main.async {
+                        //アラートを作成
+                        let alert = MyAlertController.action(title: NSLocalizedString("alert-error-title", comment: "エラーアラートのタイトル"), message: error!.localizedDescription)
+                        //アラートを表示
+                        self.present(alert, animated: true, completion: nil)
+                        self.loginButton.isEnabled = true
+                    }
                 })
             }
         }
         else {
-            print("can't resolve smb server address")
+            print("ShareFolderLoginViewContoller : can't resolve smb server address")
             //アラートを作成
             let alert = MyAlertController.action(title: NSLocalizedString("alert-error-title", comment: "エラーアラートのタイトル"), message: NSLocalizedString("alert-error-server-not-found", comment: "サーバーが見つからない時のメッセージ"))
             //アラートを表示
             self.present(alert, animated: true, completion: nil)
+            
+            self.loginButton.isEnabled = true
         }
         
     }
-
+    
 }

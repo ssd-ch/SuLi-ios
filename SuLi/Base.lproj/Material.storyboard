@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="eSC-hN-Lpr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="eSC-hN-Lpr">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,14 +18,11 @@
                         <viewControllerLayoutGuide type="bottom" id="RVg-Z2-N9x"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="hF9-xi-9Wh">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XM4-Mn-J37">
                                 <rect key="frame" x="57.5" y="191" width="100" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="IxA-J7-cGh"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -41,9 +38,6 @@
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mlE-Iz-yDq">
                                 <rect key="frame" x="57.5" y="241" width="100" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="Q4n-Bp-peU"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -77,16 +71,18 @@
                             <constraint firstAttribute="trailing" secondItem="qyI-lI-6qM" secondAttribute="trailing" id="3xk-Yn-8Wi"/>
                             <constraint firstItem="Hay-ff-28X" firstAttribute="centerX" secondItem="hF9-xi-9Wh" secondAttribute="centerX" constant="120" id="5q4-oZ-v5s"/>
                             <constraint firstItem="qyI-lI-6qM" firstAttribute="leading" secondItem="hF9-xi-9Wh" secondAttribute="leading" id="7pe-ud-yaZ"/>
-                            <constraint firstItem="FIt-nP-itH" firstAttribute="leading" secondItem="mlE-Iz-yDq" secondAttribute="leading" constant="100" id="8Yr-MP-L1R"/>
+                            <constraint firstItem="mlE-Iz-yDq" firstAttribute="trailing" secondItem="FIt-nP-itH" secondAttribute="leading" id="8Yr-MP-L1R"/>
                             <constraint firstItem="FIt-nP-itH" firstAttribute="centerY" secondItem="hF9-xi-9Wh" secondAttribute="centerY" constant="-50" id="E7Y-WJ-ySu"/>
                             <constraint firstItem="nnh-wq-Nfu" firstAttribute="leading" secondItem="XM4-Mn-J37" secondAttribute="leading" constant="100" id="Lry-Nt-FMf"/>
                             <constraint firstItem="FIt-nP-itH" firstAttribute="centerX" secondItem="hF9-xi-9Wh" secondAttribute="centerX" constant="20" id="RFQ-3W-KK4"/>
+                            <constraint firstItem="XM4-Mn-J37" firstAttribute="trailing" secondItem="nnh-wq-Nfu" secondAttribute="leading" id="SpS-7U-sQe"/>
                             <constraint firstItem="nnh-wq-Nfu" firstAttribute="centerY" secondItem="hF9-xi-9Wh" secondAttribute="centerY" constant="-100" id="Ti2-Eu-Lgm"/>
                             <constraint firstItem="FIt-nP-itH" firstAttribute="centerY" secondItem="mlE-Iz-yDq" secondAttribute="centerY" id="VUl-F9-ebO"/>
                             <constraint firstItem="nnh-wq-Nfu" firstAttribute="centerY" secondItem="XM4-Mn-J37" secondAttribute="centerY" id="YEO-gC-kv1"/>
                             <constraint firstItem="RVg-Z2-N9x" firstAttribute="top" secondItem="qyI-lI-6qM" secondAttribute="bottom" id="hZn-oU-4cP"/>
                             <constraint firstItem="Hay-ff-28X" firstAttribute="centerY" secondItem="hF9-xi-9Wh" secondAttribute="centerY" constant="-75" id="tv5-yF-m33"/>
                             <constraint firstItem="nnh-wq-Nfu" firstAttribute="centerX" secondItem="hF9-xi-9Wh" secondAttribute="centerX" constant="20" id="zNE-Cr-iUx"/>
+                            <constraint firstItem="FIt-nP-itH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mlE-Iz-yDq" secondAttribute="leading" constant="100" id="zuF-7u-BOh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Share Folder" id="Pgj-iX-wY2" userLabel="WorkFolder">
@@ -96,6 +92,7 @@
                         <outlet property="bannerView" destination="qyI-lI-6qM" id="t1y-1q-IYf"/>
                         <outlet property="bannerViewHeightConstraint" destination="eXt-m9-IJO" id="Gfz-U9-OEr"/>
                         <outlet property="idTextField" destination="nnh-wq-Nfu" id="3tR-D4-hXL"/>
+                        <outlet property="loginButton" destination="Hay-ff-28X" id="2Lt-f3-Z1b"/>
                         <outlet property="passwordTextField" destination="FIt-nP-itH" id="GCV-tW-CKn"/>
                         <segue destination="Mlg-RK-XK3" kind="show" identifier="dummy" id="hcm-Tb-6SY"/>
                     </connections>
@@ -113,7 +110,7 @@
                         <viewControllerLayoutGuide type="bottom" id="g0t-sP-ZLd"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dOH-0X-Cvc">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JAP-80-Ipz">
@@ -178,7 +175,7 @@
                         <viewControllerLayoutGuide type="bottom" id="MmT-Fc-cSu"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="jY0-DE-MGE">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JZT-mP-yHu">
@@ -230,7 +227,7 @@
                         <viewControllerLayoutGuide type="bottom" id="CSp-DT-0Z6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="FcU-c0-Kgq">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="POq-uc-Edn">
@@ -274,7 +271,7 @@
                     <tabBarItem key="tabBarItem" title="Material" image="book" id="Kxb-ak-lOc"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="o0d-iR-AZR">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -296,7 +293,7 @@
             <objects>
                 <tableViewController id="zJI-fB-GRO" userLabel="Materials" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="iM9-6r-FOK">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -310,7 +307,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Share Storare（Work Folder）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Tra-Ks-Dx2">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <rect key="frame" x="16" y="0.0" width="344" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -330,7 +327,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Moodle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g3Z-du-kRZ">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <rect key="frame" x="16" y="0.0" width="344" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>

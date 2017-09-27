@@ -19,7 +19,7 @@ class ShareFileViewController : UIViewController, GADBannerViewDelegate {
     @IBOutlet weak var bannerViewHeightConstraint: NSLayoutConstraint!
     
     var atPath = ""
-    var destinationPath = ""
+    var destinationPath: String! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,11 +99,18 @@ class ShareFileViewController : UIViewController, GADBannerViewDelegate {
     override func didMove(toParentViewController parent: UIViewController?) {
         super.willMove(toParentViewController: parent)
         if parent == nil {
-            do {
-                try FileManager.default.removeItem(atPath: self.destinationPath)
-                print("ShareFileView : delete \(self.destinationPath)")
-            } catch {
-                print("ShareFileView : failed delete \(self.destinationPath)")
+            print("ShareFileView : back to parent view controller")
+            if self.destinationPath != nil {
+                do {
+                    try FileManager.default.removeItem(atPath: self.destinationPath!)
+                    print("ShareFileView : delete \(self.destinationPath!)")
+                } catch {
+                    print("ShareFileView : failed delete \(self.destinationPath!)")
+                }
+            }
+            else {
+                SMBSessionController.downloadTask?.cancel()
+                print("ShareFileView : canceled download task")
             }
         }
     }
