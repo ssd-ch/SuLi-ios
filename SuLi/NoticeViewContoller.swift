@@ -12,6 +12,7 @@ import GoogleMobileAds
 
 class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableViewDelegate, GADBannerViewDelegate {
     
+    @IBOutlet weak var reloadButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var bannerView: GADBannerView!
@@ -29,8 +30,8 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
     
     //リロードボタンが押された時の処理
     @IBAction func pushReloadButton(_ sender: Any) {
-        //タッチアクションを無効化
-        UIApplication.shared.beginIgnoringInteractionEvents()
+        //ボタンを無効化
+        self.reloadButton.isEnabled = false
         
         //プログレスバーを表示、0.1にセット
         self.progressView.setProgress(0.1, animated: false)
@@ -41,8 +42,8 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
                 DispatchQueue.main.async {
                     self.setSectionIndexCellType()
                     self.tableView.reloadData()
-                    //タッチアクションを有効化
-                    UIApplication.shared.endIgnoringInteractionEvents()
+                    //ボタンを有効化
+                    self.reloadButton.isEnabled = true
                     self.progressView.setProgress(1.0, animated: true)
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
@@ -51,8 +52,9 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
         },
             errorHandler: { message in
                 DispatchQueue.main.async {
-                    //タッチアクションを有効化
-                    UIApplication.shared.endIgnoringInteractionEvents()
+                    //ボタンを有効化
+                    self.reloadButton.isEnabled = true
+                    
                     self.progressView.isHidden = true
                     //アラートを作成
                     let alert = MyAlertController.action(title: NSLocalizedString("alert-error-title", comment: "エラーアラートのタイトル"), message: message)
@@ -83,6 +85,7 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
         //バナー広告
         self.bannerView.adUnitID = NSLocalizedString("banner-id", tableName: "ResourceAddress", comment: "バナーID")
         self.bannerView.rootViewController = self
+        self.bannerView.delegate = self
         let request = GADRequest()
         request.testDevices = [kGADSimulatorID, "17a73169a9326a325c38836f01f7624c"]
         self.bannerView.load(request)
@@ -111,6 +114,13 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
         
     }
     
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        if UserDefaults.standard.bool(forKey: SettingViewContoller.adsDisplay) {
+            self.bannerViewHeightConstraint.constant = 50
+            self.bannerView.isHidden = false
+        }
+    }
+    
     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
         print("NoticeViewContoller : \(error.localizedDescription)")
         self.bannerViewHeightConstraint.constant = 0
@@ -122,7 +132,7 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
         
         if self.cellType[indexPath.section][indexPath.row] {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath) as! NoticeCustomViewDetailCell
-            cell.titleLabel?.text = self.cancelInfo.filter("date = '\(self.sectionIndex[indexPath.section].0)'")[indexPath.row].classname
+            cell.titleLabel?.text = self.cancelInfo.filter("date = '\(self.sectionIndex[indexPath.section].0)'")[indexPath.row].classname + " (" + self.cancelInfo.filter("date = '\(self.sectionIndex[indexPath.section].0)'")[indexPath.row].department + ")"
             cell.subtitleLabel?.text = self.cancelInfo.filter("date = '\(self.sectionIndex[indexPath.section].0)'")[indexPath.row].person
             cell.classificationLabel?.text = NSLocalizedString("lectureNotice-item-classification", comment: "講義案内:分類") + self.cancelInfo.filter("date = '\(self.sectionIndex[indexPath.section].0)'")[indexPath.row].classification
             cell.timeLabel?.text = NSLocalizedString("lectureNotice-item-time", comment: "講義案内:時限") + self.cancelInfo.filter("date = '\(self.sectionIndex[indexPath.section].0)'")[indexPath.row].time
@@ -132,7 +142,7 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
         }
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-            cell.textLabel?.text = self.cancelInfo.filter("date = '\(self.sectionIndex[indexPath.section].0)'")[indexPath.row].classname
+            cell.textLabel?.text = self.cancelInfo.filter("date = '\(self.sectionIndex[indexPath.section].0)'")[indexPath.row].classname + " (" + self.cancelInfo.filter("date = '\(self.sectionIndex[indexPath.section].0)'")[indexPath.row].department + ")"
             cell.detailTextLabel?.text = self.cancelInfo.filter("date = '\(self.sectionIndex[indexPath.section].0)'")[indexPath.row].person
             return cell
         }

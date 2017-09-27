@@ -13,6 +13,7 @@ import GoogleMobileAds
 
 class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPickerViewDataSource, UIPickerViewDelegate, GADBannerViewDelegate {
     
+    @IBOutlet weak var reloadButton: UIBarButtonItem!
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var toolbar: UIToolbar!
@@ -42,8 +43,8 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPi
     
     //リロードボタンが押された時の処理
     @IBAction func pushReloadButton(_ sender: Any) {
-        //タッチアクションを無効化
-        UIApplication.shared.beginIgnoringInteractionEvents()
+        //ボタンを無効化
+        self.reloadButton.isEnabled = false
         
         for view in super.viewControllers as! [ClassroomDivideChildViewController] {
             //データの更新をロックする
@@ -65,8 +66,8 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPi
                 //pickerViewの更新
                 self.pickerView.reloadAllComponents()
                 
-                //タッチアクションを有効化
-                UIApplication.shared.endIgnoringInteractionEvents()
+                //ボタンを有効化
+                self.reloadButton.isEnabled = true
                 
                 self.progressView.setProgress(1.0, animated: true)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
@@ -75,8 +76,9 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPi
             }
         }, errorHandler: { message in
             DispatchQueue.main.async {
-                //タッチアクションを有効化
-                UIApplication.shared.endIgnoringInteractionEvents()
+                //ボタンを有効化
+                self.reloadButton.isEnabled = true
+                
                 self.progressView.isHidden = true
                 //アラートを作成
                 let alert = MyAlertController.action(title: NSLocalizedString("alert-error-title", comment: "エラーアラートのタイトル"), message: message)
@@ -130,8 +132,10 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPi
         self.view.bringSubview(toFront: self.progressView)
         
         //バナー広告
+        self.bannerViewHeightConstraint.constant = 0
         self.bannerView.adUnitID = NSLocalizedString("banner-id", tableName: "ResourceAddress", comment: "バナーID")
         self.bannerView.rootViewController = self
+        self.bannerView.delegate = self
         let request = GADRequest()
         request.testDevices = [kGADSimulatorID, "17a73169a9326a325c38836f01f7624c"]
         self.bannerView.load(request)
@@ -149,15 +153,22 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPi
         //バナー広告
         if UserDefaults.standard.bool(forKey: SettingViewContoller.adsDisplay) {
             self.bannerView.isAutoloadEnabled = true
-            self.bannerViewHeightConstraint.constant = 50
             self.bannerView.isHidden = false
+            self.bannerViewHeightConstraint.constant = 50
         }
         else {
             self.bannerView.isAutoloadEnabled = false
-            self.bannerViewHeightConstraint.constant = 0
             self.bannerView.isHidden = true
+            self.bannerViewHeightConstraint.constant = 0
         }
         
+    }
+    
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        if UserDefaults.standard.bool(forKey: SettingViewContoller.adsDisplay) {
+            self.bannerViewHeightConstraint.constant = 50
+            self.bannerView.isHidden = false
+        }
     }
     
     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
@@ -218,5 +229,5 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPi
             view.updateData()
         }
     }
-
+    
 }

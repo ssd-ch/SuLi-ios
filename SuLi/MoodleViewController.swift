@@ -28,6 +28,7 @@ class MoodleViewContoller : UIViewController, GADBannerViewDelegate {
         //バナー広告
         self.bannerView.adUnitID = NSLocalizedString("banner-id", tableName: "ResourceAddress", comment: "バナーID")
         self.bannerView.rootViewController = self
+        self.bannerView.delegate = self
         let request = GADRequest()
         request.testDevices = [kGADSimulatorID, "17a73169a9326a325c38836f01f7624c"]
         self.bannerView.load(request)
@@ -49,6 +50,13 @@ class MoodleViewContoller : UIViewController, GADBannerViewDelegate {
             self.bannerView.isHidden = true
         }
         
+    }
+    
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        if UserDefaults.standard.bool(forKey: SettingViewContoller.adsDisplay) {
+            self.bannerViewHeightConstraint.constant = 50
+            self.bannerView.isHidden = false
+        }
     }
     
     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {

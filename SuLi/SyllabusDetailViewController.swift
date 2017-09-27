@@ -57,6 +57,7 @@ class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UIT
         //バナー広告
         self.bannerView.adUnitID = NSLocalizedString("banner-id", tableName: "ResourceAddress", comment: "バナーID")
         self.bannerView.rootViewController = self
+        self.bannerView.delegate = self
         let request = GADRequest()
         request.testDevices = [kGADSimulatorID, "17a73169a9326a325c38836f01f7624c"]
         self.bannerView.load(request)
@@ -83,6 +84,13 @@ class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UIT
             self.bannerView.isHidden = true
         }
         
+    }
+    
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        if UserDefaults.standard.bool(forKey: SettingViewContoller.adsDisplay) {
+            self.bannerViewHeightConstraint.constant = 50
+            self.bannerView.isHidden = false
+        }
     }
     
     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
@@ -257,6 +265,7 @@ class GetSyllabus {
                         let placeQuery = try! Realm().objects(ClassroomDivide.self).filter(filter)
                         
                         for data in placeQuery {
+                            
                             if data.person.matches(pattern: ".*\(tdBasic[10].text!.replaceAll(pattern: " |　", with: ".*")).*") {
                                 resultData.place.append(
                                     (data.place, "\(NSLocalizedString("syllabus-place-weekday-\(data.weekday)", comment: "シラバスの場所:曜日")) \(NSLocalizedString("syllabus-place-time-\(data.time)", comment: "シラバスの場所:時限"))")

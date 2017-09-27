@@ -36,7 +36,7 @@ workフォルダは島根大学のネットワークに接続していること�
 * シラバスのブックマーク機能  
 
 ### ライセンス
-Copyright © 2017年 ssd. All rights reserved.
+Copyright © 2017 Taichi Shishido All rights reserved.
 
 特定のライセンスには基づきませんが以下の事項に従ってください。
 * 接続先のサーバー(島根大学)等に負荷をかける行為を禁止

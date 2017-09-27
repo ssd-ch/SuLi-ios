@@ -215,7 +215,7 @@ struct GetClassroomDivide {
         
         var result = ["", "", "", ""]
         
-        let d_code = "ＬＳＥＨＭＳＡＦＣ○*"
+        let d_code = "LSEHMSAFCＬＳＥＨＭＳＡＦＣ○*"
         
         var text = str.replaceAll(pattern: "、", with: " ")
         

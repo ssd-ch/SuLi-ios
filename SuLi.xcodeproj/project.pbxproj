@@ -68,7 +68,6 @@
 		5C276E491F5AAFE100425815 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ClassroomDivide.storyboard; sourceTree = "<group>"; };
 		5C276E4A1F5AAFE600425815 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ClassroomDivide.strings; sourceTree = "<group>"; };
 		5C276E4C1F5AAFF600425815 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Notice.storyboard; sourceTree = "<group>"; };
-		5C276E4F1F5AAFF900425815 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Notice.strings; sourceTree = "<group>"; };
 		5C276E511F5AB00500425815 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Syllabus.storyboard; sourceTree = "<group>"; };
 		5C276E541F5AB00700425815 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Syllabus.strings; sourceTree = "<group>"; };
 		5C276E561F5AB01100425815 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TimeTable.storyboard; sourceTree = "<group>"; };
@@ -93,6 +92,7 @@
 		5CE5891A1F66823C005E32BB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5CE5891C1F668670005E32BB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Material.strings; sourceTree = "<group>"; };
 		5CE617591EBDCD7C00561E74 /* sjisHTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sjisHTTP.swift; sourceTree = "<group>"; };
+		5CECA0491F7A56580084919F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Notice.strings; sourceTree = "<group>"; };
 		5CFAB8651EB60208001885C4 /* SuLi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuLi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CFAB8681EB60208001885C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5CFAB86A1EB60208001885C4 /* SyllabusListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusListViewController.swift; sourceTree = "<group>"; };
@@ -420,7 +420,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				5C276E4C1F5AAFF600425815 /* Base */,
-				5C276E4F1F5AAFF900425815 /* ja */,
+				5CECA0491F7A56580084919F /* ja */,
 			);
 			name = Notice.storyboard;
 			sourceTree = "<group>";
@@ -570,7 +570,7 @@
 				DEVELOPMENT_TEAM = F9G7YZVLF5;
 				INFOPLIST_FILE = SuLi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "-";
+				PRODUCT_BUNDLE_IDENTIFIER = SuLi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/Bridging-Header.h";
@@ -587,7 +587,7 @@
 				DEVELOPMENT_TEAM = F9G7YZVLF5;
 				INFOPLIST_FILE = SuLi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "-";
+				PRODUCT_BUNDLE_IDENTIFIER = SuLi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/Bridging-Header.h";
