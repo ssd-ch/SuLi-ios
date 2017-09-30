@@ -1,6 +1,9 @@
 # SuLi-ios (Shimane University Lecture Information)
 ## 島根大学の講義情報を表示するiOSアプリ
 
+### Webサイト
+#### [http://suli.ga](http://suli.ga)
+
 ### 主な機能
 * シラバス  
 授業名を入力してシラバスを検索し、閲覧することができます。   
@@ -36,7 +39,7 @@ workフォルダは島根大学のネットワークに接続していること�
 * シラバスのブックマーク機能  
 
 ### ライセンス
-Copyright © 2017 Taichi Shishido All rights reserved.
+© 2017 Taichi Shishido
 
 特定のライセンスには基づきませんが以下の事項に従ってください。
 * 接続先のサーバー(島根大学)等に負荷をかける行為を禁止
