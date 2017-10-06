@@ -20,7 +20,7 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var bannerViewHeightConstraint: NSLayoutConstraint!
     
     //CancelInfoオブジェクト
-    let cancelInfo = try! Realm().objects(CancelInfo.self).sorted(byKeyPath: "id")
+    var cancelInfo : Results<CancelInfo>!
     
     //セルの種類(true:DetailCell false:Cell)
     var cellType = [[Bool]]()
@@ -67,6 +67,8 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        self.cancelInfo  = try! Realm().objects(CancelInfo.self).sorted(byKeyPath: "id")
         
         self.setSectionIndexCellType()
         

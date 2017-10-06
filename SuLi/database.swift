@@ -32,6 +32,7 @@ class Building: Object {
     dynamic var id = -1
     dynamic var building_name = ""
     dynamic var url = ""
+    dynamic var color = ""
     
     override static func primaryKey() -> String? {
         return "id"
@@ -44,7 +45,7 @@ class SyllabusForm: Object {
     dynamic var form = ""
     dynamic var display = ""
     dynamic var value = ""
-
+    
     override static func primaryKey() -> String? {
         return "id"
     }
@@ -68,6 +69,23 @@ class CancelInfo: Object {
 }
 
 struct RealmManagement {
+    
+    //マイグレーション
+    static let config = Realm.Configuration(
+        // 新しいスキーマバージョンを設定します。以前のバージョンより大きくなければなりません。
+        // （スキーマバージョンを設定したことがなければ、最初は0が設定されています）
+        schemaVersion: 1,
+        
+        // マイグレーション処理を記述します。古いスキーマバージョンのRealmを開こうとすると
+        // 自動的にマイグレーションが実行されます。
+        migrationBlock: { migration, oldSchemaVersion in
+            // 最初のマイグレーションの場合、`oldSchemaVersion`は0です
+            if (oldSchemaVersion < 1) {
+                // Realmは自動的に新しく追加されたプロパティと、削除されたプロパティを認識します。
+                // そしてディスク上のスキーマを自動的にアップデートします。
+                print("RealmManagement : Run migration")
+            }
+    })
     
     //ファイルの肥大化を防ぐために最適化を行う
     static func fileOptimisation() {

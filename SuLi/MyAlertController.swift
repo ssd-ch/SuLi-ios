@@ -25,6 +25,21 @@ class MyAlertController {
         return alertController
     }
     
+    static func cancel(title: String, message: String) -> UIAlertController {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        //キャンセルボタンを作成
+        let cancelAction = UIAlertAction(title: NSLocalizedString("alert-cancel-button", comment: "キャンセルボタンのテキスト"), style: UIAlertActionStyle.cancel){ (action: UIAlertAction) in
+            //キャンセルボタンが押された時の処理
+            //print("Tap cancel button")
+        }
+        
+        //キャンセルボタンを追加
+        alertController.addAction(cancelAction)
+        
+        return alertController
+    }
+    
     static func indicator(title: String) -> UIAlertController {
         
         let alert = UIAlertController(title: title, message: "\n", preferredStyle: UIAlertControllerStyle.alert)
@@ -35,6 +50,31 @@ class MyAlertController {
         
         let views: [String: UIView] = ["alert": alert.view, "indicator": indicator]
         var constraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[indicator]-(12)-|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[indicator]|", options: [], metrics: nil, views: views)
+        alert.view.addConstraints(constraints)
+        
+        indicator.isUserInteractionEnabled = false
+        indicator.color = UIColor.lightGray
+        indicator.startAnimating()
+        
+        return alert
+    }
+    
+    static func cancelIndicator(title: String, cancelHandler: @escaping () -> ()) -> UIAlertController {
+        
+        let alert = UIAlertController(title: title, message: "\n", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let indicator = UIActivityIndicatorView()
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        alert.view.addSubview(indicator)
+        
+        let cancelAction = UIAlertAction(title: NSLocalizedString("alert-cancel-button", comment: "キャンセルボタンのテキスト"), style: UIAlertActionStyle.cancel){ (action: UIAlertAction) in
+            cancelHandler()
+        }
+        alert.addAction(cancelAction)
+        
+        let views: [String: UIView] = ["alert": alert.view, "indicator": indicator]
+        var constraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[indicator]-(53)-|", options: [], metrics: nil, views: views)
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[indicator]|", options: [], metrics: nil, views: views)
         alert.view.addConstraints(constraints)
         

@@ -29,7 +29,7 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPi
                 NSLocalizedString("classroom-tab-Friday", comment: "教室配当表のタブ名:金曜日")]
     
     //Buildingオブジェクト
-    let building = try! Realm().objects(Building.self)
+    var building : Results<Building>!
     
     //表示する配当表のbulding_id
     var buildingId = ClassroomDivideChildViewController.allData
@@ -178,6 +178,9 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPi
     }
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
+        
+        self.building = try! Realm().objects(Building.self)
+        
         //管理するViewControllerを返す処理
         var childViewControllers:[UIViewController] = []
         for (i,text) in week.enumerated() {

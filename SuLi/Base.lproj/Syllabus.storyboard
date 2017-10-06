@@ -164,7 +164,6 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Fkj-wM-zzi" secondAttribute="trailing" id="0vP-8S-zNp"/>
-                                                <constraint firstItem="Mrf-5T-VCB" firstAttribute="top" secondItem="AUY-T1-yRr" secondAttribute="topMargin" id="O0J-II-HBa"/>
                                                 <constraint firstItem="Mrf-5T-VCB" firstAttribute="leading" secondItem="AUY-T1-yRr" secondAttribute="leading" constant="15" id="P5Q-m0-g8R"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Fkj-wM-zzi" secondAttribute="bottom" id="PhO-Jo-sUJ"/>
                                                 <constraint firstItem="Fkj-wM-zzi" firstAttribute="top" secondItem="Mrf-5T-VCB" secondAttribute="bottom" constant="3" id="Vc4-Ie-flN"/>

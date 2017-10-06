@@ -18,6 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //Realm Migration
+        Realm.Configuration.defaultConfiguration = RealmManagement.config
+        let _ = try! Realm()
+        
         if let initialTab = self.window!.rootViewController as? UITabBarController  {
             // 0が一番左のタブ
             initialTab.selectedIndex = 0 // 左から1つ目のタブを指定
@@ -62,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("update interval : \(interval)")
         
         //1日以上データを更新してない場合はデータを取得する
-        if interval >= 86400.0 && userDefault.bool(forKey: SettingViewContoller.dataSync) {
+        if interval >= 1.0 && userDefault.bool(forKey: SettingViewContoller.dataSync) {
             self.getData(completeHandler: {
                 userDefault.set(now.timeIntervalSince1970, forKey: updateInterval)
             })
@@ -76,7 +81,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func getData(completeHandler: @escaping () -> ()){
         
         //インジケーターを表示
-        let indicator = MyAlertController.indicator(title: NSLocalizedString("alert-indicator-title", comment: "読み込み中のアラートのタイトル"))
+        let indicator = MyAlertController.cancelIndicator(title: NSLocalizedString("alert-indicator-title", comment: "読み込み中のアラートのタイトル"), cancelHandler: {
+            
+        })
         self.window?.rootViewController?.present(indicator, animated: true, completion: nil)
         
         UpdateAllData.action(completeHandler: {

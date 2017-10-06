@@ -54,6 +54,9 @@ struct UpdateAllData {
                 errorHandler("")
             }
         }
-        
+    }
+    
+    static func cancel() {
+        print("UpdateAllData : canceled task")
     }
 }

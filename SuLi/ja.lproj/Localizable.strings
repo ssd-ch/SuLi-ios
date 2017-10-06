@@ -51,6 +51,7 @@
 
 //Alert
 "alert-ok-button" = "OK";
+"alert-cancel-button" = "キャンセル";
 "alert-indicator-title" = "データ取得中";
 "alert-failed-get-data" = "データの取得に失敗しました。";
 "alert-syllabus-title" = "シラバス検索結果";

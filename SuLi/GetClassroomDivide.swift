@@ -84,6 +84,15 @@ struct GetClassroomDivide {
                         //トランザクションを開始
                         try! realm.write() {
                             
+                            //色の取得
+                            if let style = doc[0].css("td").first?["style"] {
+                                if let index = style.range(of: "#") {
+                                    let index_int = style.distance(from: style.startIndex, to: index.lowerBound)
+                                    let bgcolor = style.substring(with: style.index(style.startIndex, offsetBy: index_int)..<style.index(style.startIndex, offsetBy: index_int + 7))
+                                    realm.objects(Building.self).filter("id = \(building_id)").first?.color = bgcolor
+                                }
+                            }
+                            
                             //各教室の取得
                             var places : [String] = []
                             var place_cnt = 0
