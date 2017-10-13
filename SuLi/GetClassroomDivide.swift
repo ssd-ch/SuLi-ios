@@ -15,6 +15,8 @@ struct GetClassroomDivide {
     
     private static var groupDispatchHTTP: DispatchGroup?
     
+    static var opt : HTTP!
+    
     static func start(completeHandler: @escaping () -> (), errorHandler: @escaping (String) -> ()) {
         
         print("GetClassroomDivide : start task")
@@ -70,8 +72,8 @@ struct GetClassroomDivide {
     private static func scrapingClassroomDivide(building_id: Int,url: String) {
         autoreleasepool(){
             do {
-                let opt = try HTTP.GET(url)
-                opt.start { response in
+                self.opt = try HTTP.GET(url)
+                self.opt.start { response in
                     if let err = response.error {
                         print("error: \(err.localizedDescription)")
                         return //also notify app of failure as needed
@@ -252,6 +254,13 @@ struct GetClassroomDivide {
         //print("授業名:\(result[0]) 時間割コード:\(result[3]) 担当者名:\(result[1]) 担当者所属:\(result[2]) --> \(str.replaceAll(pattern: "\r\n|\n", with: ""))")
         
         return result
+    }
+    
+    static func cancel() {
+        GetBuildingList.cancel()
+        if self.opt.isExecuting {
+            self.opt.cancel()
+        }
     }
     
 }

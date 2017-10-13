@@ -16,6 +16,8 @@ struct GetSyllabusForm {
     
     static let syllabusFormUrl = NSLocalizedString("syllabus-form", tableName: "ResourceAddress", comment: "シラバスの検索フォームのURL")
     
+    private static var opt : HTTP!
+    
     static func start(completeHandler: @escaping () -> (), errorHandler: @escaping (String) -> ()){
         
         print("GetSyllabusForm : start task")
@@ -23,8 +25,8 @@ struct GetSyllabusForm {
         autoreleasepool(){
             
             do {
-                let opt = try HTTP.GET(self.syllabusFormUrl)
-                opt.start { response in
+                self.opt = try HTTP.GET(self.syllabusFormUrl)
+                self.opt.start { response in
                     if let err = response.error {
                         print("GetSyllabusForm : failed. \(err.localizedDescription)")
                         errorHandler(err.localizedDescription)
@@ -108,6 +110,12 @@ struct GetSyllabusForm {
                 print("got an error creating the request: \(error)")
                 errorHandler(error.localizedDescription)
             }
+        }
+    }
+    
+    static func cancel() {
+        if self.opt.isExecuting {
+            self.opt.cancel()
         }
     }
 }

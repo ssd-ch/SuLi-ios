@@ -17,8 +17,12 @@
 "shareStorage-ip" = "10.16.1.16";
 "shareStorage-rootPath" = "/work/";
 
-//Moodle
-"moodle" = "https://moodle.cerd.shimane-u.ac.jp/moodle/login/index.php";
+//Link
+"link-shimane-home" = "http://www.shimane-u.ac.jp/";
+"link-gakumu" = "https://gakumuweb.shimane-u.ac.jp/shinwa/campus/";
+"link-gipc" = "https://www.g-ipc.shimane-u.ac.jp/";
+"link-moodle" = "https://moodle.cerd.shimane-u.ac.jp/moodle/login/index.php";
+"link-question" = "https://enq.shimane-u.ac.jp/mt/";
 
 //ClassroomDivide
 "buildingList" = "http://www.shimane-u.ac.jp/education/school_info/class_data/class_data01.html";

@@ -22,6 +22,9 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
     
     private var syllabus: SearchSyllabus?
     
+    //UserDefaults
+    let userDefault = UserDefaults.standard
+    
     // セルに表示するテキスト
     var tableData : [SyllabusList] = []
     
@@ -64,8 +67,22 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
         super.viewWillAppear(animated)
         print("SyllabusListViewController : load display")
         
+        // デフォルト値登録※すでに値が更新されていた場合は、更新後の値のままになる
+        self.userDefault.register(defaults: [UserDefaultsKey.noticeUpdateInterval: 0.0])
+        let interval = Date().timeIntervalSince1970 - self.userDefault.double(forKey: UserDefaultsKey.syllabusUpdateInterval)
+        print("notice update interval : \(interval)")
+        
+        //1日以上データを更新してない場合はデータを取得する
+        if interval >= 86400.0 && self.userDefault.bool(forKey: UserDefaultsKey.dataSync) {
+            GetSyllabusForm.start(completeHandler: {
+                self.userDefault.set(Date().timeIntervalSince1970, forKey: UserDefaultsKey.syllabusUpdateInterval)
+            }, errorHandler: { error in
+                print("SyllabusListViewController : \(error)")
+            })
+        }
+        
         //バナー広告
-        if UserDefaults.standard.bool(forKey: SettingViewContoller.adsDisplay) {
+        if self.userDefault.bool(forKey: UserDefaultsKey.adsDisplay) {
             self.bannerView.isAutoloadEnabled = true
             self.bannerViewHeightConstraint.constant = 50
             self.bannerView.isHidden = false
@@ -79,7 +96,7 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
     }
     
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        if UserDefaults.standard.bool(forKey: SettingViewContoller.adsDisplay) {
+        if self.userDefault.bool(forKey: UserDefaultsKey.adsDisplay) {
             self.bannerViewHeightConstraint.constant = 50
             self.bannerView.isHidden = false
         }
@@ -115,10 +132,20 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
     
     //エラー用デリゲートメソッド
     func errorHandler(message: String) {
+        
+        //アラートを作成
+        let alert = UIAlertController(title: NSLocalizedString("alert-error-title", comment: "エラーアラートのタイトル"), message: message, preferredStyle: UIAlertControllerStyle.alert)
+        //キャンセルボタン
+        let cancelAction = UIAlertAction(title: NSLocalizedString("alert-cancel-button", comment: "キャンセルボタンのテキスト"), style: UIAlertActionStyle.default){ (action: UIAlertAction) in
+        }
+        alert.addAction(cancelAction)
+        //Retryボタン
+        let okAction = UIAlertAction(title: NSLocalizedString("alert-retry-button", comment: "リトライボタンのテキスト"), style: UIAlertActionStyle.cancel){ (action: UIAlertAction) in
+            self.syllabus?.load(addMode: false)
+        }
+        alert.addAction(okAction)
+        //アラートを表示
         DispatchQueue.main.async {
-            //アラートを作成
-            let alert = MyAlertController.action(title: NSLocalizedString("alert-error-title", comment: "エラーアラートのタイトル"), message: message)
-            //アラートを表示
             self.present(alert, animated: true, completion: nil)
         }
     }
@@ -130,7 +157,6 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
         self.syllabus = SearchSyllabus(self.searchBar.text!)
         self.syllabus?.delegate = self
         self.syllabus!.load(addMode: false)
-        //self.tableView.reloadData()
     }
     
     // キャンセルボタンが押された時に呼ばれる
@@ -138,7 +164,6 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
         self.searchBar.showsCancelButton = false
         self.view.endEditing(true)
         self.searchBar.text = ""
-        //self.tableView.reloadData()
     }
     
     // テキストフィールド入力開始前に呼ばれる
@@ -196,7 +221,7 @@ class SearchSyllabus {
     let URL = NSLocalizedString("syllabus-search", tableName: "ResourceAddress", comment: "シラバスの検索結果のURL")
     let URLdomain = NSLocalizedString("syllabus-domain", tableName: "ResourceAddress", comment: "シラバスの検索ページのドメイン")
     let dispCnt: String = "100"
-    let searchForm = try! Realm().objects(SyllabusForm.self)
+    var searchForm : Results<SyllabusForm>!
     var searchword: String
     var loadCount: Int
     var hitNum: Int
@@ -212,8 +237,14 @@ class SearchSyllabus {
     
     func load(addMode: Bool){
         
+        self.searchForm = try! Realm().objects(SyllabusForm.self)
+        
         if self.searchForm.count == 0 {
-            self.delegate?.errorHandler(message: NSLocalizedString("alert-syllabus-form-not-found", comment: "シラバスのフォームデータが取得されていない時のメッセージ"))
+            GetSyllabusForm.start(completeHandler: {
+                self.load(addMode: false)
+            }, errorHandler: { error in
+               self.delegate?.errorHandler(message: NSLocalizedString("alert-syllabus-form-not-found", comment: "シラバスのフォームデータが取得されていない時のメッセージ"))
+            })
             return
         }
         

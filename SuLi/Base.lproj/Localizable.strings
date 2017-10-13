@@ -52,10 +52,11 @@
 //Alert
 "alert-ok-button" = "OK";
 "alert-cancel-button" = "Cancel";
+"alert-retry-button" = "Retry";
 "alert-indicator-title" = "Now Loading...";
-"alert-failed-get-data" = "loading data failed.";
+"alert-failed-get-data" = "loading data failed. There is a possibility that some functions can not be used as it is. Retry or try again later?";
 "alert-syllabus-title" = "syllabus search result";
 "alert-syllabus-not-found" = "No syllabus found.";
-"alert-syllabus-form-not-found" = "syllabus form has not been loaded";
+"alert-syllabus-form-not-found" = "Syllabus form has not been loaded. Retry or try again later?";
 "alert-error-title" = "error";
 "alert-error-server-not-found" = "server not found";

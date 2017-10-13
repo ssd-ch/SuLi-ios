@@ -51,26 +51,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
-        let updateInterval = "updateInterval"
-        
         // UserDefaultsを使って時刻を保持する
         let userDefault = UserDefaults.standard
         
         // デフォルト値登録※すでに値が更新されていた場合は、更新後の値のままになる
-        userDefault.register(defaults: [updateInterval: 0.0])
-        userDefault.register(defaults: [SettingViewContoller.dataSync: true])
-        userDefault.register(defaults: [SettingViewContoller.adsDisplay: true])
-        
-        let now = Date()
-        let interval = now.timeIntervalSince1970 - userDefault.double(forKey: updateInterval)
-        
-        print("update interval : \(interval)")
-        
-        //1日以上データを更新してない場合はデータを取得する
-        if interval >= 1.0 && userDefault.bool(forKey: SettingViewContoller.dataSync) {
+        userDefault.register(defaults: [UserDefaultsKey.firstLaunch: true])
+        userDefault.register(defaults: [UserDefaultsKey.dataSync: true])
+        userDefault.register(defaults: [UserDefaultsKey.adsDisplay: true])
+
+        //一度もデータの取得が成功していない場合は取得処理を行う
+        if userDefault.bool(forKey: UserDefaultsKey.firstLaunch) {
             self.getData(completeHandler: {
-                userDefault.set(now.timeIntervalSince1970, forKey: updateInterval)
+                userDefault.set(false, forKey: UserDefaultsKey.firstLaunch)
             })
+            let now = Date()
+            userDefault.set(now.timeIntervalSince1970, forKey: UserDefaultsKey.syllabusUpdateInterval)
+            userDefault.set(now.timeIntervalSince1970, forKey: UserDefaultsKey.classroomDivideUpdateInterval)
+            userDefault.set(now.timeIntervalSince1970, forKey: UserDefaultsKey.noticeUpdateInterval)
         }
     }
     
@@ -80,9 +77,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func getData(completeHandler: @escaping () -> ()){
         
+        //アラートを作成
+        let alert = UIAlertController(title: NSLocalizedString("alert-error-title", comment: "エラーアラートのタイトル"), message: NSLocalizedString("alert-failed-get-data", comment: "データ取得失敗のアラートメッセージ"), preferredStyle: UIAlertControllerStyle.alert)
+        
+        //キャンセルボタン
+        let cancelAction = UIAlertAction(title: NSLocalizedString("alert-cancel-button", comment: "キャンセルボタンのテキスト"), style: UIAlertActionStyle.default){ (action: UIAlertAction) in
+            //リトライのキャンセルボタンが押された場合
+        }
+        alert.addAction(cancelAction)
+        
+        //Retryボタン
+        let okAction = UIAlertAction(title: NSLocalizedString("alert-retry-button", comment: "リトライボタンのテキスト"), style: UIAlertActionStyle.cancel){ (action: UIAlertAction) in
+            self.getData(completeHandler: completeHandler)
+        }
+        alert.addAction(okAction)
+        
         //インジケーターを表示
         let indicator = MyAlertController.cancelIndicator(title: NSLocalizedString("alert-indicator-title", comment: "読み込み中のアラートのタイトル"), cancelHandler: {
-            
+            UpdateAllData.cancel()
+            self.window?.rootViewController?.present(alert, animated: true, completion: nil)
         })
         self.window?.rootViewController?.present(indicator, animated: true, completion: nil)
         
@@ -90,23 +103,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             indicator.dismiss(animated: true, completion: nil)
             completeHandler()
         }, errorHandler: { error in
-            indicator.dismiss(animated: true, completion: nil)
-
-            //アラートを作成
-            let alert = UIAlertController(title: NSLocalizedString("alert-error-title", comment: "エラーアラートのタイトル"), message: NSLocalizedString("alert-failed-get-data", comment: "データ取得失敗のアラートメッセージ"), preferredStyle: UIAlertControllerStyle.alert)
-            
-            //OKボタンを作成
-            let okAction = UIAlertAction(title: NSLocalizedString("alert-ok-button", comment: "OKボタンのテキスト"), style: UIAlertActionStyle.default){ (action: UIAlertAction) in
-                //OKボタンが押された後、一度もデータの取得が成功していない場合は取得処理を繰り返す
-                if UserDefaults.standard.double(forKey: "updateInterval") == 0.0 {
-                    self.getData(completeHandler: completeHandler)
-                }
-            }
-            //OKボタンを追加
-            alert.addAction(okAction)
-            
-            //アラートを表示
-            self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+            indicator.dismiss(animated: true, completion: {
+              self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+            })
         })
     }
     

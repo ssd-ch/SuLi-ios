@@ -15,6 +15,8 @@ struct GetCancelInfo {
     
     private static let cancelInfoUrl = NSLocalizedString("cancelInfo", tableName: "ResourceAddress", comment: "講義案内のURL")
     
+    private static var opt : HTTP!
+    
     private static var writeData: [CancelInfo]!
     
     static func start(completeHandler: @escaping () -> (), errorHandler: @escaping (String) -> ()){
@@ -63,9 +65,9 @@ struct GetCancelInfo {
             do {
                 print("GetCancelInfo : No.\(page) data init")
                 
-                let opt = try HTTP.GET(self.cancelInfoUrl, parameters: ["abspage":"\(page)"])
+                self.opt = try HTTP.GET(self.cancelInfoUrl, parameters: ["abspage":"\(page)"])
                 
-                opt.start { response in
+                self.opt.start { response in
                     if let err = response.error {
                         print("GetCancelInfo : No.\(page) data failed \(err.localizedDescription)")
                         errorHandler(err.localizedDescription)
@@ -116,6 +118,12 @@ struct GetCancelInfo {
                 print("got an error creating the request: \(error)")
                 errorHandler(error.localizedDescription)
             }
+        }
+    }
+    
+    static func cancel() {
+        if self.opt.isExecuting {
+            self.opt.cancel()
         }
     }
 }

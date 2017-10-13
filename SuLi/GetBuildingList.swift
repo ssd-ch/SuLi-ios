@@ -15,14 +15,16 @@ struct GetBuildingList {
     
     private static let buildingUrl = NSLocalizedString("buildingList", tableName: "ResourceAddress", comment: "建物別教室配当表一覧のURL")
     
+    private static var opt : HTTP!
+    
     static func start(completeHandler: @escaping () -> (), errorHandler: @escaping (String) -> ()){
         
         print("GetBuildingList : start task")
         
         autoreleasepool{
             do {
-                let opt = try HTTP.GET(self.buildingUrl)
-                opt.start { response in
+                self.opt = try HTTP.GET(self.buildingUrl)
+                self.opt.start { response in
                     if let err = response.error {
                         print("GetBuildingList : failed task. \(err.localizedDescription)")
                         errorHandler(err.localizedDescription)
@@ -61,6 +63,11 @@ struct GetBuildingList {
                 errorHandler(error.localizedDescription)
             }
         }
-        
+    }
+    
+    static func cancel() {
+        if self.opt.isExecuting {
+            self.opt.cancel()
+        }
     }
 }

@@ -73,7 +73,7 @@ class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UIT
         print("SyllabusDetailViewController : load display")
         
         //バナー広告
-        if UserDefaults.standard.bool(forKey: SettingViewContoller.adsDisplay) {
+        if UserDefaults.standard.bool(forKey: UserDefaultsKey.adsDisplay) {
             self.bannerView.isAutoloadEnabled = true
             self.bannerViewHeightConstraint.constant = 50
             self.bannerView.isHidden = false
@@ -87,7 +87,7 @@ class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        if UserDefaults.standard.bool(forKey: SettingViewContoller.adsDisplay) {
+        if UserDefaults.standard.bool(forKey: UserDefaultsKey.adsDisplay) {
             self.bannerViewHeightConstraint.constant = 50
             self.bannerView.isHidden = false
         }

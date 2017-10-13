@@ -61,10 +61,6 @@ class ClassroomDivideChildViewController: UIViewController, IndicatorInfoProvide
         let cellText = self.classroomDivide.filter("time = \(indexPath.section + 1)")[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ClassroomDivideCustomViewCell
         cell.titleLabel?.text = cellText.cell_text
-//        //空文字だとlabelが生成されず高さがバラバラになるのでとりあえずの処置
-//        if cell.titleLabel.text == "" {
-//            cell.titleLabel.text = " "
-//        }
         cell.titleLabel?.textColor = UIColor.hex(hexStr: cellText.cell_color, alpha: 1)
         cell.detailLabel?.text = cellText.place
         cell.colorView?.backgroundColor = UIColor.hex(hexStr: (self.realm.objects(Building.self).filter("id = \(cellText.building_id)").first?.color)!, alpha: 1)

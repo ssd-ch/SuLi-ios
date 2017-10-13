@@ -22,11 +22,17 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
     //CancelInfoオブジェクト
     var cancelInfo : Results<CancelInfo>!
     
+    //Realmの通知用のトークン
+    var token : NotificationToken!
+    
     //セルの種類(true:DetailCell false:Cell)
     var cellType = [[Bool]]()
     
     //セクション
     var sectionIndex: [(String, Int)] = []
+    
+    //UserDefaults
+    let userDefault = UserDefaults.standard
     
     //リロードボタンが押された時の処理
     @IBAction func pushReloadButton(_ sender: Any) {
@@ -40,8 +46,6 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
         GetCancelInfo.start(
             completeHandler: {
                 DispatchQueue.main.async {
-                    self.setSectionIndexCellType()
-                    self.tableView.reloadData()
                     //ボタンを有効化
                     self.reloadButton.isEnabled = true
                     self.progressView.setProgress(1.0, animated: true)
@@ -71,6 +75,19 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
         self.cancelInfo  = try! Realm().objects(CancelInfo.self).sorted(byKeyPath: "id")
         
         self.setSectionIndexCellType()
+        
+        self.token = self.cancelInfo.addNotificationBlock { (changes: RealmCollectionChange) in
+            switch changes {
+            case .initial(_):
+                break
+            case .update(_, _, _, _):
+                self.setSectionIndexCellType()
+                self.tableView.reloadData()
+                break
+            case .error:
+                break
+            }
+        }
         
         //ナビゲーションバーの半透過処理により色がおかしくなるのでオフにする
         self.navigationController?.navigationBar.isTranslucent = false
@@ -102,8 +119,21 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
         super.viewWillAppear(animated)
         print("NoticeViewContoller : load display")
         
+        let now = Date()
+        
+        // デフォルト値登録※すでに値が更新されていた場合は、更新後の値のままになる
+        self.userDefault.register(defaults: [UserDefaultsKey.noticeUpdateInterval: 0.0])
+        let interval = now.timeIntervalSince1970 - self.userDefault.double(forKey: UserDefaultsKey.noticeUpdateInterval)
+        print("notice update interval : \(interval)")
+        
+        //1日以上データを更新してない場合はデータを取得する
+        if interval >= 86400.0 && self.userDefault.bool(forKey: UserDefaultsKey.dataSync) {
+            self.pushReloadButton(self.reloadButton)
+            self.userDefault.set(now.timeIntervalSince1970, forKey: UserDefaultsKey.noticeUpdateInterval)
+        }
+        
         //バナー広告
-        if UserDefaults.standard.bool(forKey: SettingViewContoller.adsDisplay) {
+        if self.userDefault.bool(forKey: UserDefaultsKey.adsDisplay) {
             self.bannerView.isAutoloadEnabled = true
             self.bannerViewHeightConstraint.constant = 50
             self.bannerView.isHidden = false
@@ -117,7 +147,7 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
     }
     
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        if UserDefaults.standard.bool(forKey: SettingViewContoller.adsDisplay) {
+        if self.userDefault.bool(forKey: UserDefaultsKey.adsDisplay) {
             self.bannerViewHeightConstraint.constant = 50
             self.bannerView.isHidden = false
         }

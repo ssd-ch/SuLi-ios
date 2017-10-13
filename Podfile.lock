@@ -8,7 +8,7 @@ PODS:
     - Realm (= 2.10.2)
   - SwiftHTTP (2.0.2)
   - TOSMBClient (1.0.8)
-  - XLPagerTabStrip (7.0.0)
+  - XLPagerTabStrip (8.0.0)
 
 DEPENDENCIES:
   - Google-Mobile-Ads-SDK
@@ -25,7 +25,7 @@ SPEC CHECKSUMS:
   RealmSwift: 07a9ae0505091eda6b2ee7c190c3786d6e90a7b0
   SwiftHTTP: faa1a5f7670568ffc9361898229dbe84a6088468
   TOSMBClient: 8884ede03ae70e6087962433fda22fb6b4b8c7f8
-  XLPagerTabStrip: 9be80a66c6b7d60306b2c0a6004965016d68f813
+  XLPagerTabStrip: d1ab378af0923320ec0b5eab11d7b2f803d31261
 
 PODFILE CHECKSUM: c76f6f7321800ab37ccb56fd24b56ae660af45f9
 

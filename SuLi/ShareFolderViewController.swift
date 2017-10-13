@@ -57,7 +57,7 @@
             print("ShareFolderViewController : load display")
             
             //バナー広告
-            if UserDefaults.standard.bool(forKey: SettingViewContoller.adsDisplay) {
+            if UserDefaults.standard.bool(forKey: UserDefaultsKey.adsDisplay) {
                 self.bannerView.isAutoloadEnabled = true
                 self.bannerViewHeightConstraint.constant = 50
                 self.bannerView.isHidden = false
@@ -71,7 +71,7 @@
         }
         
         func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-            if UserDefaults.standard.bool(forKey: SettingViewContoller.adsDisplay) {
+            if UserDefaults.standard.bool(forKey: UserDefaultsKey.adsDisplay) {
                 self.bannerViewHeightConstraint.constant = 50
                 self.bannerView.isHidden = false
             }

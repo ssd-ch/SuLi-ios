@@ -1,5 +1,5 @@
 //
-//  MoodleViewController.swift
+//  WebViewController.swift
 //  SuLi
 //
 //  Created by ssd_ch on 2017/08/12.
@@ -9,19 +9,20 @@
 import UIKit
 import GoogleMobileAds
 
-class MoodleViewContoller : UIViewController, GADBannerViewDelegate {
-
+class WebViewContoller : UIViewController, GADBannerViewDelegate, UIWebViewDelegate {
+    
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var bannerView: GADBannerView!
     
     @IBOutlet weak var bannerViewHeightConstraint: NSLayoutConstraint!
     
-    let link = NSLocalizedString("moodle", tableName: "ResourceAddress", comment: "MoodleのURL")
+    var link = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if let url = URL(string: link) {
             let request = URLRequest(url: url)
+            self.webView.delegate = self
             self.webView.loadRequest(request)
         }
         
@@ -36,10 +37,10 @@ class MoodleViewContoller : UIViewController, GADBannerViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("MoodleViewContoller : load display")
+        print("WebViewContoller : load display")
         
         //バナー広告
-        if UserDefaults.standard.bool(forKey: SettingViewContoller.adsDisplay) {
+        if UserDefaults.standard.bool(forKey: UserDefaultsKey.adsDisplay) {
             self.bannerView.isAutoloadEnabled = true
             self.bannerViewHeightConstraint.constant = 50
             self.bannerView.isHidden = false
@@ -52,15 +53,19 @@ class MoodleViewContoller : UIViewController, GADBannerViewDelegate {
         
     }
     
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        self.navigationItem.title = webView.stringByEvaluatingJavaScript(from: "document.title")
+    }
+    
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        if UserDefaults.standard.bool(forKey: SettingViewContoller.adsDisplay) {
+        if UserDefaults.standard.bool(forKey: UserDefaultsKey.adsDisplay) {
             self.bannerViewHeightConstraint.constant = 50
             self.bannerView.isHidden = false
         }
     }
     
     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-        print("MoodleViewContoller : \(error.localizedDescription)")
+        print("WebViewContoller : \(error.localizedDescription)")
         self.bannerViewHeightConstraint.constant = 0
         self.bannerView.isHidden = true
     }

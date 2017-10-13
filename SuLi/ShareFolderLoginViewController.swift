@@ -46,7 +46,7 @@ class ShareFolderLoginViewContoller : UIViewController, UITextFieldDelegate, GAD
         print("ShareFolderLoginViewContoller : load display")
         
         //バナー広告
-        if UserDefaults.standard.bool(forKey: SettingViewContoller.adsDisplay) {
+        if UserDefaults.standard.bool(forKey: UserDefaultsKey.adsDisplay) {
             self.bannerView.isAutoloadEnabled = true
             self.bannerViewHeightConstraint.constant = 50
             self.bannerView.isHidden = false
@@ -60,7 +60,7 @@ class ShareFolderLoginViewContoller : UIViewController, UITextFieldDelegate, GAD
     }
     
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        if UserDefaults.standard.bool(forKey: SettingViewContoller.adsDisplay) {
+        if UserDefaults.standard.bool(forKey: UserDefaultsKey.adsDisplay) {
             self.bannerViewHeightConstraint.constant = 50
             self.bannerView.isHidden = false
         }

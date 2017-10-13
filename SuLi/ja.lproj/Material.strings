@@ -2,20 +2,32 @@
 /* Class = "UIBarButtonItem"; title = "Buck"; ObjectID = "03C-xr-RSF"; */
 "03C-xr-RSF.title" = "戻る";
 
+/* Class = "UIBarButtonItem"; title = "Buck"; ObjectID = "Son-qc-e9a"; */
+"Son-qc-e9a.title" = "戻る";
+
+/* Class = "UITableViewSection"; headerTitle = "Link"; ObjectID = "2qf-me-sH4"; */
+"2qf-me-sH4.headerTitle" = "リンク";
+
 /* Class = "UIButton"; normalTitle = "Login"; ObjectID = "Hay-ff-28X"; */
 "Hay-ff-28X.normalTitle" = "ログイン";
 
-/* Class = "UINavigationItem"; title = "Moodle"; ObjectID = "ITl-WV-jfd"; */
-"ITl-WV-jfd.title" = "Moodle";
+/* Class = "UINavigationItem"; title = "WebView"; ObjectID = "ITl-WV-jfd"; */
+"ITl-WV-jfd.title" = "";
+
+/* Class = "UITableViewSection"; headerTitle = "Storage"; ObjectID = "J7P-ex-vCH"; */
+"J7P-ex-vCH.headerTitle" = "ストレージ";
 
 /* Class = "UITabBarItem"; title = "Material"; ObjectID = "Kxb-ak-lOc"; */
-"Kxb-ak-lOc.title" = "講義資料";
+"Kxb-ak-lOc.title" = "資料・リンク";
 
 /* Class = "UINavigationItem"; title = "Share Folder"; ObjectID = "Pgj-iX-wY2"; */
-"Pgj-iX-wY2.title" = "共有ストレージ - 学内限定";
+"Pgj-iX-wY2.title" = "共有フォルダ";
+
+/* Class = "UILabel"; text = "Moodle"; ObjectID = "SL9-0f-7dQ"; */
+"SL9-0f-7dQ.text" = "Moodle";
 
 /* Class = "UILabel"; text = "Share Storare（Work Folder）"; ObjectID = "Tra-Ks-Dx2"; */
-"Tra-Ks-Dx2.text" = "共有ストレージ（workフォルダ）- 学内限定";
+"Tra-Ks-Dx2.text" = "共有フォルダ（Workフォルダ）";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "UYU-aH-Q6y"; */
 "UYU-aH-Q6y.text" = "Title";
@@ -23,11 +35,20 @@
 /* Class = "UILabel"; text = "ID"; ObjectID = "XM4-Mn-J37"; */
 "XM4-Mn-J37.text" = "ID";
 
-/* Class = "UILabel"; text = "Moodle"; ObjectID = "g3Z-du-kRZ"; */
-"g3Z-du-kRZ.text" = "Moodle";
+/* Class = "UILabel"; text = "ShimaneHome"; ObjectID = "g3Z-du-kRZ"; */
+"g3Z-du-kRZ.text" = "島根大学ホームページ";
+
+/* Class = "UILabel"; text = "Jimu"; ObjectID = "jHL-Ll-AGK"; */
+"jHL-Ll-AGK.text" = "学務情報システム";
+
+/* Class = "UILabel"; text = "Gipc"; ObjectID = "mJC-hg-HsD"; */
+"mJC-hg-HsD.text" = "総合情報処理センター";
+
+/* Class = "UILabel"; text = "Question"; ObjectID = "smt-Qp-fh9"; */
+"smt-Qp-fh9.text" = "授業評価アンケート";
 
 /* Class = "UILabel"; text = "Password"; ObjectID = "mlE-Iz-yDq"; */
 "mlE-Iz-yDq.text" = "パスワード";
 
 /* Class = "UINavigationItem"; title = "Materials"; ObjectID = "wlX-hK-iOz"; */
-"wlX-hK-iOz.title" = "講義資料";
+"wlX-hK-iOz.title" = "資料・リンク";

@@ -34,6 +34,9 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPi
     //表示する配当表のbulding_id
     var buildingId = ClassroomDivideChildViewController.allData
     
+    //UserDefaults
+    let userDefault = UserDefaults.standard
+    
     //ツールバーの完了ボタンが押された時
     @IBAction func pushDoneButton(_ sender: Any) {
         //ピッカー、ツールバーを隠す
@@ -45,11 +48,6 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPi
     @IBAction func pushReloadButton(_ sender: Any) {
         //ボタンを無効化
         self.reloadButton.isEnabled = false
-        
-        for view in super.viewControllers as! [ClassroomDivideChildViewController] {
-            //データの更新をロックする
-            view.rockAccess()
-        }
         
         //プログレスバーを表示、0.1にセット
         self.progressView.setProgress(0.1, animated: false)
@@ -150,8 +148,21 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPi
         super.viewWillAppear(animated)
         print("ClassroomDivideViewContoroller : load display")
         
+        let now = Date()
+        
+        // デフォルト値登録※すでに値が更新されていた場合は、更新後の値のままになる
+        self.userDefault.register(defaults: [UserDefaultsKey.classroomDivideUpdateInterval: 0.0])
+        let interval = now.timeIntervalSince1970 - self.userDefault.double(forKey: UserDefaultsKey.classroomDivideUpdateInterval)
+        print("classroom divide update interval : \(interval)")
+        
+        //1日以上データを更新してない場合はデータを取得する
+        if interval >= 86400.0 && self.userDefault.bool(forKey: UserDefaultsKey.dataSync) {
+            self.pushReloadButton(self.reloadButton)
+            self.userDefault.set(now.timeIntervalSince1970, forKey: UserDefaultsKey.classroomDivideUpdateInterval)
+        }
+        
         //バナー広告
-        if UserDefaults.standard.bool(forKey: SettingViewContoller.adsDisplay) {
+        if self.userDefault.bool(forKey: UserDefaultsKey.adsDisplay) {
             self.bannerView.isAutoloadEnabled = true
             self.bannerView.isHidden = false
             self.bannerViewHeightConstraint.constant = 50
@@ -165,7 +176,7 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPi
     }
     
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        if UserDefaults.standard.bool(forKey: SettingViewContoller.adsDisplay) {
+        if self.userDefault.bool(forKey: UserDefaultsKey.adsDisplay) {
             self.bannerViewHeightConstraint.constant = 50
             self.bannerView.isHidden = false
         }
