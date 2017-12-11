@@ -55,7 +55,7 @@ struct GetClassroomDivide {
                 }
                 
                 //すべてのスレッドの処理が完了
-                self.groupDispatchHTTP?.notify(queue: DispatchQueue.main) {
+                self.groupDispatchHTTP?.notify(queue: DispatchQueue(label: "app.ssd.suli.GetClassroomDivide")) {
                     print("GetClassroomDivide : all task complete")
                     completeHandler()
                 }
@@ -258,7 +258,7 @@ struct GetClassroomDivide {
     
     static func cancel() {
         GetBuildingList.cancel()
-        if self.opt.isExecuting {
+        if self.opt?.isExecuting ?? false {
             self.opt.cancel()
         }
     }

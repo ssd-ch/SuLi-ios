@@ -50,21 +50,21 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DataSync" editingAccessoryType="detailDisclosureButton" id="x2M-CZ-8df" userLabel="AdsDisplay">
-                                        <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
+                                    <tableViewCell hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DataSync" editingAccessoryType="detailDisclosureButton" rowHeight="1" id="x2M-CZ-8df" userLabel="AdsDisplay">
+                                        <rect key="frame" x="0.0" y="99.5" width="375" height="1"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x2M-CZ-8df" id="n0G-wU-g7z">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="0.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8hF-4B-DuG">
-                                                    <rect key="frame" x="311" y="6.5" width="51" height="31"/>
+                                                    <rect key="frame" x="311" y="-15.5" width="51" height="31"/>
                                                     <connections>
                                                         <action selector="changeAdsDisplay:" destination="RyK-MA-Ey3" eventType="valueChanged" id="dEQ-vJ-mrX"/>
                                                     </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ads display" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSt-JC-Xyd">
-                                                    <rect key="frame" x="16" y="11.5" width="87.5" height="20.5"/>
+                                                    <rect key="frame" x="16" y="-10" width="87.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -84,7 +84,7 @@
                             <tableViewSection headerTitle="About" id="dBZ-Rw-26H">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="xxm-UR-LL5" detailTextLabel="4gS-Pf-ceT" style="IBUITableViewCellStyleValue1" id="Tod-24-E5E">
-                                        <rect key="frame" x="0.0" y="199.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="156.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tod-24-E5E" id="ljh-cm-Brm">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -112,7 +112,7 @@
                             <tableViewSection headerTitle="Activity" id="jEv-fb-t2Y">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="100" id="s2e-kP-Q9T">
-                                        <rect key="frame" x="0.0" y="299.5" width="375" height="100"/>
+                                        <rect key="frame" x="0.0" y="256.5" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="s2e-kP-Q9T" id="az4-Mg-SH1">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
@@ -152,7 +152,7 @@ E-mail:pim.shimane@gmail.com</string>
                             <tableViewSection headerTitle="Developer" id="q1s-4J-ahi">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="AVZ-Pj-2km" style="IBUITableViewCellStyleDefault" id="WXb-Pa-0S4">
-                                        <rect key="frame" x="0.0" y="455.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="412.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WXb-Pa-0S4" id="kuo-Td-yh4">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>

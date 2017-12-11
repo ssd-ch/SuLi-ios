@@ -114,7 +114,7 @@ struct GetSyllabusForm {
     }
     
     static func cancel() {
-        if self.opt.isExecuting {
+        if self.opt?.isExecuting ?? false {
             self.opt.cancel()
         }
     }

@@ -17,18 +17,13 @@ struct GetCancelInfo {
     
     private static var opt : HTTP!
     
-    private static var writeData: [CancelInfo]!
-    
     static func start(completeHandler: @escaping () -> (), errorHandler: @escaping (String) -> ()){
         
         print("GetCancelInfo : task start")
         
-        //書き込むデータを初期化
-        self.writeData = []
-        
         autoreleasepool{
             
-            self.getData(page: 1, completeHandler: {
+            self.getData(page: 1, data: [], completeHandler: { writeData in
                 
                 //Realmに接続
                 let realm = try! Realm()
@@ -40,7 +35,7 @@ struct GetCancelInfo {
                     realm.delete(cancelInfo)
                     print("GetCancelInfo : all cancelInfo data delete")
                     
-                    for (i,data) in self.writeData.enumerated() {
+                    for (i,data) in writeData.enumerated() {
                         //マルチスレッドで処理したのでIDが競合するのを防ぐためにここで設定する
                         data.id = i + 1
                         //データを書き込む
@@ -59,15 +54,19 @@ struct GetCancelInfo {
         
     }
     
-    private static func getData(page: Int, completeHandler: @escaping () -> (), errorHandler: @escaping (String) -> ()) {
+    private static func getData(page: Int, data: [CancelInfo], completeHandler: @escaping ([CancelInfo]) -> (), errorHandler: @escaping (String) -> ()) {
         
         autoreleasepool{
+            
+            var writeData: [CancelInfo] = data
+            
             do {
                 print("GetCancelInfo : No.\(page) data init")
                 
                 self.opt = try HTTP.GET(self.cancelInfoUrl, parameters: ["abspage":"\(page)"])
                 
                 self.opt.start { response in
+                    
                     if let err = response.error {
                         print("GetCancelInfo : No.\(page) data failed \(err.localizedDescription)")
                         errorHandler(err.localizedDescription)
@@ -92,20 +91,21 @@ struct GetCancelInfo {
                             data.place = tdNodes[6].text!
                             data.note = tdNodes[7].text!
                             
-                            self.writeData.append(data)
+                            writeData.append(data)
                         }
                         
                         print("GetCancelInfo : No.\(page) data complete")
                     }
                     
                     if let doc = HTML(html: response.data, encoding: .utf8)?.css(".prevnextpage") {
+                        
                         if doc.count < (page == 1 ? 1 : 2) {
                             //これ以上読み込むページがない(処理が完了)
-                            completeHandler()
+                            completeHandler(writeData)
                         }
                         else {
                             //次のページを読み込む
-                            self.getData(page: page + 1, completeHandler: completeHandler, errorHandler: errorHandler)
+                            self.getData(page: page + 1, data: writeData, completeHandler: completeHandler, errorHandler: errorHandler)
                         }
                     }
                     else {
@@ -122,7 +122,7 @@ struct GetCancelInfo {
     }
     
     static func cancel() {
-        if self.opt.isExecuting {
+        if self.opt?.isExecuting ?? false {
             self.opt.cancel()
         }
     }

@@ -32,6 +32,7 @@ struct GetBuildingList {
                     }
                     if let doc = HTML(html: response.data, encoding: .utf8)?.css(".body li a") {
                         
+                        
                         //Realmに接続
                         let realm = try! Realm()
                         
@@ -66,7 +67,7 @@ struct GetBuildingList {
     }
     
     static func cancel() {
-        if self.opt.isExecuting {
+        if self.opt?.isExecuting ?? false {
             self.opt.cancel()
         }
     }

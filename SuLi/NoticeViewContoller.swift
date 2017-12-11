@@ -76,7 +76,7 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
         
         self.setSectionIndexCellType()
         
-        self.token = self.cancelInfo.addNotificationBlock { (changes: RealmCollectionChange) in
+        self.token = self.cancelInfo.observe { (changes: RealmCollectionChange) in
             switch changes {
             case .initial(_):
                 break

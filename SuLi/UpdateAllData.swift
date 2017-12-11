@@ -13,7 +13,8 @@ struct UpdateAllData {
     private static var successFlag : Bool!
     private static var status : Bool = true
     private static var dispatch : DispatchGroup!
-    private static var dispatchCount : Int = 0
+    private static let dispatchCount : Int = 3
+    private static var semaphore : DispatchSemaphore!
     
     static func action(completeHandler: @escaping () -> (), errorHandler: @escaping (String) -> ()) {
         
@@ -22,26 +23,20 @@ struct UpdateAllData {
         if self.status {
             
             self.status = false
-            self.dispatchCount = 3
-            
-            self.dispatch = DispatchGroup()
-            
-            //3回のスレッド登録
-            for _ in 1...self.dispatchCount {
-                self.dispatch.enter()
-            }
+
+            self.semaphore = DispatchSemaphore(value: 0)
             
             self.successFlag = true
             
             let completeClosure = { () -> () in
-                self.dispatch.leave()
-                self.dispatchCount -= 1
+                print("UpdateAllData : semaphore signal")
+                self.semaphore.signal()
             }
             
             let errorClosure = { () -> () in
-                self.dispatch.leave()
-                self.dispatchCount -= 1
+                print("UpdateAllData : semaphore signal (error)")
                 self.successFlag = false
+                self.semaphore.signal()
             }
             
             GetSyllabusForm.start(completeHandler: {
@@ -62,9 +57,12 @@ struct UpdateAllData {
                 errorClosure()
             })
             
-            dispatch.notify(queue: DispatchQueue.main) {
-                
-                self.status = true
+            //別スレッドでセマフォを待つ
+            DispatchQueue.global(qos: .default).async {
+                //signalを3回待つ
+                for _ in 1...self.dispatchCount {
+                    self.semaphore.wait()
+                }
                 
                 if self.successFlag! {
                     print("UpdateAllData : all task complete")
@@ -74,6 +72,8 @@ struct UpdateAllData {
                     print("UpdateAllData : failed task")
                     errorHandler("")
                 }
+                
+                self.status = true
             }
         }
     }
@@ -86,7 +86,8 @@ struct UpdateAllData {
             GetCancelInfo.cancel()
             GetClassroomDivide.cancel()
             for _ in 1...self.dispatchCount {
-                self.dispatch.leave()
+                print("UpdateAllData : semaphore signal (cancel)")
+                self.semaphore.signal()
             }
         }
     }
