@@ -62,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //一度もデータの取得が成功していない場合は取得処理を行う
         if userDefault.bool(forKey: UserDefaultsKey.firstLaunch) {
             self.getData(completeHandler: {
-                //userDefault.set(false, forKey: UserDefaultsKey.firstLaunch)
+                userDefault.set(false, forKey: UserDefaultsKey.firstLaunch)
             })
             let now = Date()
             userDefault.set(now.timeIntervalSince1970, forKey: UserDefaultsKey.syllabusUpdateInterval)
