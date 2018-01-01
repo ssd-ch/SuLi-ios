@@ -44,7 +44,7 @@ class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UIT
         //セクション名のみ表示されてしまうので非表示にしておく
         self.tableView.isHidden = true
         
-        self.tableView.estimatedRowHeight = 30
+        self.tableView.estimatedRowHeight = 32
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
         self.tableView.delegate = self
@@ -163,14 +163,14 @@ class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UIT
         
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell1", for: indexPath)
-            cell.textLabel?.text = self.tableData.basic[indexPath.row].0
-            cell.detailTextLabel?.text = self.tableData.basic[indexPath.row].1
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell1", for: indexPath) as! SyllabusCustomBasicCell
+            cell.titleLabel.text = self.tableData.basic[indexPath.row].0
+            cell.detailLabel.text = self.tableData.basic[indexPath.row].1
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell2", for: indexPath) as! SyllabusCustomViewCell
             cell.titleLabel.text = self.tableData.detail[indexPath.row].0
-            cell.detaiLabel.text = self.tableData.detail[indexPath.row].1
+            cell.detailLabel.text = self.tableData.detail[indexPath.row].1
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell3", for: indexPath)

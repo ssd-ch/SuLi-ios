@@ -1,15 +1,15 @@
 //
-//  SyllabusCustomViewCell.swift
+//  SyllabusCustomBasicCell.swift
 //  SuLi
 //
-//  Created by ssd_ch on 2017/05/20.
+//  Created by ssd_ch on 2017/12/31.
 //  Copyright © 2017年 ssd. All rights reserved.
 //
 
 import UIKit
 
-class SyllabusCustomViewCell: UITableViewCell {
-
+class SyllabusCustomBasicCell: UITableViewCell {
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var detailLabel: UILabel!
     
@@ -17,11 +17,11 @@ class SyllabusCustomViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

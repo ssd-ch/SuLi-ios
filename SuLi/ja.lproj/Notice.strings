@@ -2,9 +2,6 @@
 /* Class = "UITabBarItem"; title = "notice"; ObjectID = "8cE-mb-Bf1"; */
 "8cE-mb-Bf1.title" = "講義案内";
 
-/* Class = "UILabel"; text = "Time"; ObjectID = "Ige-JM-ice"; */
-"Ige-JM-ice.text" = "Time";
-
 /* Class = "UILabel"; text = "Subtitle"; ObjectID = "KHo-xO-gbe"; */
 "KHo-xO-gbe.text" = "Subtitle";
 
@@ -28,3 +25,6 @@
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "sKt-5l-ets"; */
 "sKt-5l-ets.text" = "Title";
+
+/* Class = "UILabel"; text = "Time"; ObjectID = "wZk-EV-mac"; */
+"wZk-EV-mac.text" = "Time";
