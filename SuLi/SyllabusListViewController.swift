@@ -22,6 +22,8 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
     
     private var syllabus: SearchSyllabus?
     
+    private var indicatorFlg: Bool = false
+    
     //UserDefaults
     let userDefault = UserDefaults.standard
     
@@ -110,6 +112,7 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
     
     //リロードデータ用デリゲートメソッド
     func reloadTableData(data: [SyllabusList], mode: Bool) {
+        self.indicatorFlg = false
         if(mode) {
             self.tableData += data
         }
@@ -132,7 +135,7 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
     
     //エラー用デリゲートメソッド
     func errorHandler(message: String) {
-        
+        self.indicatorFlg = false
         //アラートを作成
         let alert = UIAlertController(title: NSLocalizedString("alert-error-title", comment: "エラーアラートのタイトル"), message: message, preferredStyle: UIAlertControllerStyle.alert)
         //キャンセルボタン
@@ -141,11 +144,13 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
         alert.addAction(cancelAction)
         //Retryボタン
         let okAction = UIAlertAction(title: NSLocalizedString("alert-retry-button", comment: "リトライボタンのテキスト"), style: UIAlertActionStyle.cancel){ (action: UIAlertAction) in
+            self.indicatorFlg = true
             self.syllabus?.load(addMode: false)
         }
         alert.addAction(okAction)
         //アラートを表示
         DispatchQueue.main.async {
+            self.tableView.reloadData()
             self.present(alert, animated: true, completion: nil)
         }
     }
@@ -156,6 +161,8 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
         self.searchBar.showsCancelButton = true
         self.syllabus = SearchSyllabus(self.searchBar.text!)
         self.syllabus?.delegate = self
+        self.indicatorFlg = true
+        self.tableView.reloadData()
         self.syllabus!.load(addMode: false)
     }
     
@@ -172,19 +179,47 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
         return true
     }
     
-    // セルの行数を返す
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableData.count
-    }
-    
     // セルの内容を返す
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        
-        cell.textLabel?.text = tableData[indexPath.row].lecture
-        cell.detailTextLabel?.text = tableData[indexPath.row].teacher
-        return cell
+        switch indexPath.section {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+            cell.textLabel?.text = tableData[indexPath.row].lecture
+            cell.detailTextLabel?.text = tableData[indexPath.row].teacher
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "IndicatorCell", for: indexPath) as! SyllabusListIndicatorCell
+            cell.indicator.startAnimating()
+            return cell
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+            cell.textLabel?.text = "N/A"
+            cell.detailTextLabel?.text = "N/A"
+            return cell
+        }
+    }
+    
+    //各セクションのデータの個数を返す
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return self.tableData.count
+        case 1:
+            return 1
+        default:
+            return 0
+        }
+    }
+    
+    //セクションの個数を返す
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if self.indicatorFlg {
+            return 2
+        }
+        else {
+            return 1
+        }
     }
     
     // Segueで遷移時の処理
@@ -192,17 +227,19 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
         
         if let indexPath = self.tableView.indexPathForSelectedRow {
             let controller = segue.destination as! SyllabusDetailViewController
-            controller.link = tableData[indexPath.row].link
+            controller.link = self.tableData[indexPath.row].link
         }
     }
     
     //スクロールするたびに呼び出される
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if tableView.contentOffset.y + tableView.frame.size.height > tableView.contentSize.height && tableView.isDragging {
+        if self.tableView.contentOffset.y + self.tableView.frame.size.height > self.tableView.contentSize.height && self.tableView.isDragging {
             //一番下に来た時の処理
-            if syllabus != nil {
-                if syllabus!.loadingStatus {
-                    syllabus!.load(addMode: true)
+            if self.syllabus != nil {
+                if self.syllabus!.loadingStatus {
+                    self.indicatorFlg = true
+                    self.tableView.reloadData()
+                    self.syllabus!.load(addMode: true)
                 }
             }
         }

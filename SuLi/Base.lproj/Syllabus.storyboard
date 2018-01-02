@@ -34,7 +34,7 @@
                                 <rect key="frame" x="0.0" y="56" width="375" height="448"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="Ltg-XP-6PN" detailTextLabel="x7V-RI-JVr" style="IBUITableViewCellStyleSubtitle" id="UTp-JV-XtK">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="Ltg-XP-6PN" detailTextLabel="x7V-RI-JVr" style="IBUITableViewCellStyleSubtitle" id="UTp-JV-XtK">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UTp-JV-XtK" id="fJp-ka-BPA">
@@ -59,6 +59,26 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="lp9-kn-5h9" kind="show" id="VFr-bv-1b0"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IndicatorCell" id="cZh-JQ-FAT" userLabel="IndicatorCell" customClass="SyllabusListIndicatorCell" customModule="SuLi" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cZh-JQ-FAT" id="8xV-aV-o0p">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="9Og-tu-Ci5">
+                                                    <rect key="frame" x="178" y="12" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="9Og-tu-Ci5" firstAttribute="centerY" secondItem="8xV-aV-o0p" secondAttribute="centerY" id="XZR-zC-t1N"/>
+                                                <constraint firstItem="9Og-tu-Ci5" firstAttribute="centerX" secondItem="8xV-aV-o0p" secondAttribute="centerX" id="Z67-wj-qQj"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="indicator" destination="9Og-tu-Ci5" id="1UD-51-TK3"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
