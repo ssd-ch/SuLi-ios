@@ -1,8 +1,8 @@
-# SuLi-ios (Shimane University Lecture Information)
+# SuLi-iOS (Shimane University Lecture Information)
 ## 島根大学の講義情報を表示するiOSアプリ
 
 ### Webサイト
-#### [http://suli.ga](http://suli.ga)
+#### [https://suli.ssdtic.net](https://suli.ssdtic.net)
 
 ### 主な機能
 * シラバス  
@@ -11,18 +11,20 @@
 * 教室配当表   
 講義場所を表示することができます。  
 建物別に絞り込むこともできます。  
-* お知らせ  
+* 講義情報  
 補講情報を表示することができます。
-* 資料アクセス  
-workフォルダとMoodleへのアクセスができます。  
-workフォルダは島根大学のネットワークに接続していることが条件です。(WiFi,VPNどちらでも可)
+* 資料・リンク  
+Workフォルダへのアクセスができます。  
+Workフォルダは島根大学のネットワークに接続していることが条件です。(WiFi,VPNどちらでも可)
+島根大学に関する各種Webサイトにアクセスできます。
 
 ### 仕様  
 * インストール要件    
-推奨バージョン iOS 10 以上
+推奨バージョン iOS 9.0 以上 (動作確認済み)
 
 ### 開発環境・仕様ライブラリ
 * 開発言語 Swift
+* 開発環境 Xcode
 * 使用ライブラリ  
 [Kanna](http://tid-kijyun.github.io/Kanna/) (HTMLパーサ)  
 [SwiftHTTP](https://github.com/daltoniam/SwiftHTTP) (HTTPクライアント)  
@@ -32,7 +34,7 @@ workフォルダは島根大学のネットワークに接続していること�
 使用ライブラリの謝辞は[こちら](https://github.com/ssd-ch/SuLi-ios/blob/master/Acknowledgements.md)
 
 ### バグ  
-* 特定の条件下でクラッシュするが滅多に発生しないと思うのでとりあえず放置
+* データ同期処理をあるタイミングで複数回キャンセルするとクラッシュする？
 
 ### 未実装（実装予定）  
 * 時間割管理機能  
