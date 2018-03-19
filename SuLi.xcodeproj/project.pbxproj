@@ -175,6 +175,7 @@
 				5C8D0F9F1FF8D2D200778933 /* SyllabusCustomBasicCell.swift */,
 				5CABE1691ED02497009C271E /* SyllabusCustomViewCell.swift */,
 				5C77D4CA1EB87A3300CCC745 /* SyllabusDetailViewController.swift */,
+				5C47AB4D1FFBE2280012275D /* SyllabusListIndicatorCell.swift */,
 				5CFAB86A1EB60208001885C4 /* SyllabusListViewController.swift */,
 				5C60FB461F4A141400268907 /* UIColorExtension.swift */,
 				5CE589131F65216D005E32BB /* UpdateAllData.swift */,
@@ -190,7 +191,6 @@
 				5C276E4D1F5AAFF600425815 /* Notice.storyboard */,
 				5C184F8C1F6D4829003FF8DA /* Setting.storyboard */,
 				5C276E521F5AB00500425815 /* Syllabus.storyboard */,
-				5C47AB4D1FFBE2280012275D /* SyllabusListIndicatorCell.swift */,
 				5C276E571F5AB01100425815 /* TimeTable.storyboard */,
 			);
 			path = SuLi;

@@ -75,23 +75,25 @@ struct GetCancelInfo {
                     
                     if let doc = HTML(html: response.data, encoding: .utf8)?.css(".table_data tr") {
                         
-                        for i in 1..<doc.count {
-                            
-                            let tdNodes = doc[i].css("td")
-                            
-                            //書き込むデータを作成
-                            let data = CancelInfo()
-                            
-                            data.date = tdNodes[0].text!
-                            data.classification = tdNodes[1].text!
-                            data.time = tdNodes[2].text!
-                            data.department = tdNodes[3].text!
-                            data.classname = tdNodes[4].text!
-                            data.person = tdNodes[5].text!
-                            data.place = tdNodes[6].text!
-                            data.note = tdNodes[7].text!
-                            
-                            writeData.append(data)
+                        if doc.count >= 2 {
+                            for i in 1..<doc.count {
+                                
+                                let tdNodes = doc[i].css("td")
+                                
+                                //書き込むデータを作成
+                                let data = CancelInfo()
+                                
+                                data.date = tdNodes[0].text!
+                                data.classification = tdNodes[1].text!
+                                data.time = tdNodes[2].text!
+                                data.department = tdNodes[3].text!
+                                data.classname = tdNodes[4].text!
+                                data.person = tdNodes[5].text!
+                                data.place = tdNodes[6].text!
+                                data.note = tdNodes[7].text!
+                                
+                                writeData.append(data)
+                            }
                         }
                         
                         print("GetCancelInfo : No.\(page) data complete")
