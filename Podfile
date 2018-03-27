@@ -14,6 +14,7 @@ target 'SuLi' do
   pod 'RealmSwift'
   pod 'XLPagerTabStrip'
   pod 'TOSMBClient'
+  pod 'DZNEmptyDataSet'
   
   pod 'Google-Mobile-Ads-SDK'
 

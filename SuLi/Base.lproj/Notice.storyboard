@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Notice-->
+        <!--Empty Data Set Delegate-->
         <scene sceneID="cyB-7D-uFh">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="z3h-UR-kbM" customClass="NoticeViewContoller" customModule="SuLi" customModuleProvider="target" sceneMemberID="viewController">
@@ -147,6 +147,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="emptyDataSetDelegate" destination="z3h-UR-kbM" id="lvV-hG-lNd"/>
+                                    <outlet property="emptyDataSetSource" destination="z3h-UR-kbM" id="hJ6-BB-IK8"/>
+                                </connections>
                             </tableView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="IYE-5r-vXB">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="2.5"/>

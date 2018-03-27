@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import GoogleMobileAds
+import DZNEmptyDataSet
 
 class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableViewDelegate, GADBannerViewDelegate {
     
@@ -248,4 +249,10 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
         }
     }
     
+}
+
+extension NoticeViewContoller: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return NSAttributedString(string: NSLocalizedString("lectureNotice-noItem", comment: "講義案内:データなし"), attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 18)])
+    }
 }

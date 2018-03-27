@@ -70,9 +70,9 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
         print("SyllabusListViewController : load display")
         
         // デフォルト値登録※すでに値が更新されていた場合は、更新後の値のままになる
-        self.userDefault.register(defaults: [UserDefaultsKey.noticeUpdateInterval: 0.0])
+        self.userDefault.register(defaults: [UserDefaultsKey.syllabusUpdateInterval: 0.0])
         let interval = Date().timeIntervalSince1970 - self.userDefault.double(forKey: UserDefaultsKey.syllabusUpdateInterval)
-        print("notice update interval : \(interval)")
+        print("syllabus form update interval : \(interval)")
         
         //1日以上データを更新してない場合はデータを取得する
         if interval >= 86400.0 && self.userDefault.bool(forKey: UserDefaultsKey.dataSync) {

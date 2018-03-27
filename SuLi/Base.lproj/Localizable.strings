@@ -60,3 +60,6 @@
 "alert-syllabus-form-not-found" = "Syllabus form has not been loaded. Retry or try again later?";
 "alert-error-title" = "error";
 "alert-error-server-not-found" = "server not found";
+
+//NO DATA TEXT
+"lectureNotice-noItem" = "No Lectures to show";

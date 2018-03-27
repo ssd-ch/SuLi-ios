@@ -60,3 +60,6 @@
 "alert-syllabus-form-not-found" = "シラバスのフォームデータが取得されていません。リトライしますか?";
 "alert-error-title" = "エラー";
 "alert-error-server-not-found" = "サーバーに接続できませんでした。";
+
+//データがない時の表示
+"lectureNotice-noItem" = "現在、講義案内はありません。";
