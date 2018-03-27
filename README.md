@@ -22,10 +22,11 @@ Workフォルダは島根大学のネットワークに接続していること�
 * インストール要件    
 推奨バージョン iOS 9.0 以上 (動作確認済み)
 
-### 開発環境・仕様ライブラリ
+### 開発環境・使用ライブラリ
 * 開発言語 Swift
 * 開発環境 Xcode
 * 使用ライブラリ  
+[DZNEmptyDataSet](https://github.com/dzenbot/DZNEmptyDataSet) (テーブルビュー)  
 [Kanna](http://tid-kijyun.github.io/Kanna/) (HTMLパーサ)  
 [SwiftHTTP](https://github.com/daltoniam/SwiftHTTP) (HTTPクライアント)  
 [Realm](https://realm.io/docs/swift/latest/) (データベース)  
