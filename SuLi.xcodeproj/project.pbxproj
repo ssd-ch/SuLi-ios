@@ -225,7 +225,6 @@
 				5CFAB8621EB60208001885C4 /* Frameworks */,
 				5CFAB8631EB60208001885C4 /* Resources */,
 				8E41B4F3E27E22F85A32DA03 /* [CP] Embed Pods Frameworks */,
-				97073A1C29CFC1C23F8B9611 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -323,21 +322,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SuLi/Pods-SuLi-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		97073A1C29CFC1C23F8B9611 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SuLi/Pods-SuLi-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D248D6C6FC3A6A92845272CF /* [CP] Check Pods Manifest.lock */ = {

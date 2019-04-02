@@ -9,14 +9,14 @@ target 'SuLi' do
   inhibit_all_warnings!
   
   # Pods for SuLi
-  pod 'Kanna'
+  pod 'Kanna', '2.2.1'
   pod 'SwiftHTTP', '2.0.2'
   pod 'RealmSwift'
-  pod 'XLPagerTabStrip'
+  pod 'XLPagerTabStrip', '8.0.0'
   pod 'TOSMBClient'
   pod 'DZNEmptyDataSet'
   
-  pod 'Google-Mobile-Ads-SDK'
+  pod 'Google-Mobile-Ads-SDK', '7.27.0'
 
 end
 

@@ -169,42 +169,47 @@ struct GetClassroomDivide {
                                 var pn = doc[2].css("td").count - 2
                                 
                                 for i in 27..<doc.count {
-                                    var tdText = [doc[i].css("td")[0].text!, doc[i].css("td")[1].text!, doc[i].css("td")[2].text!.replaceAll(pattern: "\r\n|\n", with: "")]
-                                    if tdText[0] == "\u{00A0}" && tdText[1] == "\u{00A0}" {
-                                        place_text = tdText[2].replaceAll(pattern: "　", with: "").HalfWidthNumber
+                                    if doc[i].css("td").count <= 1 {
+                                        place_text = doc[i].css("td")[0].text!.replaceAll(pattern: "　", with: "").HalfWidthNumber
                                     }
                                     else {
-                                        tdText[0] = tdText[0].replaceAll(pattern: "[ 　\u{00A0}]", with: "") //全角半角&nbspスペースの排除
-                                        tdText[1] = tdText[1].replaceAll(pattern: "[ 　\u{00A0}]", with: "") //全角半角&nbspスペースの排除
-                                        if tdText[0] == "" {
-                                            tdText[0] = day_cache
+                                        var tdText = [doc[i].css("td")[0].text!, doc[i].css("td")[1].text!, doc[i].css("td")[2].text!.replaceAll(pattern: "\r\n|\n", with: "")]
+                                        if tdText[0] == "\u{00A0}" && tdText[1] == "\u{00A0}" {
+                                            place_text = tdText[2].replaceAll(pattern: "　", with: "").HalfWidthNumber
                                         }
-                                        day_cache = tdText[0]
-                                        let dayText = "月火水木金土日"
-                                        let day = dayText.distance(from: dayText.startIndex, to: dayText.range(of: tdText[0])!.lowerBound)
-                                        let time = Int(tdText[1].matcherSubString(pattern: "\\..*").replaceAll(pattern: "\\.", with: ""))! / 2
-                                        let id = "\(NSString(format: "%02d", building_id))\(NSString(format: "%02d", pn))\(day)\(time)"
-                                        pn += 1
-                                        let L_Info = self.ExtractionLecture(str: tdText[2])
-                                        
-                                        //書き込むデータを作成
-                                        let resultData = ClassroomDivide()
-                                        resultData.id = Int(id)!
-                                        resultData.building_id = building_id
-                                        resultData.place = place_text
-                                        resultData.weekday = day
-                                        resultData.time = time
-                                        resultData.cell_text = tdText[2]
-                                        resultData.cell_color = "#000000"
-                                        resultData.classname = L_Info[0]
-                                        resultData.person = L_Info[1]
-                                        resultData.department = L_Info[2]
-                                        resultData.class_code = L_Info[3]
-                                        
-                                        //データをRealmに書き込む
-                                        realm.add(resultData)
-                                        
-                                        //print("\(id), \(building_id),\(place_text), \(day), \(time), \(tdText[2]), #000000, \(L_Info[0]), \(L_Info[1]), \(L_Info[2]), \(L_Info[3])")
+                                        else {
+                                            tdText[0] = tdText[0].replaceAll(pattern: "[ 　\u{00A0}]", with: "") //全角半角&nbspスペースの排除
+                                            tdText[1] = tdText[1].replaceAll(pattern: "[ 　\u{00A0}]", with: "") //全角半角&nbspスペースの排除
+                                            if tdText[0] == "" {
+                                                tdText[0] = day_cache
+                                            }
+                                            day_cache = tdText[0]
+                                            let dayText = "月火水木金土日"
+                                            let day = dayText.distance(from: dayText.startIndex, to: dayText.range(of: tdText[0])!.lowerBound)
+                                            let time = Int(tdText[1].matcherSubString(pattern: "\\..*").replaceAll(pattern: "\\.", with: ""))! / 2
+                                            let id = "\(NSString(format: "%02d", building_id))\(NSString(format: "%02d", pn))\(day)\(time)"
+                                            pn += 1
+                                            let L_Info = self.ExtractionLecture(str: tdText[2])
+                                            
+                                            //書き込むデータを作成
+                                            let resultData = ClassroomDivide()
+                                            resultData.id = Int(id)!
+                                            resultData.building_id = building_id
+                                            resultData.place = place_text
+                                            resultData.weekday = day
+                                            resultData.time = time
+                                            resultData.cell_text = tdText[2]
+                                            resultData.cell_color = "#000000"
+                                            resultData.classname = L_Info[0]
+                                            resultData.person = L_Info[1]
+                                            resultData.department = L_Info[2]
+                                            resultData.class_code = L_Info[3]
+                                            
+                                            //データをRealmに書き込む
+                                            realm.add(resultData)
+                                            
+                                            //print("\(id), \(building_id),\(place_text), \(day), \(time), \(tdText[2]), #000000, \(L_Info[0]), \(L_Info[1]), \(L_Info[2]), \(L_Info[3])")
+                                        }
                                     }
                                 }
                             }
