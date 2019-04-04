@@ -38,14 +38,14 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPi
     let userDefault = UserDefaults.standard
     
     //ツールバーの完了ボタンが押された時
-    @IBAction func pushDoneButton(_ sender: Any) {
+    @IBAction func pushDoneButton(_ sender: UIBarButtonItem) {
         //ピッカー、ツールバーを隠す
         self.pickerView.isHidden = true
         self.toolbar.isHidden = true
     }
     
     //リロードボタンが押された時の処理
-    @IBAction func pushReloadButton(_ sender: Any) {
+    @IBAction func pushReloadButton(_ sender: UIBarButtonItem) {
         //ボタンを無効化
         self.reloadButton.isEnabled = false
         
@@ -127,7 +127,7 @@ class ClassroomDivideViewContoroller: ButtonBarPagerTabStripViewController, UIPi
         
         self.progressView.isHidden = true
         //最前面に表示(storyboardでは前面にしているがタブバーが前面に表示されるので)
-        self.view.bringSubview(toFront: self.progressView)
+        self.view.bringSubviewToFront(self.progressView)
         
         //バナー広告
         self.bannerViewHeightConstraint.constant = 0

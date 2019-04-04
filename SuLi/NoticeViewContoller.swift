@@ -36,7 +36,7 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
     let userDefault = UserDefaults.standard
     
     //リロードボタンが押された時の処理
-    @IBAction func pushReloadButton(_ sender: Any) {
+    @IBAction func pushReloadButton(_ sender: UIBarButtonItem) {
         //ボタンを無効化
         self.reloadButton.isEnabled = false
         
@@ -253,6 +253,6 @@ class NoticeViewContoller : UIViewController, UITableViewDataSource, UITableView
 
 extension NoticeViewContoller: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        return NSAttributedString(string: NSLocalizedString("lectureNotice-noItem", comment: "講義案内:データなし"), attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 18)])
+        return NSAttributedString(string: NSLocalizedString("lectureNotice-noItem", comment: "講義案内:データなし"), attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)])
     }
 }

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SwiftHTTP
+import Alamofire
 import Kanna
 import RealmSwift
 
@@ -15,60 +15,55 @@ struct GetBuildingList {
     
     private static let buildingUrl = NSLocalizedString("buildingList", tableName: "ResourceAddress", comment: "建物別教室配当表一覧のURL")
     
-    private static var opt : HTTP!
+    private static var request: DataRequest?
     
     static func start(completeHandler: @escaping () -> (), errorHandler: @escaping (String) -> ()){
         
         print("GetBuildingList : start task")
         
         autoreleasepool{
-            do {
-                self.opt = try HTTP.GET(self.buildingUrl)
-                self.opt.start { response in
-                    if let err = response.error {
-                        print("GetBuildingList : failed task. \(err.localizedDescription)")
-                        errorHandler(err.localizedDescription)
-                        return
-                    }
-                    if let doc = HTML(html: response.data, encoding: .utf8)?.css(".body li a") {
-                        
-                        
-                        //Realmに接続
-                        let realm = try! Realm()
-                        
-                        //Buildingのすべてのオブジェクトを取得
-                        let buildings = realm.objects(Building.self)
-                        
-                        //トランザクションを開始
-                        try! realm.write() {
-                            //取得したすべてのオブジェクトを削除
-                            realm.delete(buildings)
-                            
-                            for i in 0..<doc.count {
-                                //書き込むデータを作成
-                                let writeData = Building()
-                                writeData.id = i
-                                writeData.building_name = doc[i].text!.replaceAll(pattern: "教室配当表_", with: "").replaceAll(pattern: "_", with: " ")
-                                writeData.url = doc[i]["href"]!
-                                //データをRealmに書き込む
-                                realm.add(writeData)
-                            }
-                        }
-                        
-                        print("GetBuildingList : all task complete")
-                        completeHandler()
-                    }
+            
+            let manager = RequestManager.manager()
+            self.request = manager.request(self.buildingUrl, method: .get)
+            self.request?.responseString { response in
+                if let err = response.error {
+                    print("GetBuildingList : failed task. \(err.localizedDescription)")
+                    errorHandler(err.localizedDescription)
+                    return
                 }
-            } catch let error {
-                print("got an error creating the request: \(error)")
-                errorHandler(error.localizedDescription)
+                guard let data = response.data else { return }
+                if let doc = try? HTML(html: data, encoding: .utf8).css(".body li a") {
+                    
+                    //Realmに接続
+                    let realm = try! Realm()
+                    
+                    //Buildingのすべてのオブジェクトを取得
+                    let buildings = realm.objects(Building.self)
+                    
+                    //トランザクションを開始
+                    try! realm.write() {
+                        //取得したすべてのオブジェクトを削除
+                        realm.delete(buildings)
+                        
+                        for i in 0..<doc.count {
+                            //書き込むデータを作成
+                            let writeData = Building()
+                            writeData.id = i
+                            writeData.building_name = doc[i].text!.replaceAll(pattern: "教室配当表_", with: "").replaceAll(pattern: "_", with: " ")
+                            writeData.url = doc[i]["href"]!
+                            //データをRealmに書き込む
+                            realm.add(writeData)
+                        }
+                    }
+                    
+                    print("GetBuildingList : all task complete")
+                    completeHandler()
+                }
             }
         }
     }
     
     static func cancel() {
-        if self.opt?.isExecuting ?? false {
-            self.opt.cancel()
-        }
+        self.request?.cancel()
     }
 }

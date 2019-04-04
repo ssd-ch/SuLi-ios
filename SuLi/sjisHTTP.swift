@@ -7,19 +7,20 @@
 //
 
 import Foundation
-import SwiftHTTP
+import Alamofire
 
 public class sjisHTTP {
     
-    open class func GET(_ url: String, parameters: [String:String]? = nil) throws -> HTTP  {
+    open class func GET(_ url: String, parameters: [String:String]? = nil) throws -> DataRequest  {
+        let manager = RequestManager.manager()
         if parameters != nil {
             var sjisURL: String = url + "?"
             for (key, value) in parameters!{
                 sjisURL.append("\(key)=\(value.sjisPercentEncoded)&")
             }
-            return try HTTP.GET(sjisURL)
+            return manager.request(sjisURL, method: .get)
         }else {
-            return try HTTP.GET(url)
+            return manager.request(url, method: .get)
         }
     }
 }

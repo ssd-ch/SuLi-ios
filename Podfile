@@ -9,10 +9,10 @@ target 'SuLi' do
   inhibit_all_warnings!
   
   # Pods for SuLi
-  pod 'Kanna', '2.2.1'
-  pod 'SwiftHTTP', '2.0.2'
+  pod 'Kanna'
+  pod 'Alamofire'
   pod 'RealmSwift'
-  pod 'XLPagerTabStrip', '8.0.0'
+  pod 'XLPagerTabStrip'
   pod 'TOSMBClient'
   pod 'DZNEmptyDataSet'
   

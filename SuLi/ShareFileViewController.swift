@@ -96,8 +96,8 @@ class ShareFileViewController : UIViewController, GADBannerViewDelegate {
         self.bannerView.isHidden = true
     }
     
-    override func didMove(toParentViewController parent: UIViewController?) {
-        super.willMove(toParentViewController: parent)
+    override func didMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
         if parent == nil {
             print("ShareFileView : back to parent view controller")
             if self.destinationPath != nil {

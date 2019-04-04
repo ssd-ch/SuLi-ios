@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SwiftHTTP
+import Alamofire
 import Kanna
 import RealmSwift
 import GoogleMobileAds
@@ -137,13 +137,13 @@ class SyllabusListViewController: UIViewController, UISearchBarDelegate, UITable
     func errorHandler(message: String) {
         self.indicatorFlg = false
         //アラートを作成
-        let alert = UIAlertController(title: NSLocalizedString("alert-error-title", comment: "エラーアラートのタイトル"), message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: NSLocalizedString("alert-error-title", comment: "エラーアラートのタイトル"), message: message, preferredStyle: UIAlertController.Style.alert)
         //キャンセルボタン
-        let cancelAction = UIAlertAction(title: NSLocalizedString("alert-cancel-button", comment: "キャンセルボタンのテキスト"), style: UIAlertActionStyle.default){ (action: UIAlertAction) in
+        let cancelAction = UIAlertAction(title: NSLocalizedString("alert-cancel-button", comment: "キャンセルボタンのテキスト"), style: UIAlertAction.Style.default){ (action: UIAlertAction) in
         }
         alert.addAction(cancelAction)
         //Retryボタン
-        let okAction = UIAlertAction(title: NSLocalizedString("alert-retry-button", comment: "リトライボタンのテキスト"), style: UIAlertActionStyle.cancel){ (action: UIAlertAction) in
+        let okAction = UIAlertAction(title: NSLocalizedString("alert-retry-button", comment: "リトライボタンのテキスト"), style: UIAlertAction.Style.cancel){ (action: UIAlertAction) in
             self.indicatorFlg = true
             self.syllabus?.load(addMode: false)
         }
@@ -291,7 +291,7 @@ class SearchSyllabus {
             var resultData : [SyllabusList] = []
             
             do {
-                let opt = try sjisHTTP.GET(self.URL, parameters: [
+                let request = try sjisHTTP.GET(self.URL, parameters: [
                     "nendo": self.searchForm.filter("form = 'nendo'").first!.value,
                     "j_s_cd": "",
                     "kamokud_cd": "",
@@ -303,17 +303,18 @@ class SearchSyllabus {
                     "jigen": "",
                     "disp_cnt": self.dispCnt,
                     "s_cnt": String(self.loadCount) ])
-                opt.start { response in
+                request.response { response in
                     if let err = response.error {
                         print("Search Syllabus : failed. \(err.localizedDescription)")
                         self.delegate!.errorHandler(message: err.localizedDescription)
                         return //also notify app of failure as needed
                     }
-                    if let doc = HTML(html: response.data, encoding: .shiftJIS)?.css("body tr") {
-                        //print("opt finished: \(String(data: response.data, encoding: .shiftJIS))")
+                    guard let data = response.data else { return }
+                    if let doc = try? HTML(html: data, encoding: .shiftJIS).css("body tr") {
+                        //print("request finished: \(String(data: response.data, encoding: .shiftJIS))")
                         if doc.count > 0 {
-                            let cntText = (HTML(html: response.data, encoding: .shiftJIS)?.css("p")[0].text?.replaceAll(pattern: "(.*｜　全)|(件　｜.*)", with: ""))!
-                            self.hitNum = Int(cntText)!
+                            let cntText = (((try? HTML(html: data, encoding: .shiftJIS).css("p")[0].text?.replaceAll(pattern: "(.*｜　全)|(件　｜.*)", with: "")) as String??))!
+                            self.hitNum = Int(cntText!)!
                             self.loadCount += doc.count-1
                             for i in 1..<doc.count {
                                 let td_node = doc[i].css("td")

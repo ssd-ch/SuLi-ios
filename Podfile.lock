@@ -1,46 +1,46 @@
 PODS:
+  - Alamofire (4.8.2)
   - DZNEmptyDataSet (1.8.1)
   - Google-Mobile-Ads-SDK (7.27.0)
-  - Kanna (2.2.1)
+  - Kanna (5.0.0)
   - Realm (3.14.0):
     - Realm/Headers (= 3.14.0)
   - Realm/Headers (3.14.0)
   - RealmSwift (3.14.0):
     - Realm (= 3.14.0)
-  - SwiftHTTP (2.0.2)
   - TOSMBClient (1.0.8)
-  - XLPagerTabStrip (8.0.0)
+  - XLPagerTabStrip (8.1.0)
 
 DEPENDENCIES:
+  - Alamofire
   - DZNEmptyDataSet
   - Google-Mobile-Ads-SDK (= 7.27.0)
-  - Kanna (= 2.2.1)
+  - Kanna
   - RealmSwift
-  - SwiftHTTP (= 2.0.2)
   - TOSMBClient
-  - XLPagerTabStrip (= 8.0.0)
+  - XLPagerTabStrip
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Alamofire
     - DZNEmptyDataSet
     - Google-Mobile-Ads-SDK
     - Kanna
     - Realm
     - RealmSwift
-    - SwiftHTTP
     - TOSMBClient
     - XLPagerTabStrip
 
 SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Google-Mobile-Ads-SDK: 83f7f890e638ce8f1debd440ea363338c9f6be3b
-  Kanna: 182789ab065e8f9a6ccc2a74ce6283d3401c0c4a
+  Kanna: a32875df62975f8f4b871e933b4ea1a5c3b8be0f
   Realm: 221b25919bb5a010a3c597d707f8df3492dcd93a
   RealmSwift: 28f22dfa6a27b9a778cfb09471558b6afcf1022c
-  SwiftHTTP: faa1a5f7670568ffc9361898229dbe84a6088468
   TOSMBClient: 8884ede03ae70e6087962433fda22fb6b4b8c7f8
-  XLPagerTabStrip: d1ab378af0923320ec0b5eab11d7b2f803d31261
+  XLPagerTabStrip: 22d4c58200d7c105e0e407ab6bfd01a5d85014be
 
-PODFILE CHECKSUM: 27d0d6f4865844222776a5096685686ebe7db1bd
+PODFILE CHECKSUM: 6ded428864ec480b1e45b4b856a4f216a4843e7e
 
 COCOAPODS: 1.5.3

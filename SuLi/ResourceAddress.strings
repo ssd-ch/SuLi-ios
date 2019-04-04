@@ -18,14 +18,14 @@
 "shareStorage-rootPath" = "/work/";
 
 //Link
-"link-shimane-home" = "http://www.shimane-u.ac.jp/";
+"link-shimane-home" = "https://www.shimane-u.ac.jp/";
 "link-gakumu" = "https://gakumuweb.shimane-u.ac.jp/shinwa/campus/";
 "link-gipc" = "https://www.g-ipc.shimane-u.ac.jp/";
 "link-moodle" = "https://moodle.cerd.shimane-u.ac.jp/moodle/login/index.php";
 "link-question" = "https://enq.shimane-u.ac.jp/mt/";
 
 //ClassroomDivide
-"buildingList" = "http://www.shimane-u.ac.jp/education/school_info/class_data/class_data01.html";
+"buildingList" = "https://www.shimane-u.ac.jp/education/school_info/class_data/class_data01.html";
 
 //CancelInfo
 "cancelInfo" = "http://www.kougi.shimane-u.ac.jp/selectweb/conduct_list.asp";

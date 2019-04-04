@@ -15,8 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    internal func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         //Realm Migration
@@ -78,16 +77,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func getData(completeHandler: @escaping () -> ()){
         
         //アラートを作成
-        let alert = UIAlertController(title: NSLocalizedString("alert-error-title", comment: "エラーアラートのタイトル"), message: NSLocalizedString("alert-failed-get-data", comment: "データ取得失敗のアラートメッセージ"), preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: NSLocalizedString("alert-error-title", comment: "エラーアラートのタイトル"), message: NSLocalizedString("alert-failed-get-data", comment: "データ取得失敗のアラートメッセージ"), preferredStyle: UIAlertController.Style.alert)
         
         //キャンセルボタン
-        let cancelAction = UIAlertAction(title: NSLocalizedString("alert-cancel-button", comment: "キャンセルボタンのテキスト"), style: UIAlertActionStyle.default){ (action: UIAlertAction) in
+        let cancelAction = UIAlertAction(title: NSLocalizedString("alert-cancel-button", comment: "キャンセルボタンのテキスト"), style: UIAlertAction.Style.default){ (action: UIAlertAction) in
             //リトライのキャンセルボタンが押された場合
         }
         alert.addAction(cancelAction)
         
         //Retryボタン
-        let okAction = UIAlertAction(title: NSLocalizedString("alert-retry-button", comment: "リトライボタンのテキスト"), style: UIAlertActionStyle.cancel){ (action: UIAlertAction) in
+        let okAction = UIAlertAction(title: NSLocalizedString("alert-retry-button", comment: "リトライボタンのテキスト"), style: UIAlertAction.Style.cancel){ (action: UIAlertAction) in
             self.getData(completeHandler: completeHandler)
         }
         alert.addAction(okAction)

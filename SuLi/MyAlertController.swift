@@ -11,10 +11,10 @@ import UIKit
 class MyAlertController {
     
     static func action(title: String, message: String) -> UIAlertController {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         
         //OKボタンを作成
-        let okAction = UIAlertAction(title: NSLocalizedString("alert-ok-button", comment: "OKボタンのテキスト"), style: UIAlertActionStyle.default){ (action: UIAlertAction) in
+        let okAction = UIAlertAction(title: NSLocalizedString("alert-ok-button", comment: "OKボタンのテキスト"), style: UIAlertAction.Style.default){ (action: UIAlertAction) in
             //OKボタンが押された時の処理
             //print("Tap OK button")
         }
@@ -26,10 +26,10 @@ class MyAlertController {
     }
     
     static func cancel(title: String, message: String) -> UIAlertController {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         
         //キャンセルボタンを作成
-        let cancelAction = UIAlertAction(title: NSLocalizedString("alert-cancel-button", comment: "キャンセルボタンのテキスト"), style: UIAlertActionStyle.cancel){ (action: UIAlertAction) in
+        let cancelAction = UIAlertAction(title: NSLocalizedString("alert-cancel-button", comment: "キャンセルボタンのテキスト"), style: UIAlertAction.Style.cancel){ (action: UIAlertAction) in
             //キャンセルボタンが押された時の処理
             //print("Tap cancel button")
         }
@@ -42,7 +42,7 @@ class MyAlertController {
     
     static func indicator(title: String) -> UIAlertController {
         
-        let alert = UIAlertController(title: title, message: "\n", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: title, message: "\n", preferredStyle: UIAlertController.Style.alert)
         
         let indicator = UIActivityIndicatorView()
         indicator.translatesAutoresizingMaskIntoConstraints = false
@@ -62,13 +62,13 @@ class MyAlertController {
     
     static func cancelIndicator(title: String, cancelHandler: @escaping () -> ()) -> UIAlertController {
         
-        let alert = UIAlertController(title: title, message: "\n", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: title, message: "\n", preferredStyle: UIAlertController.Style.alert)
         
         let indicator = UIActivityIndicatorView()
         indicator.translatesAutoresizingMaskIntoConstraints = false
         alert.view.addSubview(indicator)
         
-        let cancelAction = UIAlertAction(title: NSLocalizedString("alert-cancel-button", comment: "キャンセルボタンのテキスト"), style: UIAlertActionStyle.cancel){ (action: UIAlertAction) in
+        let cancelAction = UIAlertAction(title: NSLocalizedString("alert-cancel-button", comment: "キャンセルボタンのテキスト"), style: UIAlertAction.Style.cancel){ (action: UIAlertAction) in
             cancelHandler()
         }
         alert.addAction(cancelAction)

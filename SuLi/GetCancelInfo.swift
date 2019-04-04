@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SwiftHTTP
+import Alamofire
 import Kanna
 import RealmSwift
 
@@ -15,7 +15,7 @@ struct GetCancelInfo {
     
     private static let cancelInfoUrl = NSLocalizedString("cancelInfo", tableName: "ResourceAddress", comment: "講義案内のURL")
     
-    private static var opt : HTTP!
+    private static var request: DataRequest?
     
     static func start(completeHandler: @escaping () -> (), errorHandler: @escaping (String) -> ()){
         
@@ -59,73 +59,66 @@ struct GetCancelInfo {
         autoreleasepool{
             
             var writeData: [CancelInfo] = data
+            print("GetCancelInfo : No.\(page) data init")
             
-            do {
-                print("GetCancelInfo : No.\(page) data init")
+            let manager = RequestManager.manager()
+            self.request = manager.request(self.cancelInfoUrl, method: .get, parameters: ["abspage":"\(page)"])
+            
+            self.request?.response { response in
                 
-                self.opt = try HTTP.GET(self.cancelInfoUrl, parameters: ["abspage":"\(page)"])
+                if let err = response.error {
+                    print("GetCancelInfo : No.\(page) data failed \(err.localizedDescription)")
+                    errorHandler(err.localizedDescription)
+                    return
+                }
+                guard let data = response.data else { return }
                 
-                self.opt.start { response in
+                if let doc = try? HTML(html: data, encoding: .utf8).css(".table_data tr") {
                     
-                    if let err = response.error {
-                        print("GetCancelInfo : No.\(page) data failed \(err.localizedDescription)")
-                        errorHandler(err.localizedDescription)
-                        return
-                    }
-                    
-                    if let doc = HTML(html: response.data, encoding: .utf8)?.css(".table_data tr") {
-                        
-                        if doc.count >= 2 {
-                            for i in 1..<doc.count {
-                                
-                                let tdNodes = doc[i].css("td")
-                                
-                                //書き込むデータを作成
-                                let data = CancelInfo()
-                                
-                                data.date = tdNodes[0].text!
-                                data.classification = tdNodes[1].text!
-                                data.time = tdNodes[2].text!
-                                data.department = tdNodes[3].text!
-                                data.classname = tdNodes[4].text!
-                                data.person = tdNodes[5].text!
-                                data.place = tdNodes[6].text!
-                                data.note = tdNodes[7].text!
-                                
-                                writeData.append(data)
-                            }
-                        }
-                        
-                        print("GetCancelInfo : No.\(page) data complete")
-                    }
-                    
-                    if let doc = HTML(html: response.data, encoding: .utf8)?.css(".prevnextpage") {
-                        
-                        if doc.count < (page == 1 ? 1 : 2) {
-                            //これ以上読み込むページがない(処理が完了)
-                            completeHandler(writeData)
-                        }
-                        else {
-                            //次のページを読み込む
-                            self.getData(page: page + 1, data: writeData, completeHandler: completeHandler, errorHandler: errorHandler)
+                    if doc.count >= 2 {
+                        for i in 1..<doc.count {
+                            
+                            let tdNodes = doc[i].css("td")
+                            
+                            //書き込むデータを作成
+                            let data = CancelInfo()
+                            
+                            data.date = tdNodes[0].text!
+                            data.classification = tdNodes[1].text!
+                            data.time = tdNodes[2].text!
+                            data.department = tdNodes[3].text!
+                            data.classname = tdNodes[4].text!
+                            data.person = tdNodes[5].text!
+                            data.place = tdNodes[6].text!
+                            data.note = tdNodes[7].text!
+                            
+                            writeData.append(data)
                         }
                     }
-                    else {
-                        errorHandler("error: can't get next page flag")
-                    }
                     
+                    print("GetCancelInfo : No.\(page) data complete")
                 }
                 
-            } catch let error {
-                print("got an error creating the request: \(error)")
-                errorHandler(error.localizedDescription)
+                if let doc = try? HTML(html: data, encoding: .utf8).css(".prevnextpage") {
+                    
+                    if doc.count < (page == 1 ? 1 : 2) {
+                        //これ以上読み込むページがない(処理が完了)
+                        completeHandler(writeData)
+                    }
+                    else {
+                        //次のページを読み込む
+                        self.getData(page: page + 1, data: writeData, completeHandler: completeHandler, errorHandler: errorHandler)
+                    }
+                }
+                else {
+                    errorHandler("error: can't get next page flag")
+                }
+                
             }
         }
     }
     
     static func cancel() {
-        if self.opt?.isExecuting ?? false {
-            self.opt.cancel()
-        }
+        self.request?.cancel()
     }
 }

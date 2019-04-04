@@ -10,17 +10,17 @@ import RealmSwift
 
 class ClassroomDivide: Object {
     
-    dynamic var id = -1
-    dynamic var building_id = -1
-    dynamic var place = ""
-    dynamic var weekday = -1
-    dynamic var time = -1
-    dynamic var cell_text = ""
-    dynamic var cell_color = ""
-    dynamic var classname = ""
-    dynamic var person = ""
-    dynamic var department = ""
-    dynamic var class_code = ""
+    @objc dynamic var id = -1
+    @objc dynamic var building_id = -1
+    @objc dynamic var place = ""
+    @objc dynamic var weekday = -1
+    @objc dynamic var time = -1
+    @objc dynamic var cell_text = ""
+    @objc dynamic var cell_color = ""
+    @objc dynamic var classname = ""
+    @objc dynamic var person = ""
+    @objc dynamic var department = ""
+    @objc dynamic var class_code = ""
     
     override static func primaryKey() -> String? {
         return "id"
@@ -29,10 +29,10 @@ class ClassroomDivide: Object {
 
 class Building: Object {
     
-    dynamic var id = -1
-    dynamic var building_name = ""
-    dynamic var url = ""
-    dynamic var color = ""
+    @objc dynamic var id = -1
+    @objc dynamic var building_name = ""
+    @objc dynamic var url = ""
+    @objc dynamic var color = ""
     
     override static func primaryKey() -> String? {
         return "id"
@@ -41,10 +41,10 @@ class Building: Object {
 
 class SyllabusForm: Object {
     
-    dynamic var id = -1
-    dynamic var form = ""
-    dynamic var display = ""
-    dynamic var value = ""
+    @objc dynamic var id = -1
+    @objc dynamic var form = ""
+    @objc dynamic var display = ""
+    @objc dynamic var value = ""
     
     override static func primaryKey() -> String? {
         return "id"
@@ -53,15 +53,15 @@ class SyllabusForm: Object {
 
 class CancelInfo: Object {
     
-    dynamic var id = -1
-    dynamic var date = ""
-    dynamic var time = ""
-    dynamic var classification = ""
-    dynamic var department = ""
-    dynamic var classname = ""
-    dynamic var person = ""
-    dynamic var place = ""
-    dynamic var note = ""
+    @objc dynamic var id = -1
+    @objc dynamic var date = ""
+    @objc dynamic var time = ""
+    @objc dynamic var classification = ""
+    @objc dynamic var department = ""
+    @objc dynamic var classname = ""
+    @objc dynamic var person = ""
+    @objc dynamic var place = ""
+    @objc dynamic var note = ""
     
     override static func primaryKey() -> String? {
         return "id"

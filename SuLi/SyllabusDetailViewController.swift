@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SwiftHTTP
+import Alamofire
 import Kanna
 import RealmSwift
 import GoogleMobileAds
@@ -45,7 +45,7 @@ class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UIT
         self.tableView.isHidden = true
         
         self.tableView.estimatedRowHeight = 32
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.rowHeight = UITableView.automaticDimension
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -116,8 +116,8 @@ class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     //プログレス用デリゲートメソッド
-    func progress(_ progress: Float) {
-        self.progressView.setProgress(progress, animated: true)
+    func progress(_ progress: Double) {
+        self.progressView.setProgress(Float(progress), animated: true)
     }
     
     //エラー用デリゲートメソッド
@@ -194,7 +194,7 @@ class SyllabusDetailViewController: UIViewController, UITableViewDataSource, UIT
 protocol SyllabusDetailDelegate {
     
     func finishTask(data: SyllabusData, mode: Bool) -> Void
-    func progress(_ progress: Float) -> Void
+    func progress(_ progress: Double) -> Void
     func errorHandler(message: String) -> Void
 }
 
@@ -213,86 +213,85 @@ class GetSyllabus {
         
         let resultData = SyllabusData()
         
-        do {
-            let opt = try HTTP.GET(self.URL)
-            
-            opt.progress = { progress in
-                //サーバーの関係で取得するデータサイズが-1になってしまうので10000byteあたりを想定してプログレスバーを更新する
-                let val = progress / Float(-10000.0)
-                if val < 1.0 && val > 0.1 {
-                    DispatchQueue.main.async {
-                        self.delegate!.progress(val)
-                    }
+        let manager = RequestManager.manager()
+        let request = manager.request(self.URL, method: .get)
+        
+        request.downloadProgress { (progress) in
+            //サーバーの関係で取得するデータサイズが-1になってしまうので10000byteあたりを想定してプログレスバーを更新する
+            let val = progress.fractionCompleted / Double(-10000.0)
+            if val < 1.0 && val > 0.1 {
+                DispatchQueue.main.async {
+                    self.delegate!.progress(val)
                 }
             }
-            
-            opt.start { response in
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
-                    self.delegate!.errorHandler(message: err.localizedDescription)
-                    return //also notify app of failure as needed
-                }
-                if let doc = HTML(html: response.data, encoding: .shiftJIS)?.css("table.normal") {
-                    if doc.count >= 3 {
-                        
-                        //基本データ
-                        let thBasic = doc[0].css("th")
-                        let tdBasic = doc[0].css("td")
-                        
-                        for i in 0..<thBasic.count {
-                            resultData.basic.append((thBasic[i].text!, tdBasic[i].text!))
+        }
+        
+        request.response { response in
+            if let err = response.error {
+                print("error: \(err.localizedDescription)")
+                self.delegate!.errorHandler(message: err.localizedDescription)
+                return //also notify app of failure as needed
+            }
+            guard let data = response.data else { return }
+            if let doc = try? HTML(html: data, encoding: .shiftJIS).css("table.normal") {
+                if doc.count >= 3 {
+                    
+                    //基本データ
+                    let thBasic = doc[0].css("th")
+                    let tdBasic = doc[0].css("td")
+                    
+                    for i in 0..<thBasic.count {
+                        resultData.basic.append((thBasic[i].text!, tdBasic[i].text!))
+                    }
+                    
+                    //講義内容
+                    let thDetail = doc[1].css("th")
+                    let tdDetail = doc[1].css("td")
+                    
+                    for i in 0..<thDetail.count {
+                        let text = tdDetail[i].toHTML!.replaceAll(pattern: "<br>", with: "\n")
+                        if let content_text = try? HTML(html: text, encoding: .utf8) {
+                            resultData.detail.append((thDetail[i].text!, content_text.text ?? "N/A"))
                         }
+                    }
+                    
+                    //担当教員
+                    let tdTeacher = doc[2].css("td")
+                    
+                    for i in stride(from: 0, to: tdTeacher.count, by: 2) {
+                        resultData.teachers.append((tdTeacher[i].text!, tdTeacher[i+1].text!))
+                    }
+                    
+                    //講義場所
+                    //(授業名または担当教員の苗字が一致)かつ(いずれかの曜日時限が一致)する場所を問い合わせる
+                    let filter = "( classname like '*\(tdBasic[4].text!)*' or person like '*\(tdBasic[10].text!.replaceAll(pattern: "[ 　]+.*", with: ""))*' ) and " + self.CreateWhereTime(text: tdBasic[7].text!)
+                    let placeQuery = try! Realm().objects(ClassroomDivide.self).filter(filter)
+                    
+                    for data in placeQuery {
                         
-                        //講義内容
-                        let thDetail = doc[1].css("th")
-                        let tdDetail = doc[1].css("td")
-                        
-                        for i in 0..<thDetail.count {
-                            let text = tdDetail[i].toHTML!.replaceAll(pattern: "<br>", with: "\n")
-                            resultData.detail.append((thDetail[i].text!, HTML(html: text, encoding: .utf8)!.text!))
-                        }
-                        
-                        //担当教員
-                        let tdTeacher = doc[2].css("td")
-                        
-                        for i in stride(from: 0, to: tdTeacher.count, by: 2) {
-                            resultData.teachers.append((tdTeacher[i].text!, tdTeacher[i+1].text!))
-                        }
-                        
-                        //講義場所
-                        //(授業名または担当教員の苗字が一致)かつ(いずれかの曜日時限が一致)する場所を問い合わせる
-                        let filter = "( classname like '*\(tdBasic[4].text!)*' or person like '*\(tdBasic[10].text!.replaceAll(pattern: "[ 　]+.*", with: ""))*' ) and " + self.CreateWhereTime(text: tdBasic[7].text!)
-                        let placeQuery = try! Realm().objects(ClassroomDivide.self).filter(filter)
-                        
-                        for data in placeQuery {
-                            
-                            if data.person.matches(pattern: ".*\(tdBasic[10].text!.replaceAll(pattern: " |　", with: ".*")).*") {
-                                resultData.place.append(
-                                    (data.place, "\(NSLocalizedString("syllabus-place-weekday-\(data.weekday)", comment: "シラバスの場所:曜日")) \(NSLocalizedString("syllabus-place-time-\(data.time)", comment: "シラバスの場所:時限"))")
-                                )
-                            }
-                        }
-                        
-                        //一つも該当しなかった場合
-                        if resultData.place.count <= 0 {
+                        if data.person.matches(pattern: ".*\(tdBasic[10].text!.replaceAll(pattern: " |　", with: ".*")).*") {
                             resultData.place.append(
-                                (NSLocalizedString("syllabus-place-error-title", comment: "シラバスの場所:該当なしの時のタイトル"),
-                                 NSLocalizedString("syllabus-place-error-detail", comment: "シラバスの場所:該当なしの時の詳細"))
+                                (data.place, "\(NSLocalizedString("syllabus-place-weekday-\(data.weekday)", comment: "シラバスの場所:曜日")) \(NSLocalizedString("syllabus-place-time-\(data.time)", comment: "シラバスの場所:時限"))")
                             )
                         }
-                        
-                        self.delegate?.finishTask(data: resultData, mode: false)
-                        
-                    }else {
-                        DispatchQueue.main.async {
-                            self.delegate?.errorHandler(message: "取得したデータが不正です。")
-                        }
+                    }
+                    
+                    //一つも該当しなかった場合
+                    if resultData.place.count <= 0 {
+                        resultData.place.append(
+                            (NSLocalizedString("syllabus-place-error-title", comment: "シラバスの場所:該当なしの時のタイトル"),
+                             NSLocalizedString("syllabus-place-error-detail", comment: "シラバスの場所:該当なしの時の詳細"))
+                        )
+                    }
+                    
+                    self.delegate?.finishTask(data: resultData, mode: false)
+                    
+                }else {
+                    DispatchQueue.main.async {
+                        self.delegate?.errorHandler(message: "取得したデータが不正です。")
                     }
                 }
             }
-        } catch let error {
-            print("got an error creating the request: \(error)")
-            self.delegate!.errorHandler(message: error.localizedDescription)
         }
     }
     
