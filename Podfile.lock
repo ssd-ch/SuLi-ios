@@ -3,11 +3,11 @@ PODS:
   - DZNEmptyDataSet (1.8.1)
   - Google-Mobile-Ads-SDK (7.27.0)
   - Kanna (5.0.0)
-  - Realm (3.14.0):
-    - Realm/Headers (= 3.14.0)
-  - Realm/Headers (3.14.0)
-  - RealmSwift (3.14.0):
-    - Realm (= 3.14.0)
+  - Realm (3.14.1):
+    - Realm/Headers (= 3.14.1)
+  - Realm/Headers (3.14.1)
+  - RealmSwift (3.14.1):
+    - Realm (= 3.14.1)
   - TOSMBClient (1.0.8)
   - XLPagerTabStrip (8.1.0)
 
@@ -36,8 +36,8 @@ SPEC CHECKSUMS:
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Google-Mobile-Ads-SDK: 83f7f890e638ce8f1debd440ea363338c9f6be3b
   Kanna: a32875df62975f8f4b871e933b4ea1a5c3b8be0f
-  Realm: 221b25919bb5a010a3c597d707f8df3492dcd93a
-  RealmSwift: 28f22dfa6a27b9a778cfb09471558b6afcf1022c
+  Realm: e12c9c2387d05c5bba3a9c394838f5870e85763b
+  RealmSwift: a82eab9b04c3e1616082c7e17aa300740847769c
   TOSMBClient: 8884ede03ae70e6087962433fda22fb6b4b8c7f8
   XLPagerTabStrip: 22d4c58200d7c105e0e407ab6bfd01a5d85014be
 

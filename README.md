@@ -28,7 +28,7 @@ Workフォルダは島根大学のネットワークに接続していること�
 * 使用ライブラリ  
 [DZNEmptyDataSet](https://github.com/dzenbot/DZNEmptyDataSet) (テーブルビュー)  
 [Kanna](http://tid-kijyun.github.io/Kanna/) (HTMLパーサ)  
-[SwiftHTTP](https://github.com/daltoniam/SwiftHTTP) (HTTPクライアント)  
+[Alamofire](https://github.com/Alamofire/Alamofire) (HTTPクライアント)  
 [Realm](https://realm.io/docs/swift/latest/) (データベース)  
 [XLPagerTabStrip](https://github.com/xmartlabs/XLPagerTabStrip) (タブビュー)  
 [TOSMBClient](https://github.com/TimOliver/TOSMBClient) (SMBクライアント)  
